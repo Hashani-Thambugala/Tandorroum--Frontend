@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+            <!-- <span>Tanderrum<br><h4>Live</h4></span> -->
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <!-- Right actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Cart with icon and text -->
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <!-- Login with icon and text -->
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <!-- Menu -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+
+<section class="hero">
+    <div class="hero-overlay">
+        
+        <div class="hero-title">
+            <div class="hero-title-container">
+                <h1 class="hero-main-title">FIND YOUR NEXT</h1>
+                <div class="changing-text-wrapper">
+                    <h1 class="changing-word">ESCAPE.</h1>
+                    <h1 class="changing-word">Experience.</h1>
+                    <h1 class="changing-word">Night Out.</h1>
+                    <h1 class="changing-word">Show.</h1>
+                    <h1 class="changing-word">Adventure.</h1>
+                </div>
+            </div>
+            <p class="hero-subtitle">Book tickets to <b>Unforgettable Events</b> near you</p>
+        </div>
+
+        <p class="hero-sub">Explore Unforgettable Events</p>
+
+        <div class="search-box">
+            <select>
+                <option>Event Type</option>
+            </select>
+            <input type="text" placeholder="Type event name">
+            <input type="text" placeholder="Your location">
+            <button>SEARCH EVENT</button>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ===== FEATURED EVENTS ===== -->
+<section class="featured">
+    <div class="featured-header">
+        <h2>FEATURED EVENTS <br><span>NEAR YOU</span></h2>
+        <p class="featured-subtitle">Handpicked shows and experiences you won't want to miss</p>
+        
+        <!-- Filter buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active">ALL</button>
+            <button class="filter-btn">Today</button>
+            <button class="filter-btn">This Week</button>
+        </div>
+    </div>
+
+    <div class="events-grid">
+        <!-- Row 1 -->
+        <div class="event-card">
+            <div class="event-image-container">
+                <span class="event-type-tag theater">Theater</span>
+                <img src="images/ev 1.PNG" alt="Shakespeare Under The Stars">
+            </div>
+            <div class="event-content">
+                <h3>Shakespeare Under The Stars</h3>
+                <p class="event-location">Sydney Outdoor Theatre</p>
+                <div class="event-datetime">
+                    <span class="event-day">SAT 25 MAR</span>
+                    <span class="event-separator">|</span>
+                    <span class="event-time">7:30 PM</span>
+                </div>
+                <div class="event-price">
+                    <p class="price-label">From</p>
+                    <p class="price">$45.00</p>
+                    <button class="book-btn">BOOK NOW <span class="arrow">›</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-image-container">
+                <span class="event-type-tag concert">Concert</span>
+                <img src="images/ev  2.png" alt="The Black Keys Live">
+            </div>
+            <div class="event-content">
+                <h3>The Black Keys Live</h3>
+                <p class="event-location">Melbourne Convention Centre</p>
+            <div class="event-datetime">
+                <span class="event-day">SAT 25 MAR</span>
+                <span class="event-separator">|</span>
+                <span class="event-time">7:30 PM</span>
+            </div>
+                <div class="event-price">
+                    <p class="price-label">From</p>
+                    <p class="price">$89.00</p>
+                    <button class="book-btn">
+                        BOOK NOW <span class="arrow">›</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-image-container">
+                <span class="event-type-tag comedy">Comedy</span>
+                <img src="images/ev 3.png" alt="Comedy Festival Opening">
+            </div>
+            <div class="event-content">
+                <h3>Comedy Festival Opening Night Gala</h3>
+                <p class="event-location">Sydney Theatre Company</p>
+                <div class="event-datetime">
+                    <span class="event-day">SAT 25 MAR</span>
+                    <span class="event-separator">|</span>
+                    <span class="event-time">7:30 PM</span>
+                </div>
+                <div class="event-price">
+                    <p class="price-label">From</p>
+                    <p class="price">$55.00</p>
+                    <button class="book-btn">BOOK NOW <span class="arrow">›</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-image-container">
+                <span class="event-type-tag theater">Ballet</span>
+                <img src="images/ev4.jpg" alt="Swan Lake Ballet">
+            </div>
+            <div class="event-content">
+                <h3>Australian Ballet: Swan Lake</h3>
+                <p class="event-location">Adelaide Festival Centre</p>
+                <div class="event-datetime">
+                    <span class="event-day">SAT 25 MAR</span>
+                    <span class="event-separator">|</span>
+                    <span class="event-time">7:30 PM</span>
+                </div>
+                <div class="event-price">
+                    <p class="price-label">From</p>
+                    <p class="price">$45.00</p>
+                    <button class="book-btn">BOOK NOW <span class="arrow">›</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="event-card">
+            <div class="event-image-container">
+                <span class="event-type-tag music">Dance</span>
+                <img src="images/ev  5.webp" alt="Jazz Night Festival">
+            </div>
+            <div class="event-content">
+                <h3>The Glass Menagerie</h3>
+                <p class="event-location">Perth Concert Hall</p>
+                <div class="event-datetime">
+                    <span class="event-day">SAT 25 MAR</span>
+                    <span class="event-separator">|</span>
+                    <span class="event-time">7:30 PM</span>
+                </div>
+                <div class="event-price">
+                    <p class="price-label">From</p>
+                    <p class="price">$65.00</p>
+                    <button class="book-btn">BOOK NOW <span class="arrow">›</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-image-container">
+                <span class="event-type-tag food">Music</span>
+                <img src="images/ev 6.png" alt="Food & Wine Expo">
+            </div>
+            <div class="event-content">
+                <h3>Indie Sundays at the Brewery</h3>
+                <p class="event-location">Brisbane Convention Center</p>
+                <div class="event-datetime">
+                    <span class="event-day">SAT 25 MAR</span>
+                    <span class="event-separator">|</span>
+                    <span class="event-time">7:30 PM</span>
+                </div>
+                <div class="event-price">
+                    <p class="price-label">From</p>
+                    <p class="price">$75.00</p>
+                    <button class="book-btn">BOOK NOW <span class="arrow">›</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-image-container">
+                <span class="event-type-tag festival">Family</span>
+                <img src="images/ev 7.png" alt="Indie Music Festival">
+            </div>
+            <div class="event-content">
+                <h3>The Black Keys Live</h3>
+                <p class="event-location">Hobart Arena</p>
+                <div class="event-datetime">
+                    <span class="event-day">SAT 25 MAR</span>
+                    <span class="event-separator">|</span>
+                    <span class="event-time">7:30 PM</span>
+                </div>
+                <div class="event-price">
+                    <p class="price-label">From</p>
+                    <p class="price">$50.00</p>
+                    <button class="book-btn">BOOK NOW <span class="arrow">›</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card">
+            <div class="event-image-container">
+                <span class="event-type-tag exhibition">Theatre</span>
+                <img src="images/ev 8.jpg" alt="Art Gallery Opening">
+            </div>
+            <div class="event-content">
+                <h3>Shakespeare Under the Stars</h3>
+                <p class="event-location">Sydney Outdoor Theatre</p>
+                <div class="event-datetime">
+                    <span class="event-day">SAT 25 MAR</span>
+                    <span class="event-separator">|</span>
+                    <span class="event-time">7:30 PM</span>
+                </div>
+                <div class="event-price">
+                    <p class="price-label">From</p>
+                    <p class="price">$35.00</p>
+                    <button class="book-btn">BOOK NOW <span class="arrow">›</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="see-all-wrapper">
+    <button class="allevent-btn"> See All Events </button>
+    </div>
+</section>
+<!-- ===== FOOTER ===== -->
+<footer class="footer-new">
+    <!-- Logo and social media -->
+    <div class="footer-logo-social">
+        <div class="footer-logo-wrapper">
+            <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+            <div class="footer-logo-text">TANDERRUM<span>.LIVE</span></div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact information -->
+    <div class="footer-contact">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(03) 9123 4567</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>hello@tanderrum.ai</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="footer-nav">
+        <a href="#">HOME</a>
+        <a href="#">BROWSE EVENTS</a>
+        <a href="#">VENUES</a>
+        <a href="#">HELP CENTER</a>
+    </nav>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter-section">
+        <h3>NEVER MISS OUT</h3>
+        <p>Get notified about new events</p>
+        <form class="footer-newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">→</button>
+        </form>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+        <div class="footer-credit">
+            Design by <strong>THANDER WAGHMA</strong>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            if (topHeader.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && 
+            !topHeader.contains(event.target) &&
+            window.innerWidth <= 900) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 900) {
+                topHeader.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900 && topHeader.classList.contains('active')) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+</script>
+
+</body>
+</html>
