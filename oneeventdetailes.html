@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum</title>
+    <link rel="stylesheet" href="oneeventdetailes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="browse-events.html">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <!-- Right actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Cart with icon and text -->
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <!-- Login with icon and text -->
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <!-- Menu -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero container">
+    <div class="hero-img">
+        <img src="images/ev 3.png" alt="event">
+    </div>
+
+    <div class="hero-content">
+        <div class="content-top">
+            <span class="tag">Comedy</span>
+
+            <h1>
+                Comedy Festival Opening Night Gala<br>
+                <span>A MODERN Smile</span>
+            </h1>
+
+            <p>A gripping tale of revenge, madness, and royal intrigue unfolds.</p>
+
+            <div class="meta">
+                <div class="meta-item">
+                    <i class="fa fa-calendar"></i>
+                    <span>SAT 15 MAR</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fa fa-clock"></i>
+                    <span>7:30 PM</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fa fa-location-dot"></i>
+                    <span>Sydney Theatre Company</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-section">
+            <div class="price-box">
+                <div class="price">
+                    From <b>$55.00</b>
+                </div>
+            </div>
+
+            <small class="ticket-note">
+                No refunds or exchanges. Late entry not permitted.
+            </small>
+
+            <div class="buttons-container">
+                <div class="buttons-row">
+                    <button class="btn-outline">SHARE</button>
+                    <button class="btn-primary">GET TICKETS</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Tabs Section -->
+<section class="tabs-section">
+  <div class="tabs-container">
+    <div class="tabs-nav">
+      <button class="tab-item active" data-tab="overview">
+        <i class="fas fa-info-circle"></i>
+        <span>Overview</span>
+      </button>
+      <button class="tab-item" data-tab="venue">
+        <i class="fas fa-location-dot"></i>
+        <span>Venue</span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Tab Content - Overview -->
+  <div class="tab-content active" id="overview-content">
+    <div class="overview-content">
+      <h2>About This Event</h2>
+      <p>Join us for an unforgettable evening of laughter with the world's best comedians in a spectacular opening gala. Experience cutting-edge comedy that pushes boundaries and celebrates the art of humor.</p>
+      <p>This year's festival features international stars alongside local talent, promising an evening filled with wit, satire, and pure entertainment.</p>
+      <p>Doors open at 6:30 PM. Show starts promptly at 7:30 PM. Running time approximately 2 hours with intermission.</p>
+      
+      <!-- Event Highlights Section (INSIDE overview tab) -->
+      <div class="overview-highlights">
+        <h3><i class="fas fa-star"></i> Event Highlights</h3>
+        
+        <div class="highlights-grid">
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="fas fa-microphone-alt"></i>
+            </div>
+            <div class="highlight-content">
+              <h4>World-Class Comedians</h4>
+              <p>Featuring award-winning comedians from around the globe</p>
+            </div>
+          </div>
+          
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="fas fa-glass-cheers"></i>
+            </div>
+            <div class="highlight-content">
+              <h4>Opening Night Gala</h4>
+              <p>Exclusive pre-show drinks and canapés included</p>
+            </div>
+          </div>
+          
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="fas fa-gift"></i>
+            </div>
+            <div class="highlight-content">
+              <h4>Special Souvenir</h4>
+              <p>All guests receive a limited edition festival program</p>
+            </div>
+          </div>
+          
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="highlight-content">
+              <h4>Meet & Greet</h4>
+              <p>Chance to meet performers after the show (VIP tickets only)</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Important Information Cards -->
+        <div class="important-info">
+          <div class="info-card">
+            <i class="fas fa-clock"></i>
+            <h4>Duration</h4>
+            <p>2 hours 30 minutes<br>including 20-minute intermission</p>
+          </div>
+          
+          <div class="info-card">
+            <i class="fas fa-user-tag"></i>
+            <h4>Age Rating</h4>
+            <p>Recommended 18+<br>Contains adult themes & language</p>
+          </div>
+          
+          <div class="info-card">
+            <i class="fas fa-ticket-alt"></i>
+            <h4>Ticket Type</h4>
+            <p>Reserved Seating<br>All tickets are non-refundable</p>
+          </div>
+          
+          <div class="info-card">
+            <i class="fas fa-wheelchair"></i>
+            <h4>Accessibility</h4>
+            <p>Wheelchair accessible<br>Assistive listening available</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Get Tickets Button for Overview -->
+      <div class="overview-ticket-button">
+        <button class="btn-primary">
+          <i class="fas fa-ticket-alt"></i>
+          GET TICKETS
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Tab Content - Venue -->
+  <div class="tab-content" id="venue-content">
+    <div class="venue-content">
+      <h2>Venue Information</h2>
+      
+      <div class="venue-info">
+        <div class="venue-details">
+          <h3>Sydney Theatre Company</h3>
+          <p><i class="fas fa-map-marker-alt"></i> 22 Hickson Road, Walsh Bay, Sydney NSW 2000</p>
+          <p><i class="fas fa-phone"></i> (02) 9250 1999</p>
+          <p><i class="fas fa-clock"></i> Box Office Hours: Monday-Friday 9am-5pm, Saturday 10am-2pm</p>
+          <p><i class="fas fa-wheelchair"></i> Wheelchair accessible venue</p>
+          <p><i class="fas fa-train"></i> Public transport accessible: Wynyard Station (10 min walk)</p>
+        </div>
+      </div>
+      
+      <!-- Venue Image and Map Section -->
+      <div class="venue-visual">
+        <div class="venue-image">
+          <img src="images/venue new.png" 
+               alt="Sydney Theatre Company Interior" 
+               loading="lazy">
+        </div>
+        
+        <div class="venue-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.167083857025!2d151.204315215212!3d-33.87574828065176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b12af1e7b4e1a3f%3A0x5017d681632b800!2sSydney%20Theatre%20Company!5e0!3m2!1sen!2sau!4v1644902345678!5m2!1sen!2sau" 
+                  allowfullscreen="" 
+                  loading="lazy"
+                  title="Sydney Theatre Company Location">
+          </iframe>
+        </div>
+      </div>
+      
+      <!-- Venue Facilities -->
+      <div class="venue-facilities">
+        <h4>Venue Facilities</h4>
+        <div class="facilities-grid">
+          <div class="facility-item">
+            <i class="fas fa-wifi"></i>
+            <span>Free Wi-Fi</span>
+          </div>
+          <div class="facility-item">
+            <i class="fas fa-parking"></i>
+            <span>Parking Available</span>
+          </div>
+          <div class="facility-item">
+            <i class="fas fa-utensils"></i>
+            <span>Restaurant & Bar</span>
+          </div>
+          <div class="facility-item">
+            <i class="fas fa-wheelchair"></i>
+            <span>Accessible Seating</span>
+          </div>
+          <div class="facility-item">
+            <i class="fas fa-coffee"></i>
+            <span>Café</span>
+          </div>
+          <div class="facility-item">
+            <i class="fas fa-tshirt"></i>
+            <span>Coat Check</span>
+          </div>
+          <div class="facility-item">
+            <i class="fas fa-restroom"></i>
+            <span>Accessible Restrooms</span>
+          </div>
+          <div class="facility-item">
+            <i class="fas fa-gift"></i>
+            <span>Souvenir Shop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTION BUTTONS SECTION (AFTER TABS) -->
+<section class="event-action-buttons">
+    <button class="btn-outline">
+        <i class="fas fa-calendar-alt"></i>
+        EXPLORE MORE EVENTS
+    </button>
+    <button class="btn-primary">
+        <i class="fas fa-ticket-alt"></i>
+        GET TICKETS NOW
+    </button>
+</section>
+
+
+<!--===== FOOTER ===== --> 
+<footer class="footer-new">
+    <!-- Logo and social media -->
+    <div class="footer-logo-social">
+        <div class="footer-logo-wrapper">
+            <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+            <div class="footer-logo-text">TANDERRUM<span>.LIVE</span></div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact information -->
+    <div class="footer-contact">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(03) 9123 4567</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>hello@tanderrum.ai</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="footer-nav">
+        <a href="#">HOME</a>
+        <a href="#">BROWSE EVENTS</a>
+        <a href="#">VENUES</a>
+        <a href="#">HELP CENTER</a>
+    </nav>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter-section">
+        <h3>NEVER MISS OUT</h3>
+        <p>Get notified about new events</p>
+        <form class="footer-newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">→</button>
+        </form>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+        <div class="footer-credit">
+            Design by 
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            if (topHeader.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && 
+            !topHeader.contains(event.target) &&
+            window.innerWidth <= 900) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 900) {
+                topHeader.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900 && topHeader.classList.contains('active')) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching functionality
+    const tabItems = document.querySelectorAll('.tab-item');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabItems.forEach(tab => {
+        tab.addEventListener('click', function() {
+            // Remove active class from all tabs and contents
+            tabItems.forEach(item => item.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Show corresponding content
+            const tabId = this.getAttribute('data-tab');
+            const contentId = `${tabId}-content`;
+            const activeContent = document.getElementById(contentId);
+            
+            if (activeContent) {
+                activeContent.classList.add('active');
+            }
+        });
+    });
+});
+
+// Add this to your existing JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Filter button functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Filter animation effect
+            const eventsGrid = document.querySelector('.events-grid');
+            eventsGrid.style.opacity = '0.5';
+            setTimeout(() => {
+                eventsGrid.style.opacity = '1';
+            }, 300);
+        });
+    });
+    
+    // Favorite button functionality
+    const favoriteButtons = document.querySelectorAll('.favorite-btn');
+    favoriteButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const icon = this.querySelector('i');
+            
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                this.classList.add('active');
+                
+                // Add animation
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                this.classList.remove('active');
+            }
+        });
+    });
+    
+    // Book button functionality
+    const bookButtons = document.querySelectorAll('.book-btn');
+    bookButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const eventTitle = this.closest('.event-card').querySelector('h3').textContent;
+            
+            // Add loading state
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+            this.classList.add('loading');
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('loading');
+                alert(`Booking "${eventTitle}" - Redirecting to checkout...`);
+            }, 1500);
+        });
+    });
+    
+    // See All Events button functionality
+    const seeAllBtn = document.querySelector('.allevent-btn');
+    if (seeAllBtn) {
+        seeAllBtn.addEventListener('click', function() {
+            // Add loading animation
+            this.classList.add('loading');
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            
+            setTimeout(() => {
+                this.classList.remove('loading');
+                this.innerHTML = '<i class="fas fa-calendar-alt"></i> See All Events';
+                alert('Loading all events...');
+                // In real implementation, this would load more events or navigate to events page
+            }, 2000);
+        });
+    }
+    
+    // Event card click functionality
+    const eventCards = document.querySelectorAll('.event-card');
+    eventCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (!e.target.closest('.favorite-btn') && !e.target.closest('.book-btn')) {
+                const eventTitle = this.querySelector('h3').textContent;
+                alert(`Viewing details for: ${eventTitle}`);
+                // In real implementation, this would navigate to event detail page
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>
