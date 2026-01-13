@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum</title>
+    <link rel="stylesheet" href="ticket booking.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="browse-events.html">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <!-- Right actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Cart with icon and text -->
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <!-- Login with icon and text -->
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <!-- Menu -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== HERO IMAGE SECTION ===== -->
+<section class="event-hero">
+    <div class="hero-container">
+        <div class="hero-backdrop">
+            <!-- You can replace this with your actual hero image -->
+            <div class="hero-image" style="background-image: url('images/ev\ 3.png');">
+                <div class="hero-overlay"></div>
+            </div>
+        </div>
+         <div class="hero-content">
+            <div class="event-badge">Comedy</div>
+            <h1 class="event-title">Comedy Festival Opening Night Gala</h1>
+            <div class="event-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>SAT 15 MAR</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>7:30 PM - 10:00 PM</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Sydney Theatre Company</span>
+                </div>
+            </div>
+            <!-- <div class="hero-actions">
+                <button class="hero-btn wishlist">
+                    <i class="far fa-heart"></i>
+                    <span>Save Event</span>
+                </button>
+                <button class="hero-btn share">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Share</span>
+                </button>
+            </div> -->
+        </div> 
+        <!-- <div class="hero-gradient"></div> -->
+    </div>
+</section>
+
+<!-- ===== TICKET BOOKING SECTION - COMPACT VERSION ===== -->
+<section class="booking-section">
+    <div class="booking-container">
+        <!-- Compact Progress Indicator -->
+        <div class="compact-progress">
+            <div class="progress-icons">
+                <div class="progress-icon active">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Tickets</span>
+                </div>
+                <!-- <div class="progress-line"></div>
+                <div class="progress-icon">
+                    <i class="fas fa-user"></i>
+                    <span>Details</span>
+                </div> -->
+                <div class="progress-line"></div>
+                <div class="progress-icon">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment</span>
+                </div>
+                <!-- <div class="progress-line"></div>
+                <div class="progress-icon">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Confirm</span>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="compact-booking">
+            <!-- Ticket Selection (Left) -->
+            <div class="ticket-selection">
+                <div class="section-header">
+                    <h3><i class="fas fa-chair"></i> Select Tickets</h3>
+                    <p class="event-info">Comedy Festival • Sat 15 Mar • 7:30 PM</p>
+                </div>
+
+                <!-- Ticket Types - Compact Cards -->
+                <div class="ticket-types">
+                    <!-- Premium Ticket -->
+                    <div class="ticket-card" data-type="premium">
+                        <div class="ticket-header">
+                            <div class="ticket-title">
+                                <h4>Premium</h4>
+                                <span class="ticket-badge">Best View</span>
+                            </div>
+                            <div class="ticket-price">$125</div>
+                        </div>
+                        <p class="ticket-desc">Front row center seats</p>
+                        <div class="ticket-controls">
+                            <button class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" value="0" min="0" max="8" readonly>
+                            <button class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Standard Ticket -->
+                    <div class="ticket-card" data-type="standard">
+                        <div class="ticket-header">
+                            <div class="ticket-title">
+                                <h4>Standard</h4>
+                                <span class="ticket-badge">Popular</span>
+                            </div>
+                            <div class="ticket-price">$85</div>
+                        </div>
+                        <p class="ticket-desc">Middle section great view</p>
+                        <div class="ticket-controls">
+                            <button class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" value="0" min="0" max="8" readonly>
+                            <button class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Economy Ticket -->
+                    <div class="ticket-card" data-type="economy">
+                        <div class="ticket-header">
+                            <div class="ticket-title">
+                                <h4>Economy</h4>
+                                <span class="ticket-badge">Value</span>
+                            </div>
+                            <div class="ticket-price">$55</div>
+                        </div>
+                        <p class="ticket-desc">Good view at great price</p>
+                        <div class="ticket-controls">
+                            <button class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" value="0" min="0" max="8" readonly>
+                            <button class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- VIP Ticket -->
+                    <div class="ticket-card vip" data-type="vip">
+                        <div class="ticket-header">
+                            <div class="ticket-title">
+                                <h4><i class="fas fa-crown"></i> VIP Package</h4>
+                                <span class="ticket-badge">All Access</span>
+                            </div>
+                            <div class="ticket-price">$199</div>
+                        </div>
+                        <p class="ticket-desc">Meet & Greet + Souvenir</p>
+                        <div class="ticket-controls">
+                            <button class="qty-btn minus"><i class="fas fa-minus"></i></button>
+                            <input type="number" value="0" min="0" max="4" readonly>
+                            <button class="qty-btn plus"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Seat Preview -->
+                <div class="seat-preview">
+                    <div class="preview-header">
+                        <h4><i class="fas fa-map"></i> Seat Preview</h4>
+                        <div class="seat-legend">
+                            <span class="seat-sample premium"></span>Premium
+                            <span class="seat-sample standard"></span>Standard
+                            <span class="seat-sample economy"></span>Economy
+                        </div>
+                    </div>
+                    <div class="mini-stage">
+                        <div class="stage-label">STAGE</div>
+                        <div class="mini-rows">
+                            <div class="mini-row">
+                                <div class="mini-seat premium" data-seat="A1"></div>
+                                <div class="mini-seat premium" data-seat="A2"></div>
+                                <div class="mini-seat premium" data-seat="A3"></div>
+                            </div>
+                            <div class="mini-row">
+                                <div class="mini-seat standard" data-seat="B1"></div>
+                                <div class="mini-seat standard" data-seat="B2"></div>
+                                <div class="mini-seat standard" data-seat="B3"></div>
+                            </div>
+                            <div class="mini-row">
+                                <div class="mini-seat economy" data-seat="C1"></div>
+                                <div class="mini-seat economy" data-seat="C2"></div>
+                                <div class="mini-seat economy" data-seat="C3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary (Right) -->
+            <div class="compact-summary">
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
+                        <span class="item-count">0 items</span>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class="order-items">
+                        <div class="empty-order">
+                            <i class="fas fa-ticket-alt"></i>
+                            <p>Select tickets to proceed</p>
+                        </div>
+                    </div>
+
+                    <!-- Price Breakdown -->
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Tickets</span>
+                            <span class="tickets-total">$0.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Service Fee</span>
+                            <span class="service-fee">$5.95</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Processing</span>
+                            <span class="processing-fee">$3.50</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total</span>
+                            <span class="final-total">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="promo-box">
+                        <div class="promo-input">
+                            <input type="text" placeholder="Promo code">
+                            <button class="promo-btn">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Next Button -->
+                    <div class="next-action">
+                        <button class="next-btn" disabled>
+                            <span>Continue</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <p class="secure-note">
+                            <i class="fas fa-lock"></i> Secure checkout
+                        </p>
+                    </div>
+
+                    <!-- Quick Info -->
+                    <div class="quick-info">
+                        <div class="info-point">
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <strong>Last few!</strong>
+                                <small>12 premium seats left</small>
+                            </div>
+                        </div>
+                        <div class="info-point">
+                            <i class="fas fa-mobile"></i>
+                            <div>
+                                <strong>Mobile Ticket</strong>
+                                <small>Instant delivery</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!--===== FOOTER ===== --> 
+<footer class="footer-new">
+    <!-- Logo and social media -->
+    <div class="footer-logo-social">
+        <div class="footer-logo-wrapper">
+            <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+            <div class="footer-logo-text">TANDERRUM<span>.LIVE</span></div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact information -->
+    <div class="footer-contact">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(03) 9123 4567</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>hello@tanderrum.ai</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="footer-nav">
+        <a href="#">HOME</a>
+        <a href="#">BROWSE EVENTS</a>
+        <a href="#">VENUES</a>
+        <a href="#">HELP CENTER</a>
+    </nav>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter-section">
+        <h3>NEVER MISS OUT</h3>
+        <p>Get notified about new events</p>
+        <form class="footer-newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">→</button>
+        </form>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+        
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            if (topHeader.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && 
+            !topHeader.contains(event.target) &&
+            window.innerWidth <= 900) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 900) {
+                topHeader.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900 && topHeader.classList.contains('active')) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+// Compact Ticket Booking JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Elements
+    const ticketCards = document.querySelectorAll('.ticket-card');
+    const qtyBtns = document.querySelectorAll('.qty-btn');
+    const qtyInputs = document.querySelectorAll('.ticket-controls input');
+    const orderItems = document.querySelector('.order-items');
+    const ticketsTotal = document.querySelector('.tickets-total');
+    const finalTotal = document.querySelector('.final-total');
+    const itemCount = document.querySelector('.item-count');
+    const nextBtn = document.querySelector('.next-btn');
+    const miniSeats = document.querySelectorAll('.mini-seat');
+
+    // Prices
+    const prices = {
+        premium: 125,
+        standard: 85,
+        economy: 55,
+        vip: 199
+    };
+
+    // Booking data
+    let bookingData = {
+        premium: 0,
+        standard: 0,
+        economy: 0,
+        vip: 0
+    };
+
+    // Calculate total
+    function calculateTotal() {
+        let total = 0;
+        let itemTotal = 0;
+        
+        for (const type in bookingData) {
+            total += bookingData[type] * prices[type];
+        }
+        
+        const serviceFee = 5.95;
+        const processingFee = 3.50;
+        const grandTotal = total + serviceFee + processingFee;
+        
+        // Update UI
+        ticketsTotal.textContent = `$${total.toFixed(2)}`;
+        finalTotal.textContent = `$${grandTotal.toFixed(2)}`;
+        
+        // Update item count
+        itemTotal = Object.values(bookingData).reduce((a, b) => a + b, 0);
+        itemCount.textContent = `${itemTotal} ${itemTotal === 1 ? 'item' : 'items'}`;
+        
+        // Enable/disable next button
+        nextBtn.disabled = total === 0;
+        
+        // Update order items
+        updateOrderItems();
+        
+        return total;
+    }
+
+    // Update order items
+    function updateOrderItems() {
+        orderItems.innerHTML = '';
+        
+        let hasItems = false;
+        
+        for (const type in bookingData) {
+            if (bookingData[type] > 0) {
+                hasItems = true;
+                const item = document.createElement('div');
+                item.className = 'order-item';
+                item.innerHTML = `
+                    <div class="item-info">
+                        <span class="item-name">${type.charAt(0).toUpperCase() + type.slice(1)} Ticket</span>
+                        <span class="item-qty">${bookingData[type]} × $${prices[type]}</span>
+                    </div>
+                    <div class="item-price">$${(bookingData[type] * prices[type]).toFixed(2)}</div>
+                `;
+                orderItems.appendChild(item);
+            }
+        }
+        
+        if (!hasItems) {
+            orderItems.innerHTML = `
+                <div class="empty-order">
+                    <i class="fas fa-ticket-alt"></i>
+                    <p>Select tickets to proceed</p>
+                </div>
+            `;
+        }
+    }
+
+    // Update ticket quantity
+    function updateTicketQty(type, change) {
+        const max = type === 'vip' ? 4 : 8;
+        const newQty = bookingData[type] + change;
+        
+        if (newQty >= 0 && newQty <= max) {
+            bookingData[type] = newQty;
+            
+            // Find and update the input
+            const card = document.querySelector(`.ticket-card[data-type="${type}"]`);
+            if (card) {
+                const input = card.querySelector('input');
+                if (input) {
+                    input.value = newQty;
+                }
+            }
+            
+            calculateTotal();
+        }
+    }
+
+    // Quantity button event listeners
+    qtyBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = this.closest('.ticket-card');
+            const type = card.dataset.type;
+            const isMinus = this.classList.contains('minus');
+            
+            updateTicketQty(type, isMinus ? -1 : 1);
+            
+            // Visual feedback
+            card.style.transform = 'translateY(-3px)';
+            setTimeout(() => {
+                card.style.transform = '';
+            }, 200);
+        });
+    });
+
+    // Ticket card click
+    ticketCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (!e.target.closest('.ticket-controls')) {
+                const type = this.dataset.type;
+                updateTicketQty(type, 1);
+            }
+        });
+    });
+
+    // Mini seat click
+    miniSeats.forEach(seat => {
+        seat.addEventListener('click', function() {
+            const seatClass = this.classList[1]; // premium, standard, economy
+            updateTicketQty(seatClass, 1);
+            
+            // Visual feedback
+            this.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 300);
+        });
+    });
+
+    // Next button
+    nextBtn.addEventListener('click', function() {
+        if (!this.disabled) {
+            // Show loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            // Store data
+            const totalItems = Object.values(bookingData).reduce((a, b) => a + b, 0);
+            sessionStorage.setItem('compactBooking', JSON.stringify({
+                items: bookingData,
+                total: finalTotal.textContent
+            }));
+            
+            // Simulate processing
+            setTimeout(() => {
+                alert(`Proceeding with ${totalItems} ticket(s). Total: ${finalTotal.textContent}`);
+                // In real app: window.location.href = 'details.html';
+            }, 1000);
+        }
+    });
+
+    // Initialize
+    calculateTotal();
+});
+
+// Hero Section Interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const wishlistBtn = document.querySelector('.hero-btn.wishlist');
+    const shareBtn = document.querySelector('.hero-btn.share');
+    
+    // Wishlist button
+    if (wishlistBtn) {
+        wishlistBtn.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            const isActive = icon.classList.contains('fas');
+            
+            if (isActive) {
+                icon.className = 'far fa-heart';
+                this.style.background = 'rgba(255,255,255,0.1)';
+            } else {
+                icon.className = 'fas fa-heart';
+                this.style.background = '#ff6a00';
+            }
+        });
+    }
+    
+    // Share button
+    if (shareBtn) {
+        shareBtn.addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'International Comedy Festival 2024',
+                    text: 'Check out this amazing comedy event!',
+                    url: window.location.href,
+                })
+                .catch(console.error);
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href);
+                const originalText = this.querySelector('span').textContent;
+                this.querySelector('span').textContent = 'Link Copied!';
+                setTimeout(() => {
+                    this.querySelector('span').textContent = originalText;
+                }, 2000);
+            }
+        });
+    }
+});
+
+</script>
+
+</body>
+</html>
