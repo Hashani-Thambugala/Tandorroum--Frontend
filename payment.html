@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum - Payment</title>
+    <link rel="stylesheet" href="payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="browse-events.html">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <!-- Right actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Cart with icon and text -->
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <!-- Login with icon and text -->
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <!-- Menu -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== PAYMENT SECTION - 2 STEPS ===== -->
+<section class="payment-section">
+    <div class="payment-container">
+        <!-- 2-Step Progress -->
+        <div class="payment-progress">
+            <div class="progress-steps">
+                <div class="step completed">
+                    <div class="step-number">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="step-label">Tickets</div>
+                </div>
+                <div class="progress-line completed"></div>
+                <div class="step active">
+                    <div class="step-number">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="step-label">Payment</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-content">
+            <!-- Left Column: Order Summary -->
+            <div class="payment-left">
+                <!-- Order Summary -->
+                <div class="order-summary-box">
+                    <div class="summary-header">
+                        <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                        <a href="ticket-booking.html" class="edit-order"><i class="fas fa-edit"></i> Edit</a>
+                    </div>
+                    
+                    <div class="event-summary">
+                        <div class="event-title">
+                            <h4>Comedy Festival Opening Night Gala</h4>
+                            <p>SAT 15 MAR 7:30 PM • Sydney Theatre Company</p>
+                        </div>
+                        <div class="ticket-summary">
+                            <div class="ticket-item">
+                                <span>2 × Premium Tickets</span>
+                                <span>$250.00</span>
+                            </div>
+                            <div class="ticket-item">
+                                <span>1 × Standard Ticket</span>
+                                <span>$85.00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="price-summary">
+                        <div class="price-row">
+                            <span>Subtotal</span>
+                            <span>$335.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Service Fee</span>
+                            <span>$5.95</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Processing Fee</span>
+                            <span>$3.50</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total Amount</span>
+                            <span class="total-amount">$344.45</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Guest Form & Payment -->
+            <div class="payment-right">
+                <div class="payment-card">
+                    <!-- Guest User Form -->
+                    <div class="guest-form-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-user-clock"></i> Guest Checkout</h3>
+                            <p>Fill in your details to proceed with payment</p>
+                        </div>
+                        
+                        <form class="guest-form" id="guestForm">
+                            <!-- Name Row -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label><i class="fas fa-user"></i> First Name</label>
+                                    <input type="text" placeholder="John" required>
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fas fa-user"></i> Last Name</label>
+                                    <input type="text" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Contact Info -->
+                            <div class="form-group">
+                                <label><i class="fas fa-envelope"></i> Email Address</label>
+                                <input type="email" placeholder="you@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="fas fa-phone"></i> Phone Number</label>
+                                <input type="tel" placeholder="+1 (555) 123-4567" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label><i class="fas fa-id-card"></i> NIC / ID Number</label>
+                                <input type="text" placeholder="Enter your NIC or ID number">
+                                <small class="form-hint">Optional - for verification purposes</small>
+                            </div>
+                            
+                            <!-- Billing Address -->
+                            <div class="billing-address">
+                                <h4><i class="fas fa-map-marker-alt"></i> Billing Address</h4>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Street Address" required>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="City" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="State" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="ZIP Code" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <select required>
+                                            <option value="">Select Country</option>
+                                            <option value="US">United States</option>
+                                            <option value="AU">Australia</option>
+                                            <option value="UK">United Kingdom</option>
+                                            <option value="CA">Canada</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Sign In Option -->
+                            <div class="sign-in-option">
+                                <div class="divider">
+                                    <span>OR</span>
+                                </div>
+                                <div class="sign-in-prompt">
+                                    <p>Already have an account? Sign in for faster checkout</p>
+                                    <button type="button" class="sign-in-btn" id="signInBtn">
+                                        <i class="fas fa-sign-in-alt"></i> Sign In to Your Account
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="payment-methods-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                            <div class="secure-badge">
+                                <i class="fas fa-lock"></i> Secure Payment
+                            </div>
+                        </div>
+                        
+                        <div class="payment-options">
+                            <!-- Credit/Debit Card -->
+                            <div class="payment-option" data-method="card">
+                                <div class="option-header">
+                                    <div class="option-check">
+                                        <i class="fas fa-circle"></i>
+                                    </div>
+                                    <div class="option-title">
+                                        <i class="fas fa-credit-card"></i>
+                                        <span>Credit/Debit Card</span>
+                                    </div>
+                                    <div class="card-icons">
+                                        <i class="fab fa-cc-visa"></i>
+                                        <i class="fab fa-cc-mastercard"></i>
+                                        <i class="fab fa-cc-amex"></i>
+                                        <i class="fab fa-cc-discover"></i>
+                                    </div>
+                                </div>
+                                <div class="option-content" id="card-form">
+                                    <div class="digital-wallet-info">
+                                        <p>Continue to secure payment gateway to enter your card details</p>
+                                        <div class="wallet-icons">
+                                            <i class="fas fa-credit-card"></i>
+                                            <i class="fab fa-cc-visa"></i>
+                                            <i class="fab fa-cc-mastercard"></i>
+                                            <i class="fab fa-cc-amex"></i>
+                                        </div>
+                                        <button type="button" class="wallet-pay-btn card-pay-btn">
+                                            <i class="fas fa-credit-card"></i> Continue with Card
+                                        </button>
+                                        <p class="gateway-note">
+                                            <i class="fas fa-external-link-alt"></i>
+                                            You will be redirected to our secure payment gateway
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- PayPal -->
+                            <div class="payment-option" data-method="paypal">
+                                <div class="option-header">
+                                    <div class="option-check">
+                                        <i class="fas fa-circle"></i>
+                                    </div>
+                                    <div class="option-title">
+                                        <i class="fab fa-paypal"></i>
+                                        <span>PayPal</span>
+                                    </div>
+                                </div>
+                                <div class="option-content" id="paypal-form">
+                                    <div class="digital-wallet-info">
+                                        <p>You will be redirected to PayPal to complete your payment securely.</p>
+                                        <div class="wallet-icons">
+                                            <i class="fab fa-paypal"></i>
+                                        </div>
+                                        <button type="button" class="wallet-pay-btn paypal-pay-btn">
+                                            <i class="fab fa-paypal"></i> Continue with PayPal
+                                        </button>
+                                        <p class="gateway-note">
+                                            <i class="fas fa-external-link-alt"></i>
+                                            Secured by PayPal
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Apple Pay -->
+                            <div class="payment-option" data-method="applepay">
+                                <div class="option-header">
+                                    <div class="option-check">
+                                        <i class="fas fa-circle"></i>
+                                    </div>
+                                    <div class="option-title">
+                                        <i class="fab fa-apple-pay"></i>
+                                        <span>Apple Pay</span>
+                                    </div>
+                                </div>
+                                <div class="option-content" id="applepay-form">
+                                    <div class="digital-wallet-info">
+                                        <p>Complete your payment quickly with Apple Pay.</p>
+                                        <div class="wallet-icons">
+                                            <i class="fab fa-apple-pay"></i>
+                                        </div>
+                                        <button type="button" class="wallet-pay-btn apple-pay-btn">
+                                            <i class="fab fa-apple-pay"></i> Pay with Apple Pay
+                                        </button>
+                                        <p class="gateway-note">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            Works on iPhone, iPad, and Mac
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Google Pay -->
+                            <div class="payment-option" data-method="googlepay">
+                                <div class="option-header">
+                                    <div class="option-check">
+                                        <i class="fas fa-circle"></i>
+                                    </div>
+                                    <div class="option-title">
+                                        <i class="fab fa-google-pay"></i>
+                                        <span>Google Pay</span>
+                                    </div>
+                                </div>
+                                <div class="option-content" id="googlepay-form">
+                                    <div class="digital-wallet-info">
+                                        <p>Complete your payment quickly with Google Pay.</p>
+                                        <div class="wallet-icons">
+                                            <i class="fab fa-google-pay"></i>
+                                        </div>
+                                        <button type="button" class="wallet-pay-btn google-pay-btn">
+                                            <i class="fab fa-google-pay"></i> Pay with Google Pay
+                                        </button>
+                                        <p class="gateway-note">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            Available on Android devices
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms & Conditions -->
+                    <div class="terms-section">
+                        <label class="checkbox">
+                            <input type="checkbox" id="termsCheckbox" required>
+                            <span>I agree to the <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and understand my tickets are <strong>non-refundable</strong>.</span>
+                        </label>
+                    </div>
+
+                    <!-- Complete Payment Button -->
+                    <div class="complete-payment">
+                        <button class="proceed-btn" id="proceedBtn">
+                            <i class="fas fa-lock"></i> Review & Confirm - $344.45
+                        </button>
+                        <p class="payment-security">
+                            <i class="fas fa-shield-alt"></i> Your payment is secured with 256-bit SSL encryption
+                        </p>
+                    </div>
+
+                    <!-- Security Info -->
+                    <div class="security-info">
+                        <div class="security-item">
+                            <i class="fas fa-shield-check"></i>
+                            <div>
+                                <strong>Secure Payment</strong>
+                                <small>PCI-DSS compliant</small>
+                            </div>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-receipt"></i>
+                            <div>
+                                <strong>Instant Confirmation</strong>
+                                <small>Email & mobile ticket</small>
+                            </div>
+                        </div>
+                        <div class="security-item">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <strong>24/7 Support</strong>
+                                <small>Live chat & phone</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-new">
+    <div class="footer-logo-social">
+        <div class="footer-logo-wrapper">
+            <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+            <div class="footer-logo-text">TANDERRUM<span>.LIVE</span></div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <div class="footer-contact">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(03) 9123 4567</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>hello@tanderrum.ai</span>
+        </div>
+    </div>
+
+    <nav class="footer-nav">
+        <a href="#">HOME</a>
+        <a href="#">BROWSE EVENTS</a>
+        <a href="#">VENUES</a>
+        <a href="#">HELP CENTER</a>
+    </nav>
+
+    <div class="footer-newsletter-section">
+        <h3>NEVER MISS OUT</h3>
+        <p>Get notified about new events</p>
+        <form class="footer-newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">→</button>
+        </form>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+        
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Header Menu Toggle
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            
+            if (topHeader.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && 
+            !topHeader.contains(event.target) &&
+            window.innerWidth <= 900) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Payment Options Toggle
+    const paymentOptions = document.querySelectorAll('.payment-option');
+    let selectedPaymentMethod = null;
+    
+    function selectPaymentOption(option) {
+        // Hide all contents
+        paymentOptions.forEach(opt => {
+            opt.classList.remove('active');
+            opt.querySelector('.option-content').style.display = 'none';
+            opt.querySelector('.option-check i').className = 'fas fa-circle';
+        });
+        
+        // Show selected content
+        option.classList.add('active');
+        option.querySelector('.option-content').style.display = 'block';
+        option.querySelector('.option-check i').className = 'fas fa-check-circle';
+        
+        // Store selected method
+        selectedPaymentMethod = option.dataset.method;
+    }
+    
+    paymentOptions.forEach(option => {
+        const header = option.querySelector('.option-header');
+        
+        header.addEventListener('click', function() {
+            selectPaymentOption(option);
+        });
+    });
+
+    // Select first payment option by default
+    if (paymentOptions.length > 0) {
+        selectPaymentOption(paymentOptions[0]);
+    }
+
+    // Sign In Button
+    const signInBtn = document.getElementById('signInBtn');
+    if (signInBtn) {
+        signInBtn.addEventListener('click', function() {
+            // In real app, redirect to login page
+            alert('Redirecting to login page...');
+            // Simulate redirect
+            setTimeout(() => {
+                window.location.href = 'registration.html';
+            }, 1000);
+        });
+    }
+
+    // Phone Number Formatting
+    const phoneInput = document.querySelector('input[placeholder*="Phone Number"]');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                value = '+1 (' + value.substring(0, 3) + ') ' + value.substring(3, 6) + '-' + value.substring(6, 10);
+            }
+            e.target.value = value.substring(0, 17);
+        });
+    }
+
+    // Payment Gateway Buttons
+    const cardPayBtn = document.querySelector('.card-pay-btn');
+    const paypalPayBtn = document.querySelector('.paypal-pay-btn');
+    const applePayBtn = document.querySelector('.apple-pay-btn');
+    const googlePayBtn = document.querySelector('.google-pay-btn');
+    
+    // Card Payment Gateway
+    if (cardPayBtn) {
+        cardPayBtn.addEventListener('click', function() {
+            // Validate form first
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            const guestForm = document.getElementById('guestForm');
+            
+            if (!termsCheckbox.checked) {
+                alert('Please agree to the Terms & Conditions');
+                termsCheckbox.focus();
+                return;
+            }
+            
+            // Validate guest form
+            const requiredInputs = guestForm.querySelectorAll('input[required]');
+            let isValid = true;
+            
+            requiredInputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ff3860';
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Please fill in all required fields before proceeding to payment');
+                return;
+            }
+            
+            // Show loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+            this.disabled = true;
+            
+            // Simulate redirect to payment gateway
+            setTimeout(() => {
+                alert('Redirecting to secure payment gateway...\n\nIn a real application, this would redirect to:\n- Stripe\n- Square\n- Braintree\n- Authorize.net\nor other payment processor');
+                // In real app: window.location.href = 'payment-gateway.html';
+                this.innerHTML = '<i class="fas fa-credit-card"></i> Continue with Card';
+                this.disabled = false;
+            }, 1500);
+        });
+    }
+    
+    // PayPal Payment Gateway
+    if (paypalPayBtn) {
+        paypalPayBtn.addEventListener('click', function() {
+            // Validate form first
+            const termsCheckbox = document.getElementById('termsCheckbox');
+            const guestForm = document.getElementById('guestForm');
+            
+            if (!termsCheckbox.checked) {
+                alert('Please agree to the Terms & Conditions');
+                termsCheckbox.focus();
+                return;
+            }
+            
+            // Validate guest form
+            const requiredInputs = guestForm.querySelectorAll('input[required]');
+            let isValid = true;
+            
+            requiredInputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ff3860';
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Please fill in all required fields before proceeding to payment');
+                return;
+            }
+            
+            // Show loading
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+            this.disabled = true;
+            
+            // Simulate redirect to PayPal
+            setTimeout(() => {
+                alert('Redirecting to PayPal for secure payment...');
+                // In real app: window.location.href = 'paypal-checkout.html';
+                this.innerHTML = '<i class="fab fa-paypal"></i> Continue with PayPal';
+                this.disabled = false;
+            }, 1500);
+        });
+    }
+    
+    // Apple Pay
+    if (applePayBtn) {
+        applePayBtn.addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            setTimeout(() => {
+                alert('Opening Apple Pay interface...');
+                this.innerHTML = '<i class="fab fa-apple-pay"></i> Pay with Apple Pay';
+            }, 1000);
+        });
+    }
+    
+    // Google Pay
+    if (googlePayBtn) {
+        googlePayBtn.addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            setTimeout(() => {
+                alert('Opening Google Pay interface...');
+                this.innerHTML = '<i class="fab fa-google-pay"></i> Pay with Google Pay';
+            }, 1000);
+        });
+    }
+
+    // Proceed to Pay Button (Now acts as Review & Confirm)
+    const proceedBtn = document.getElementById('proceedBtn');
+    const termsCheckbox = document.getElementById('termsCheckbox');
+    const guestForm = document.getElementById('guestForm');
+    
+    if (proceedBtn) {
+        proceedBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Validate terms
+            if (!termsCheckbox.checked) {
+                alert('Please agree to the Terms & Conditions');
+                termsCheckbox.focus();
+                return;
+            }
+            
+            // Validate guest form
+            const requiredInputs = guestForm.querySelectorAll('input[required]');
+            let isValid = true;
+            
+            requiredInputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ff3860';
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+            
+            if (!isValid) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            // Check if payment method is selected
+            if (!selectedPaymentMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            // Show summary confirmation
+            const firstName = document.querySelector('input[placeholder="John"]').value;
+            const lastName = document.querySelector('input[placeholder="Doe"]').value;
+            const email = document.querySelector('input[placeholder="you@example.com"]').value;
+            
+            const paymentMethods = {
+                'card': 'Credit/Debit Card',
+                'paypal': 'PayPal',
+                'applepay': 'Apple Pay',
+                'googlepay': 'Google Pay'
+            };
+            
+            const confirmMessage = `Please review your order:\n\n` +
+                                 `Name: ${firstName} ${lastName}\n` +
+                                 `Email: ${email}\n` +
+                                 `Payment Method: ${paymentMethods[selectedPaymentMethod]}\n` +
+                                 `Amount: $344.45\n\n` +
+                                 `Click OK to proceed to payment gateway, or Cancel to review.`;
+            
+            if (confirm(confirmMessage)) {
+                // Show loading
+                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                this.disabled = true;
+                
+                // Simulate payment processing
+                setTimeout(() => {
+                    alert('Order confirmed! Please click your selected payment method to complete the transaction.');
+                    this.innerHTML = '<i class="fas fa-lock"></i> Review & Confirm - $344.45';
+                    this.disabled = false;
+                }, 1500);
+            }
+        });
+    }
+
+    // Form validation styling
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.hasAttribute('required') && !this.value.trim()) {
+                this.style.borderColor = '#ff3860';
+            } else {
+                this.style.borderColor = '#ddd';
+            }
+        });
+        
+        input.addEventListener('input', function() {
+            this.style.borderColor = '#ddd';
+        });
+    });
+});
+</script>
+
+</body>
+</html>
