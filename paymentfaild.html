@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum - Payment Failed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+            overflow-x: hidden;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        /* ===== HEADER ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 12px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .logo img {
+            width: 130px;
+            height: auto;
+            object-fit: contain;
+            transition: width 0.3s ease;
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 0;
+            position: relative;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ff6a00;
+        }
+
+        /* Header actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Search box in header */
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 3px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 13px;
+            width: 120px;
+            background: transparent;
+        }
+
+        .search-nav i {
+            font-size: 13px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        /* Icons */
+        .header-icon {
+            font-size: 16px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        .cart-section, .login-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+        }
+
+        .login-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .cart-section:hover .header-icon,
+        .cart-section:hover .login-text,
+        .login-section:hover .header-icon,
+        .login-section:hover .login-text {
+            color: #ff6a00;
+        }
+
+        /* Menu button - hidden on desktop */
+        .menu-btn {
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            color: #000;
+            background: none;
+            border: none;
+            padding: 6px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            color: #ff6a00;
+            background: #f8f9fa;
+        }
+
+        /* Mobile menu styles */
+        .top-header.active .nav-links {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            gap: 0;
+        }
+
+        .top-header.active .nav-links a {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .top-header.active .nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .top-header.active .nav-links a.active::after {
+            display: none;
+        }
+
+        .top-header.active .nav-links a.active {
+            color: #ff6a00;
+            font-weight: bold;
+        }
+
+        /* ===== RESPONSIVE HEADER ===== */
+        @media (max-width: 1200px) {
+            .header-container {
+                padding: 12px 25px;
+            }
+            
+            .logo img {
+                width: 110px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .nav-links a {
+                font-size: 13px;
+            }
+            
+            
+        }
+
+        @media (max-width: 1024px) {
+            .header-container {
+                padding: 10px 20px;
+            }
+            
+            .logo img {
+                width: 100px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none !important;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+            
+            .header-actions {
+                gap: 12px;
+            }
+            
+            
+            
+            .search-nav input {
+                width: 90px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 10px 15px;
+            }
+            
+            .logo img {
+                width: 90px;
+            }
+            
+            
+            
+            .login-section, .cart-section {
+                display: none;
+            }
+            
+            .menu-btn {
+                margin-left: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 8px 12px;
+            }
+            
+            .logo img {
+                width: 70px;
+            }
+            
+            .search-nav {
+                padding: 4px 8px;
+            }
+            
+            
+            
+            .menu-btn {
+                font-size: 18px;
+                padding: 5px;
+            }
+        }
+
+        /* ===== PAYMENT FAILED SECTION ===== */
+        .payment-failed-section {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 30px;
+        }
+
+        /* Progress Steps - Compact */
+        .payment-progress {
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            min-width: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 13px;
+            color: #777;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step.active .step-number i {
+            font-size: 13px;
+        }
+
+        .step.completed .step-number {
+            background: #50c878;
+            color: white;
+        }
+
+        .step.active .step-number {
+            background: linear-gradient(135deg, #ff6a00, #ff8c42);
+            color: white;
+            box-shadow: 0 3px 10px rgba(255, 106, 0, 0.3);
+        }
+
+        .step-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #666;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .step.active .step-label {
+            color: #ff6a00;
+            font-weight: 600;
+        }
+
+        .progress-line {
+            flex: 1;
+            height: 2px;
+            background: #e0e0e0;
+            max-width: 70px;
+            position: relative;
+            top: -16px;
+            z-index: 1;
+        }
+
+        .progress-line.completed {
+            background: #50c878;
+        }
+
+        /* Failed Message - Compact */
+        .failed-message {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .failed-icon {
+            font-size: 65px;
+            color: #ff3333;
+            margin-bottom: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .failed-title {
+            color: #ff3333;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .failed-subtitle {
+            color: #666;
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto 20px;
+            line-height: 1.5;
+        }
+
+        /* Additional Info Section - Compact */
+        .additional-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            border-left: 2px solid #ff6a00;
+        }
+
+        .info-box h4 {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            color: #222;
+            font-weight: 700;
+        }
+
+        /* Main Layout - Compact Grid */
+        .confirmation-grid {
+            display: grid;
+            grid-template-columns: 2.5fr 1.5fr;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        /* Card - Compact */
+        .card {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 25px;
+            background: white;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Failure Details - Compact */
+        .failure-details {
+            margin-bottom: 20px;
+        }
+
+        .failure-title {
+            color: #ff3333;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .failure-text {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* Details Grid - Compact */
+        .details-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .details-section {
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin: 0 0 12px;
+            color: #333;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .detail-row {
+            display: flex;
+            font-size: 13px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            align-items: center;
+        }
+
+        .detail-row span:first-child {
+            width: 120px;
+            color: #777;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Quick Actions - Compact */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        /* Buttons - Compact */
+        .btn {
+            padding: 12px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 44px;
+        }
+
+        .btn-full {
+            grid-column: 1 / -1;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #ff6a00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: #fff;
+            border: 1.5px solid #000;
+            color: #000;
+        }
+
+        .btn-outline:hover {
+            border-color: #ff6a00;
+            color: #ff6a00;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: #ff3333;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #ff6666;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 51, 51, 0.3);
+        }
+
+        /* Order Summary - COMPACT VERSION */
+        .order-summary {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            align-self: start;
+        }
+
+        .order-summary-header {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-summary-header h3 {
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .order-items-container {
+            padding: 0;
+        }
+
+        .order-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-details h4 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .item-details p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .item-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .order-total {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .total-label {
+            font-size: 15px;
+            color: #333;
+        }
+
+        .total-amount {
+            font-size: 20px;
+            color: #ff3333;
+        }
+
+        /* Extended Support Section - Compact */
+        .support-section {
+            margin-top: 35px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 3px solid #ff6a00;
+        }
+
+        .support-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .support-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .support-item {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .support-item h4 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .support-item p {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .support-item a {
+            color: #ff6a00;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        .support-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* FAQ Section - Compact */
+        .faq-section {
+            margin-top: 35px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .faq-title {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .faq-item {
+            padding: 12px;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            background: #fafafa;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .faq-item:hover {
+            border-color: #ff6a00;
+            background: #fff;
+        }
+
+        .faq-item.active {
+            border-color: #ff6a00;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(255, 106, 0, 0.1);
+        }
+
+        .faq-item h4 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 6px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .faq-item p {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+            display: none;
+        }
+
+        .faq-item.active p {
+            display: block;
+        }
+
+        /* ===== RESPONSIVE ADJUSTMENTS ===== */
+        @media (max-width: 1400px) {
+            .payment-failed-section {
+                max-width: 1200px;
+                padding: 0 25px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .payment-failed-section {
+                max-width: 1100px;
+                padding: 0 20px;
+            }
+            
+            .confirmation-grid {
+                grid-template-columns: 2fr 1fr;
+                gap: 20px;
+            }
+            
+            .support-content {
+                gap: 15px;
+            }
+            
+            .faq-grid {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .payment-failed-section {
+                margin: 35px auto;
+                padding: 0 20px;
+            }
+            
+            .failed-title {
+                font-size: 24px;
+            }
+            
+            .confirmation-grid {
+                grid-template-columns: 1.8fr 1.2fr;
+                gap: 20px;
+            }
+            
+            .support-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .order-summary-header {
+                padding: 12px 15px;
+            }
+            
+            .order-item {
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .confirmation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            
+            .details-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .support-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .additional-info {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 450px;
+            }
+            
+            .failed-icon {
+                font-size: 55px;
+            }
+            
+            .failed-title {
+                font-size: 22px;
+            }
+            
+            .failed-subtitle {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .payment-failed-section {
+                margin: 30px auto;
+                padding: 0 15px;
+            }
+            
+            .failed-icon {
+                font-size: 50px;
+            }
+            
+            .failed-title {
+                font-size: 20px;
+            }
+            
+            .failed-subtitle {
+                font-size: 13px;
+                max-width: 100%;
+            }
+            
+            .card {
+                padding: 18px 15px;
+            }
+            
+            .additional-info {
+                grid-template-columns: 1fr;
+                max-width: 300px;
+                gap: 12px;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .support-section, .faq-section {
+                padding: 15px;
+            }
+            
+            .support-item, .faq-item {
+                padding: 12px;
+            }
+            
+            .failure-title {
+                font-size: 18px;
+            }
+            
+            .failure-text {
+                font-size: 13px;
+            }
+            
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 3px;
+                padding: 6px 0;
+            }
+            
+            .detail-row span:first-child {
+                width: 100%;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .payment-failed-section {
+                margin: 25px auto;
+            }
+            
+            .progress-steps {
+                gap: 15px;
+            }
+            
+            .step-number {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            
+            .step-label {
+                font-size: 10px;
+            }
+            
+            .progress-line {
+                max-width: 50px;
+                top: -14px;
+            }
+            
+            .failed-icon {
+                font-size: 45px;
+            }
+            
+            .failed-title {
+                font-size: 18px;
+            }
+            
+            .failed-subtitle {
+                font-size: 12px;
+            }
+            
+            .btn {
+                padding: 10px;
+                font-size: 13px;
+                min-height: 40px;
+            }
+            
+            .support-title, .faq-title {
+                font-size: 15px;
+            }
+            
+            .order-summary-header h3 {
+                font-size: 15px;
+            }
+            
+            .item-details h4 {
+                font-size: 13px;
+            }
+            
+            .item-price {
+                font-size: 15px;
+            }
+            
+            .total-label {
+                font-size: 14px;
+            }
+            
+            .total-amount {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .payment-failed-section {
+                margin: 20px auto;
+                padding: 0 12px;
+            }
+            
+            .failed-title {
+                font-size: 16px;
+            }
+            
+            .failed-subtitle {
+                font-size: 12px;
+            }
+            
+            .card {
+                padding: 15px 12px;
+            }
+            
+            .section-title {
+                font-size: 12px;
+            }
+            
+            .support-section, .faq-section {
+                padding: 12px;
+            }
+            
+            .support-item, .faq-item {
+                padding: 10px;
+            }
+            
+            .support-item h4 {
+                font-size: 13px;
+            }
+            
+            .support-item p {
+                font-size: 12px;
+            }
+            
+            .faq-item h4 {
+                font-size: 13px;
+            }
+            
+            .faq-item p {
+                font-size: 12px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 15px 0 0;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        /* Footer inner container */
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 30px;
+            box-sizing: border-box;
+        }
+
+        /* Logo and social media section */
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        .footer-logo-img {
+            width: 22px;
+            height: 22px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo-wrapper:hover .footer-logo-img {
+            transform: rotate(15deg);
+        }
+
+        .footer-logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.6px;
+        }
+
+        .footer-logo-text span {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .social-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 13px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact info section */
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.9);
+            transition: transform 0.2s ease;
+            max-width: 250px;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-item i {
+            color: #fff;
+            font-size: 13px;
+            opacity: 0.9;
+            flex-shrink: 0;
+        }
+
+        /* Navigation section */
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+            padding: 2px 0;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.2s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Newsletter section */
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 12px;
+            padding: 12px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.3;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 350px;
+            margin: 0 auto;
+            gap: 0;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 12px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transition: all 0.2s ease;
+            min-width: 150px;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+        }
+
+        .footer-newsletter-form input:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 16px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Footer bottom */
+        .footer-bottom {
+            background: white;
+            padding: 10px 30px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-weight: 500;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        .footer-legal a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #F24B09;
+            transition: width 0.2s ease;
+        }
+
+        .footer-legal a:hover::after {
+            width: 100%;
+        }
+
+        .footer-credit {
+            font-size: 10px;
+            color: #666;
+            text-align: right;
+        }
+
+        /* ===== RESPONSIVE FOOTER ADJUSTMENTS ===== */
+        @media (max-width: 1200px) {
+            .footer-content {
+                max-width: 1100px;
+                padding: 0 25px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                max-width: 900px;
+                padding: 0 20px;
+            }
+            
+            .footer-logo-text {
+                font-size: 14px;
+            }
+            
+            .social-icon {
+                width: 25px;
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .footer-contact {
+                font-size: 12px;
+                gap: 12px;
+                margin-bottom: 10px;
+                padding-bottom: 10px;
+            }
+            
+            .footer-nav a {
+                font-size: 9px;
+            }
+            
+            .footer-newsletter-section h3 {
+                font-size: 13px;
+            }
+            
+            .footer-newsletter-section p {
+                font-size: 11px;
+                max-width: 300px;
+            }
+            
+            .footer-newsletter-form {
+                max-width: 300px;
+            }
+            
+            .footer-newsletter-form input {
+                padding: 7px 10px;
+                font-size: 11px;
+                min-width: 130px;
+            }
+            
+            .footer-newsletter-form button {
+                padding: 0 14px;
+                font-size: 12px;
+            }
+            
+            .footer-bottom {
+                padding: 8px 20px;
+                font-size: 9px;
+                gap: 8px;
+            }
+            
+            .footer-legal {
+                gap: 15px;
+            }
+            
+            .footer-credit {
+                font-size: 9px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                max-width: 100%;
+                padding: 0 15px;
+            }
+            
+            .footer-logo-social {
+                margin-bottom: 8px;
+                padding-bottom: 6px;
+            }
+            
+            .footer-logo-wrapper {
+                gap: 5px;
+                margin-bottom: 5px;
+            }
+            
+            .footer-logo-img {
+                width: 20px;
+                height: 20px;
+            }
+            
+            .footer-logo-text {
+                font-size: 12px;
+                letter-spacing: 0.5px;
+            }
+            
+            .footer-social {
+                gap: 8px;
+                margin-top: 5px;
+            }
+            
+            .social-icon {
+                width: 22px;
+                height: 22px;
+                font-size: 11px;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 6px;
+                margin-bottom: 8px;
+                padding-bottom: 8px;
+                font-size: 11px;
+            }
+            
+            .contact-item {
+                gap: 4px;
+            }
+            
+            .contact-item i {
+                font-size: 11px;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                margin-bottom: 8px;
+            }
+            
+            .footer-nav a {
+                font-size: 8px;
+                padding: 2px 0;
+            }
+            
+            .footer-newsletter-section {
+                margin-bottom: 8px;
+                padding: 8px 0;
+            }
+            
+            .footer-newsletter-section h3 {
+                font-size: 11px;
+                margin-bottom: 4px;
+            }
+            
+            .footer-newsletter-section p {
+                font-size: 10px;
+                margin-bottom: 6px;
+                max-width: 250px;
+            }
+            
+            .footer-newsletter-form {
+                max-width: 250px;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .footer-newsletter-form input,
+            .footer-newsletter-form button {
+                width: 100%;
+                border-radius: 4px;
+            }
+            
+            .footer-newsletter-form input {
+                padding: 6px 8px;
+                font-size: 10px;
+                border-right: 1px solid rgba(255, 255, 255, 0.3);
+            }
+            
+            .footer-newsletter-form button {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 6px;
+                padding: 8px 15px;
+                font-size: 8px;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .footer-credit {
+                font-size: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                padding: 0 12px;
+            }
+            
+            .footer-logo-text {
+                font-size: 11px;
+            }
+            
+            .social-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+            
+            .footer-contact {
+                font-size: 10px;
+                gap: 5px;
+                margin-bottom: 6px;
+                padding-bottom: 6px;
+            }
+            
+            .contact-item i {
+                font-size: 10px;
+            }
+            
+            .footer-nav a {
+                font-size: 7px;
+            }
+            
+            .footer-newsletter-form {
+                max-width: 220px;
+            }
+            
+            .footer-newsletter-form input {
+                padding: 5px 8px;
+                font-size: 9px;
+                min-width: 100px;
+            }
+            
+            .footer-newsletter-form button {
+                padding: 5px 8px;
+                font-size: 10px;
+            }
+            
+            .footer-bottom {
+                padding: 6px 12px;
+                font-size: 7px;
+                gap: 4px;
+            }
+            
+            .footer-legal a {
+                font-size: 7px;
+            }
+            
+            .footer-credit {
+                font-size: 7px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="browse-events.html">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <!-- Right actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Cart with icon and text -->
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <!-- Login with icon and text -->
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <!-- Menu -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- Payment Failed Section -->
+<section class="payment-failed-section">
+    <!-- Steps -->
+    <div class="payment-progress">
+        <div class="progress-steps">
+            <div class="step completed">
+                <div class="step-number">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="step-label">Tickets</div>
+            </div>
+            <div class="progress-line completed"></div>
+            <div class="step active">
+                <div class="step-number">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <div class="step-label">Payment</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Failed Message -->
+    <div class="failed-message">
+        <div class="failed-icon">
+            <i class="fas fa-times-circle"></i>
+        </div>
+        <h1 class="failed-title">PAYMENT FAILED!</h1>
+        <p class="failed-subtitle">We were unable to process your payment. Please try again or contact your bank for assistance.</p>
+        
+        <!-- Additional Info Boxes -->
+        <div class="additional-info">
+            <div class="info-box">
+                <h4>Transaction ID</h4>
+                <p>TRX-7890-4567</p>
+            </div>
+            <div class="info-box">
+                <h4>Attempted Amount</h4>
+                <p>$63.00</p>
+            </div>
+            <div class="info-box">
+                <h4>Time of Attempt</h4>
+                <p>7:30 PM, Today</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirmation-grid">
+        <!-- Left Column - Transaction Details (Compact) -->
+        <div class="card">
+            <div class="failure-details">
+                <h2 class="failure-title">TRANSACTION DECLINED</h2>
+                <p class="failure-text">
+                    Your payment of <strong>$55.00</strong> for <strong>Comedy Festival Opening Night Gala</strong> was declined by your bank. Common reasons include insufficient funds, expired card, or security restrictions.
+                </p>
+            </div>
+
+            <div class="details-container">
+                <div class="details-section">
+                    <div class="section-title">ERROR DETAILS</div>
+                    <div class="detail-row"><span>Error Code</span>PAY-0045-789</div>
+                    <div class="detail-row"><span>Status</span>Declined by Bank</div>
+                    <div class="detail-row"><span>Attempted</span>Sat, 15 Mar | 7:30 PM</div>
+                    <div class="detail-row"><span>Reason</span>Insufficient Funds</div>
+                    <div class="detail-row"><span>Bank Reference</span>BNK-REF-2024-789</div>
+                </div>
+                
+                <div class="details-section">
+                    <div class="section-title">CUSTOMER DETAILS</div>
+                    <div class="detail-row"><span>Name</span>John Doe</div>
+                    <div class="detail-row"><span>Email</span>john.doe@example.com</div>
+                    <div class="detail-row"><span>Phone</span>0412 345 678</div>
+                    <div class="detail-row"><span>Account ID</span>ACCT-789456</div>
+                    <div class="detail-row"><span>Member Since</span>Jan 2023</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="btn btn-danger">
+                    <i class="fas fa-credit-card"></i> TRY PAYMENT AGAIN
+                </button>
+                <button class="btn btn-outline">
+                    <i class="fas fa-history"></i> DIFFERENT METHOD
+                </button>
+                <button class="btn btn-outline btn-full">
+                    <i class="fas fa-save"></i> SAVE FOR LATER
+                </button>
+                <button class="btn btn-primary btn-full">
+                    <i class="fas fa-home"></i> RETURN TO HOME
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Column - Order Summary (Compact) -->
+        <div class="order-summary">
+            <div class="order-summary-header">
+                <h3>ORDER SUMMARY</h3>
+            </div>
+            
+            <div class="order-items-container">
+                <div class="order-item">
+                    <div class="item-details">
+                        <h4>Comedy Festival Opening Night Gala</h4>
+                        <p>General – Standing × 1</p>
+                        <p>Sat, 15 Mar | 7:30 PM</p>
+                        <p>Melbourne Convention Centre</p>
+                    </div>
+                    <div class="item-price">$55.00</div>
+                </div>
+                
+                <div class="order-item">
+                    <div class="item-details">
+                        <h4>Service Fee</h4>
+                        <p>Processing fee</p>
+                    </div>
+                    <div class="item-price">$5.50</div>
+                </div>
+                
+                <div class="order-item">
+                    <div class="item-details">
+                        <h4>Booking Fee</h4>
+                        <p>Administration charge</p>
+                    </div>
+                    <div class="item-price">$2.50</div>
+                </div>
+                
+                <div class="order-item">
+                    <div class="item-details">
+                        <h4>GST</h4>
+                        <p>Tax included</p>
+                    </div>
+                    <div class="item-price">$0.00</div>
+                </div>
+            </div>
+            
+            <div class="order-total">
+                <div class="total-label">TOTAL AMOUNT</div>
+                <div class="total-amount">$63.00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Section -->
+    <div class="support-section">
+        <h3 class="support-title"><i class="fas fa-life-ring"></i> NEED HELP WITH YOUR PAYMENT?</h3>
+        <div class="support-content">
+            <div class="support-item">
+                <h4><i class="fas fa-credit-card"></i> BANK ASSISTANCE</h4>
+                <p>Contact your bank to check:</p>
+                <p>• Available balance & daily limits</p>
+                <p>• Card expiration & security settings</p>
+                <p>• International transaction permissions</p>
+                <p>• Recent fraud alerts on account</p>
+                <a href="#">View banking tips →</a>
+            </div>
+            
+            <div class="support-item">
+                <h4><i class="fas fa-shield-alt"></i> SECURITY TIPS</h4>
+                <p>For secure payments:</p>
+                <p>• Verify card details match exactly</p>
+                <p>• Check CVV/CVC code is correct</p>
+                <p>• Ensure billing address matches bank records</p>
+                <p>• Use secure network for transactions</p>
+                <a href="#">Security guidelines →</a>
+            </div>
+            
+            <div class="support-item">
+                <h4><i class="fas fa-headset"></i> CONTACT SUPPORT</h4>
+                <p>Our team is here to help:</p>
+                <p>• Phone: (03) 9123 4567 (24/7)</p>
+                <p>• Email: support@tanderrum.ai</p>
+                <p>• Live Chat: Available 24/7</p>
+                <p>• FAQ: Instant answers online</p>
+                <a href="#">Contact us now →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h3 class="faq-title">FREQUENTLY ASKED QUESTIONS</h3>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <h4>Will I be charged for the failed transaction?</h4>
+                <p>No, you won't be charged for failed transactions. Funds are only deducted when payment is successful.</p>
+            </div>
+            <div class="faq-item">
+                <h4>How long does it take for funds to be released?</h4>
+                <p>Pending authorizations are typically released within 1-3 business days, depending on your bank.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Can I try with a different payment method?</h4>
+                <p>Yes, you can use a different credit/debit card, PayPal, or other available payment methods.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Are my tickets reserved during payment attempts?</h4>
+                <p>Tickets are temporarily held for 10 minutes during the payment process to prevent them from being sold to others.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-new">
+    <div class="footer-content">
+        <!-- Logo and social -->
+        <div class="footer-logo-social">
+            <div class="footer-logo-wrapper">
+                <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+                <div class="footer-logo-text">TANDERRUM<span>.Event</span></div>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-contact">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>(03) 9123 4567</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>support@tanderrum.ai</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="footer-nav">
+            <a href="#">HOME</a>
+            <a href="#">BROWSE EVENTS</a>
+            <a href="#">VENUES</a>
+            <a href="#">HELP CENTER</a>
+        </nav>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter-section">
+            <h3>NEVER MISS OUT</h3>
+            <p>Get notified about new events</p>
+            <form class="footer-newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">→</button>
+            </form>
+        </div>
+
+        <!-- Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-legal">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Sitemap</a>
+            </div>
+            <div class="footer-credit">
+                Design by 
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            
+            if (topHeader.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && 
+            !topHeader.contains(event.target) &&
+            window.innerWidth <= 900) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 900) {
+                topHeader.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900 && topHeader.classList.contains('active')) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Button Functionality
+    const tryAgainBtn = document.querySelector('.btn-danger');
+    if (tryAgainBtn) {
+        tryAgainBtn.addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+                alert('Redirecting to payment gateway...');
+            }, 1500);
+        });
+    }
+    
+    // Different method button
+    const diffMethodBtn = document.querySelectorAll('.btn-outline')[0];
+    if (diffMethodBtn) {
+        diffMethodBtn.addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+                alert('Showing alternative payment methods...');
+            }, 1500);
+        });
+    }
+    
+    // Save for later button
+    const saveBtn = document.querySelector('.btn-full.btn-outline');
+    if (saveBtn) {
+        saveBtn.addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+                alert('Tickets saved to your account for 48 hours.');
+            }, 1500);
+        });
+    }
+    
+    // Home button
+    const homeBtn = document.querySelector('.btn-primary.btn-full');
+    if (homeBtn) {
+        homeBtn.addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+                alert('Redirecting to home page...');
+            }, 1500);
+        });
+    }
+    
+    // FAQ accordion functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('h4');
+        question.addEventListener('click', function() {
+            item.classList.toggle('active');
+        });
+    });
+    
+    // Newsletter Form
+    const newsletterForm = document.querySelector('.footer-newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            const button = this.querySelector('button');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                alert(`Thank you! You've been subscribed with: ${email}`);
+                this.reset();
+            }, 1500);
+        });
+    }
+});
+</script>
+
+</body>
+</html>
