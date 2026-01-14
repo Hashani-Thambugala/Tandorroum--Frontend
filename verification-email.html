@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email - Tanduur</title>
+    <link rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Email Container */
+.email-container {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+.email-header {
+    background: linear-gradient(135deg, #f24b09 0%, #ff6b35 100%);
+    padding: 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.header-tag {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+/* ===== CONTENT AREA ===== */
+.email-content {
+    padding: 40px;
+}
+
+.email-title {
+    font-size: 32px;
+    color: #222;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.email-subtitle {
+    color: #666;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 40px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== VERIFICATION BOX ===== */
+.verification-box {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    margin: 30px 0;
+    border: 2px dashed #e9ecef;
+}
+
+.verification-title {
+    font-size: 14px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.verification-code {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.code-digit {
+    width: 60px;
+    height: 80px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: #f24b09;
+    box-shadow: 0 4px 15px rgba(242, 75, 9, 0.15);
+    border: 2px solid #ffe8e0;
+    transition: all 0.3s ease;
+}
+
+.code-digit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(242, 75, 9, 0.25);
+}
+
+.code-expiry {
+    color: #666;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+/* ===== VERIFICATION BUTTON ===== */
+.button-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.verify-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #000;
+    color: white;
+    text-decoration: none;
+    padding: 18px 40px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: 2px solid #000;
+    min-width: 300px;
+}
+
+.verify-button:hover {
+    background: #f24b09;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(242, 75, 9, 0.3);
+    border-color: #f24b09;
+}
+
+.verify-button i {
+    font-size: 20px;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+    text-align: center;
+    margin: 40px 0;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e9ecef;
+    z-index: 1;
+}
+
+.divider span {
+    background: white;
+    padding: 0 20px;
+    color: #999;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== MANUAL VERIFICATION ===== */
+.manual-verify {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.manual-verify h3 {
+    color: #222;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.steps-list {
+    list-style-position: inside;
+    color: #555;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.steps-list li {
+    margin-bottom: 15px;
+    padding-left: 10px;
+    line-height: 1.6;
+}
+
+.steps-list a {
+    color: #f24b09;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.steps-list a:hover {
+    text-decoration: underline;
+}
+
+.steps-list strong {
+    color: #222;
+    background: #fff3ee;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+/* ===== EVENT PREVIEW ===== */
+.event-preview {
+    margin: 50px 0 30px;
+    text-align: center;
+}
+
+.event-preview h3 {
+    color: #222;
+    margin-bottom: 30px;
+    font-size: 22px;
+}
+
+.preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.preview-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.preview-card:hover {
+    transform: translateY(-5px);
+}
+
+.preview-img {
+    height: 100px;
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.preview-info {
+    padding: 15px;
+}
+
+.preview-info h4 {
+    font-size: 14px;
+    color: #222;
+    margin-bottom: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.preview-info p {
+    font-size: 12px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.preview-info i {
+    color: #f24b09;
+}
+
+/* ===== HELP SECTION ===== */
+.help-section {
+    background: #fff9f7;
+    border-top: 2px solid #ffe8e0;
+    padding: 30px 40px;
+    margin-top: 20px;
+}
+
+.help-section h3 {
+    color: #222;
+    margin-bottom: 15px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.help-section h3 i {
+    color: #f24b09;
+}
+
+.help-section p {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.help-section a {
+    color: #f24b09;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.help-section a:hover {
+    text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+.email-footer {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 40px;
+    text-align: center;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+
+.social-link:hover {
+    background: #f24b09;
+    transform: translateY(-3px);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.footer-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #f24b09;
+}
+
+.footer-text {
+    color: #95a5a6;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-copyright {
+    color: #7f8c8d;
+    font-size: 12px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.footer-unsubscribe {
+    font-size: 11px;
+    color: #95a5a6;
+}
+
+.footer-unsubscribe a {
+    color: #bdc3c7;
+    text-decoration: none;
+}
+
+.footer-unsubscribe a:hover {
+    color: #f24b09;
+    text-decoration: underline;
+}
+
+/* ===== MOBILE NOTE ===== */
+.mobile-note {
+    display: none;
+    background: #e3f2fd;
+    padding: 15px;
+    text-align: center;
+    color: #1565c0;
+    font-size: 14px;
+    border-top: 1px solid #bbdefb;
+}
+
+.mobile-note i {
+    margin-right: 8px;
+}
+
+/* ===== FALLBACK FOR EMAIL CLIENTS ===== */
+.email-fallback {
+    display: none;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 650px) {
+    body {
+        padding: 10px;
+    }
+    
+    .email-container {
+        border-radius: 8px;
+    }
+    
+    .email-header {
+        padding: 25px 20px;
+    }
+    
+    .logo-text {
+        font-size: 24px;
+    }
+    
+    .email-content {
+        padding: 25px 20px;
+    }
+    
+    .email-title {
+        font-size: 26px;
+    }
+    
+    .verification-code {
+        gap: 10px;
+    }
+    
+    .code-digit {
+        width: 45px;
+        height: 60px;
+        font-size: 28px;
+    }
+    
+    .verify-button {
+        min-width: 100%;
+        padding: 16px 20px;
+        font-size: 14px;
+    }
+    
+    .preview-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .preview-card {
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .footer-links {
+        gap: 15px;
+        flex-direction: column;
+    }
+    
+    .mobile-note {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .email-title {
+        font-size: 22px;
+    }
+    
+    .verification-box {
+        padding: 20px;
+    }
+    
+    .code-digit {
+        width: 40px;
+        height: 55px;
+        font-size: 24px;
+    }
+    
+    .manual-verify {
+        padding: 20px;
+    }
+    
+    .help-section {
+        padding: 20px;
+    }
+    
+    .email-footer {
+        padding: 25px 20px;
+    }
+}
+
+/* ===== EMAIL CLIENT SPECIFIC FIXES ===== */
+@media only screen and (max-width: 600px) {
+    .verification-code {
+        display: block;
+    }
+    
+    .code-digit {
+        display: inline-block;
+        margin: 0 5px;
+        width: 40px;
+        height: 50px;
+        line-height: 50px;
+    }
+    
+    .verify-button {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .email-container {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .verify-button {
+        background: #000 !important;
+        color: white !important;
+        border: 2px solid #000 !important;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Email Container -->
+    <div class="email-container">
+        <!-- Header -->
+
+        <!-- Logo and Brand Name -->
+        <div class="logo-container">
+            <!-- <div class="logo-icon">
+                <img src="t logo.png" alt="Tandorroum Events" width="40" height="40" style="border-radius: 8px;">
+            </div> -->
+            <!-- <div class="logo-text">Tandorroum.Events</div> -->
+        </div>
+        <div class="email-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="images/Vector.png" alt="Tanduur Logo" style="width: 28px; height: 28px;">
+                </div>
+                <div class="logo-text">Tandorroum.Events</div>
+            </div>
+            <div class="header-tag">EVENT VERIFICATION</div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="email-content">
+            <h1 class="email-title">Verify Your Email Address</h1>
+            <p class="email-subtitle">Welcome to Tandorroum! Please confirm your email to start exploring amazing events.</p>
+
+            <!-- Verification Code -->
+            <div class="verification-box">
+                <div class="verification-title">Your Verification Code:</div>
+                <div class="verification-code">
+                    <span class="code-digit">8</span>
+                    <span class="code-digit">4</span>
+                    <span class="code-digit">2</span>
+                    <span class="code-digit">1</span>
+                    <span class="code-digit">9</span>
+                    <span class="code-digit">6</span>
+                </div>
+                <p class="code-expiry">This code expires in <strong>30 minutes</strong></p>
+            </div>
+
+            <!-- Verification Button -->
+            <div class="button-container">
+                <a href="https://tanduurom.event/verify?code=842196" class="verify-button">
+                    <i class="fas fa-check-circle"></i>
+                    VERIFY EMAIL ADDRESS
+                </a>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <!-- Manual Instructions -->
+            <div class="manual-verify">
+                <h3>Verify Manually</h3>
+                <ol class="steps-list">
+                    <li>Go to <a href="https://tanduurom.event/login">tanduurom.event/login</a></li>
+                    <li>Enter your email and password</li>
+                    <li>Enter this verification code: <strong>842196</strong></li>
+                    <li>Click "Verify Account"</li>
+                </ol>
+            </div>
+
+            <!-- Event Preview -->
+            <!-- <div class="event-preview">
+                <h3>Ready to explore events?</h3>
+                <div class="preview-grid">
+                    <div class="preview-card">
+                        <div class="preview-img" style="background-color: #ff7e5f;"></div>
+                        <div class="preview-info">
+                            <h4>Summer Music Festival</h4>
+                            <p><i class="far fa-calendar"></i> Jun 15, 2024</p>
+                        </div>
+                    </div>
+                    <div class="preview-card">
+                        <div class="preview-img" style="background-color: #4ecdc4;"></div>
+                        <div class="preview-info">
+                            <h4>Tech Conference</h4>
+                            <p><i class="far fa-calendar"></i> Jul 22, 2024</p>
+                        </div>
+                    </div>
+                    <div class="preview-card">
+                        <div class="preview-img" style="background-color: #ff6b6b;"></div>
+                        <div class="preview-info">
+                            <h4>Food & Wine Expo</h4>
+                            <p><i class="far fa-calendar"></i> Aug 5, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Help Section -->
+        <div class="help-section">
+            <h3><i class="fas fa-question-circle"></i> Need Help?</h3>
+            <p>If you didn't create an account with Tanduur, please ignore this email or <a href="https://tanduurom.event/support">contact our support team</a>.</p>
+            <p>Having trouble with the verification code? <a href="https://tanduurom.event/resend-verification">Click here to resend</a>.</p>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <div class="footer-social">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            
+            <div class="footer-links">
+                <a href="https://tanduurom.event">Home</a>
+                <a href="https://tanduurom.event/events">Events</a>
+                <a href="https://tanduurom.event/about">About</a>
+                <a href="https://tanduurom.event/contact">Contact</a>
+                <a href="https://tanduurom.event/privacy">Privacy Policy</a>
+                <a href="https://tanduurom.event/terms">Terms of Service</a>
+            </div>
+            
+            <p class="footer-text">
+                You're receiving this email because you recently created an account on Tanduur.<br>
+                If this wasn't you, please disregard this message.
+            </p>
+            
+            <p class="footer-copyright">
+                © 2026 tanduurom Events. All rights reserved.<br>
+                123 Event Street, City, Country
+            </p>
+            
+            <div class="footer-unsubscribe">
+                <a href="https://tanduurom.event/unsubscribe">Unsubscribe</a> | 
+                <a href="https://tanduurom.event/preferences">Email Preferences</a>
+            </div>
+        </div>
+
+        <!-- Mobile Note (hidden on desktop) -->
+        <div class="mobile-note">
+            <p><i class="fas fa-mobile-alt"></i> <strong>Tip:</strong> Tap the verification code to copy it to your clipboard.</p>
+        </div>
+    </div>
+
+    <!-- Fallback for email clients -->
+    <div class="email-fallback">
+        <p><strong>Verify your tanduurom account</strong></p>
+        <p>Verification Code: 842196</p>
+        <p>Click here to verify: https://tanduurom.event/verify?code=842196</p>
+        <p>This link expires in 30 minutes.</p>
+    </div>
+</body>
+</html>
