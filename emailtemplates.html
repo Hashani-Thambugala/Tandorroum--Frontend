@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Email - Tanduur</title>
+    <link rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Email Container */
+        .email-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER (Reduced Height) ===== */
+        .email-header {
+            background: linear-gradient(135deg, #f24b09 0%, #ff6b35 100%);
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-icon img {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header-tag {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* ===== MAIN CONTENT (Enhanced Visibility) ===== */
+        .email-content {
+            padding: 30px;
+        }
+
+        .email-title {
+            font-size: 28px;
+            color: #222;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .email-subtitle {
+            color: #666;
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+
+        
+        
+        /* ===== DIVIDER ===== */
+        .divider {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e9ecef;
+            z-index: 1;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 20px;
+            color: #999;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+
+       
+        
+        /* ===== FOOTER (Reduced Height) ===== */
+        .email-footer {
+            background: linear-gradient(135deg, #f24b09 0%, #ff6b35 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .social-link {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .social-link:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 11px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 11px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 10px;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .footer-unsubscribe {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-unsubscribe a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+        }
+
+        .footer-unsubscribe a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* ===== MOBILE NOTE ===== */
+        .mobile-note {
+            display: none;
+            background: rgba(227, 242, 253, 0.9);
+            padding: 10px;
+            text-align: center;
+            color: #1565c0;
+            font-size: 12px;
+            border-top: 1px solid #bbdefb;
+        }
+
+        .mobile-note i {
+            margin-right: 5px;
+        }
+
+        /* ===== FALLBACK FOR EMAIL CLIENTS ===== */
+        .email-fallback {
+            display: none;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 650px) {
+            body {
+                padding: 15px;
+            }
+            
+            .email-container {
+                border-radius: 10px;
+            }
+            
+            .email-header {
+                padding: 15px;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .email-content {
+                padding: 25px 20px;
+            }
+            
+            .email-title {
+                font-size: 24px;
+            }
+            
+            .email-subtitle {
+                font-size: 15px;
+                padding: 0;
+            }
+            
+            .verification-code {
+                gap: 8px;
+            }
+            
+            .code-digit {
+                width: 45px;
+                height: 60px;
+                font-size: 26px;
+            }
+            
+            .verify-button {
+                min-width: 100%;
+                padding: 14px 25px;
+                font-size: 14px;
+            }
+            
+            .footer-links {
+                gap: 8px;
+                flex-direction: column;
+            }
+            
+            .footer-links a {
+                white-space: normal;
+                text-align: center;
+                font-size: 10px;
+            }
+            
+            .mobile-note {
+                display: block;
+            }
+            
+            .help-section {
+                padding: 15px;
+            }
+            
+            .email-footer {
+                padding: 15px;
+            }
+            
+            .manual-verify {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .email-title {
+                font-size: 22px;
+            }
+            
+            .verification-box {
+                padding: 20px;
+            }
+            
+            .code-digit {
+                width: 40px;
+                height: 55px;
+                font-size: 24px;
+            }
+            
+            .manual-verify {
+                padding: 15px;
+            }
+            
+            .steps-list {
+                font-size: 14px;
+            }
+            
+            .logo-text {
+                font-size: 18px;
+            }
+            
+            .header-tag {
+                font-size: 9px;
+                padding: 4px 12px;
+            }
+            
+            .footer-social {
+                gap: 8px;
+            }
+            
+            .social-link {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+        }
+
+        /* ===== EMAIL CLIENT SPECIFIC FIXES ===== */
+        @media only screen and (max-width: 600px) {
+            .verification-code {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .code-digit {
+                display: flex;
+                margin: 0;
+            }
+            
+            .verify-button {
+                display: flex;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .email-container {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                max-width: 100%;
+            }
+            
+            .verify-button {
+                background: #000 !important;
+                color: white !important;
+                border: 2px solid #000 !important;
+            }
+            
+            .email-header, .email-footer {
+                background: #f24b09 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Email Container -->
+    <div class="email-container">
+        <!-- Header (Reduced Height) -->
+        <div class="email-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="images/Vector.png" alt="Tanduur Logo">
+                </div>
+                <div class="logo-text">Tanduurom.Events</div>
+            </div>
+            <div class="header-tag">EMAIL VERIFICATION</div>
+        </div>
+
+        <!-- Main Content (Enhanced Visibility) -->
+        <!-- Customize email contain accordingly needs  performance. -->
+        <div class="email-content">
+            <h1 class="email-title">Verify Your Email Address</h1>
+            <p class="email-subtitle">Welcome to Tanduurom! Please confirm your email to start exploring amazing events around you.</p>
+
+        </div>
+       
+
+        <!-- Footer with header gradient color (Reduced Height) -->
+        <div class="email-footer">
+            <div class="footer-social">
+                <a href="https://facebook.com/tanduur" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/tanduur" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/tanduur" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com/company/tanduur" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            
+            <div class="footer-links">
+                <a href="https://tanduur.event">Home</a>
+                <a href="https://tanduur.event/events">Events</a>
+                <a href="https://tanduur.event/about">About</a>
+                <a href="https://tanduur.event/contact">Contact</a>
+                <a href="https://tanduur.event/privacy">Privacy</a>
+                <a href="https://tanduur.event/terms">Terms</a>
+            </div>
+            
+            <p class="footer-text">
+                You're receiving this email because you recently created an account on Tanduurom.
+            </p>
+            
+            <p class="footer-copyright">
+                © 2026 Tanduurom Events. All rights reserved.
+            </p>
+            
+            <div class="footer-unsubscribe">
+                <a href="https://tanduur.event/unsubscribe">Unsubscribe</a> | 
+                <a href="https://tanduur.event/preferences">Email Preferences</a>
+            </div>
+        </div>
+
+        <!-- Mobile Note -->
+        <div class="mobile-note">
+            <p><i class="fas fa-mobile-alt"></i> <strong>Tip:</strong> Receive email via tandorrum network</p>
+        </div>
+    </div>
+
+    <!-- Fallback for email clients -->
+    <div class="email-fallback">
+        <p><strong>Verify your Tanduurom account</strong></p>
+        <p>Verification Code: 842196</p>
+        <p>Click here to verify: https://tanduurom.event/verify?code=842196</p>
+        <p>This link expires in 30 minutes.</p>
+    </div>
+</body>
+</html>
