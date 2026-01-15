@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum - Return Tickets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+            overflow-x: hidden;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+
+        /* ===== HEADER (unchanged) ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: auto;
+            padding: 10px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 0;
+            position: relative;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ff6a00;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 3px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 12px;
+            width: 110px;
+            background: transparent;
+        }
+
+        .header-icon {
+            font-size: 15px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        .cart-section, .login-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            cursor: pointer;
+        }
+
+        .login-text {
+            font-size: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .menu-btn {
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+            color: #000;
+            background: none;
+            border: none;
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        /* Mobile menu */
+        .top-header.active .nav-links {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            gap: 0;
+        }
+
+        .top-header.active .nav-links a {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .top-header.active .nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .top-header.active .nav-links a.active::after {
+            display: none;
+        }
+
+        /* ===== RETURN TICKETS PAGE STYLES - UPDATED ===== */
+        .return-tickets-section {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            color: #ff6a00;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 14px;
+            max-width: 600px;
+            margin: 0 auto 15px;
+            line-height: 1.4;
+        }
+
+        /* Policy Warning Banner */
+        .policy-warning {
+            background: #fff8e6;
+            border: 1px solid #ffd166;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .policy-warning i {
+            color: #ff6a00;
+            font-size: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .policy-warning p {
+            color: #333;
+            font-size: 13px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .policy-warning strong {
+            color: #ff6a00;
+        }
+
+        /* Return Options - Updated per policy */
+        .return-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 18px;
+            background: white;
+            text-align: center;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .option-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 106, 0, 0.1);
+            border-color: #ff6a00;
+        }
+
+        .option-disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .option-disabled:hover {
+            transform: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-color: #eee;
+        }
+
+        .option-disabled .btn {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .option-disabled .btn:hover {
+            background: #999;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .option-icon {
+            width: 45px;
+            height: 45px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            color: #ff6a00;
+            font-size: 18px;
+        }
+
+        .option-disabled .option-icon {
+            background: #eee;
+            color: #999;
+        }
+
+        .option-card h3 {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .option-disabled h3 {
+            color: #999;
+        }
+
+        .option-card p {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            min-height: 60px;
+        }
+
+        .option-disabled p {
+            color: #999;
+        }
+
+        .option-badge {
+            display: inline-block;
+            background: #ff6a00;
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .option-disabled-badge {
+            display: inline-block;
+            background: #999;
+            color: white;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        /* Policy Details Section */
+        .policy-details {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .policy-details h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .policy-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .policy-point {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #ff6a00;
+        }
+
+        .policy-point h4 {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .policy-point p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .policy-point ul {
+            margin: 8px 0 0 0;
+            padding-left: 20px;
+        }
+
+        .policy-point li {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        /* Ticket Selection */
+        .ticket-selection {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .ticket-list {
+            margin-bottom: 20px;
+        }
+
+        .ticket-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border: 1px solid #eee;
+            transition: all 0.2s ease;
+        }
+
+        .ticket-item:hover {
+            border-color: #ff6a00;
+            box-shadow: 0 2px 6px rgba(255, 106, 0, 0.1);
+        }
+
+        .ticket-checkbox {
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .ticket-checkbox input {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .ticket-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .ticket-details h4 {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .ticket-details p {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .ticket-price {
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+            margin-left: 10px;
+            flex-shrink: 0;
+        }
+
+        .ticket-status {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 3px;
+            margin-right: 6px;
+            margin-top: 4px;
+        }
+
+        .status-eligible {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-nonrefundable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Return Form */
+        .return-form {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #333;
+            background: white;
+            resize: vertical;
+        }
+
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff6a00;
+            box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+        }
+
+        /* Refund Summary - Updated with 20% fee */
+        .refund-summary {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-label {
+            color: #666;
+        }
+
+        .summary-value {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .summary-total {
+            font-weight: 700;
+            font-size: 16px;
+            color: #ff6a00;
+        }
+
+        .fee-deduction {
+            color: #ff3333;
+            font-weight: 600;
+        }
+
+        .summary-note {
+            font-size: 11px;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            line-height: 1.3;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 40px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #ff6a00;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(255, 106, 0, 0.3);
+        }
+
+        .btn-outline {
+            background: #fff;
+            border: 1px solid #000;
+            color: #000;
+        }
+
+        .btn-outline:hover {
+            border-color: #ff6a00;
+            color: #ff6a00;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Information */
+        .contact-info {
+            background: #f0f7ff;
+            border: 1px solid #cce5ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-info h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            color: #ff6a00;
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .contact-item div {
+            flex: 1;
+        }
+
+        .contact-item h4 {
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .contact-item p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .contact-item a {
+            color: #ff6a00;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== FOOTER (unchanged) ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 15px 0 0;
+            width: 100%;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 5px;
+        }
+
+        .footer-logo-img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .footer-logo-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 12px;
+        }
+
+        .contact-item-footer {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item-footer i {
+            color: #fff;
+            font-size: 12px;
+            opacity: 0.9;
+            flex-shrink: 0;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            padding: 2px 0;
+            white-space: nowrap;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.2;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 300px;
+            margin: 0 auto;
+            gap: 0;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 11px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            min-width: 120px;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 10px;
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 14px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .footer-bottom {
+            background: white;
+            padding: 8px 20px;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        .footer-credit {
+            font-size: 9px;
+            color: #666;
+            text-align: right;
+        }
+
+        /* ===== ENHANCED RESPONSIVE ADJUSTMENTS ===== */
+        
+        /* Extra Large Desktops (Apple 27" iMac, 5K displays) */
+        @media (min-width: 1921px) {
+            .return-tickets-section {
+                max-width: 1600px;
+                margin: 40px auto;
+                padding: 0 40px;
+            }
+            
+            .page-header h1 {
+                font-size: 32px;
+            }
+            
+            .page-header p {
+                font-size: 16px;
+                max-width: 800px;
+            }
+            
+            .return-options {
+                gap: 25px;
+            }
+            
+            .option-card {
+                padding: 25px;
+            }
+            
+            .option-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .option-card h3 {
+                font-size: 18px;
+            }
+            
+            .option-card p {
+                font-size: 14px;
+                min-height: 70px;
+            }
+            
+            .policy-points {
+                gap: 20px;
+            }
+            
+            .policy-point {
+                padding: 20px;
+            }
+        }
+
+        /* Large Desktops (Apple 24" iMac, 27" monitors) */
+        @media (max-width: 1920px) and (min-width: 1441px) {
+            .return-tickets-section {
+                max-width: 1400px;
+            }
+            
+            .return-options {
+                gap: 20px;
+            }
+            
+            .policy-points {
+                gap: 18px;
+            }
+        }
+
+        /* Standard Desktops & Laptops */
+        @media (max-width: 1440px) {
+            .return-tickets-section {
+                max-width: 1200px;
+                padding: 0 30px;
+            }
+        }
+
+        /* Medium Desktops & Laptops */
+        @media (max-width: 1200px) {
+            .return-tickets-section {
+                max-width: 1000px;
+                padding: 0 25px;
+            }
+            
+            .return-options {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .policy-points {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .contact-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tablets (iPad Pro 12.9", iPad Air) */
+        @media (max-width: 1024px) {
+            .return-tickets-section {
+                margin: 25px auto;
+                padding: 0 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 22px;
+            }
+            
+            .return-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .policy-points {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: row;
+            }
+            
+            .btn {
+                min-width: 140px;
+            }
+            
+            .contact-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tablets (iPad Mini, smaller tablets) */
+        @media (max-width: 768px) {
+            .return-tickets-section {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+            
+            .page-header h1 {
+                font-size: 20px;
+            }
+            
+            .page-header p {
+                font-size: 13px;
+            }
+            
+            .return-options {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .policy-warning {
+                padding: 12px 15px;
+            }
+            
+            .policy-warning p {
+                font-size: 12px;
+            }
+            
+            .policy-details {
+                padding: 15px;
+            }
+            
+            .policy-points {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .ticket-item {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .ticket-checkbox {
+                margin-bottom: 0;
+            }
+            
+            .ticket-price {
+                margin-top: 0;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .contact-details {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        /* Large Mobile (iPhone 12 Pro Max, Plus models) */
+        @media (max-width: 640px) {
+            .header-container {
+                padding: 8px 15px;
+            }
+            
+            .logo img {
+                width: 100px;
+            }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
+            .menu-btn {
+                display: block;
+            }
+            
+            .search-nav input {
+                width: 80px;
+                font-size: 11px;
+            }
+            
+            .login-section, .cart-section {
+                display: none;
+            }
+            
+            .return-tickets-section {
+                padding: 0 12px;
+            }
+            
+            .page-header h1 {
+                font-size: 18px;
+            }
+            
+            .policy-warning {
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px 12px;
+            }
+            
+            .policy-warning i {
+                align-self: flex-start;
+            }
+            
+            .option-card {
+                padding: 15px;
+            }
+            
+            .option-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .option-card p {
+                min-height: 50px;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 12px;
+                min-height: 36px;
+            }
+            
+            .ticket-selection {
+                padding: 15px;
+            }
+            
+            .refund-summary {
+                padding: 15px;
+            }
+            
+            .return-form {
+                padding: 15px;
+            }
+            
+            .contact-info {
+                padding: 15px;
+            }
+        }
+
+        /* Medium Mobile (Standard iPhone, Android) */
+        @media (max-width: 480px) {
+            .return-tickets-section {
+                margin: 15px auto;
+            }
+            
+            .page-header h1 {
+                font-size: 16px;
+            }
+            
+            .page-header p {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+            
+            .option-card h3 {
+                font-size: 14px;
+            }
+            
+            .option-card p {
+                font-size: 11px;
+                min-height: 40px;
+            }
+            
+            .ticket-details h4 {
+                font-size: 13px;
+            }
+            
+            .ticket-details p {
+                font-size: 10px;
+            }
+            
+            .ticket-price {
+                font-size: 13px;
+            }
+            
+            .summary-row {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+            
+            .summary-total {
+                font-size: 14px;
+            }
+            
+            .form-group label {
+                font-size: 12px;
+            }
+            
+            .form-group select,
+            .form-group textarea {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+            
+            .contact-item h4 {
+                font-size: 12px;
+            }
+            
+            .contact-item p {
+                font-size: 11px;
+            }
+        }
+
+        /* Small Mobile (iPhone SE, small Android) */
+        @media (max-width: 375px) {
+            .header-container {
+                padding: 6px 12px;
+            }
+            
+            .logo img {
+                width: 80px;
+            }
+            
+            .search-nav input {
+                width: 60px;
+                font-size: 10px;
+            }
+            
+            .return-tickets-section {
+                padding: 0 10px;
+            }
+            
+            .ticket-item {
+                flex-wrap: wrap;
+            }
+            
+            .ticket-price {
+                width: 100%;
+                text-align: right;
+                margin-top: 8px;
+                margin-left: 0;
+            }
+            
+            .option-badge {
+                font-size: 8px;
+                padding: 2px 6px;
+            }
+            
+            .btn {
+                padding: 6px 12px;
+                font-size: 11px;
+                min-height: 34px;
+            }
+            
+            .footer-content {
+                padding: 0 12px;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 6px;
+            }
+            
+            .footer-nav {
+                flex-direction: column;
+                gap: 6px;
+            }
+        }
+
+        /* Extra Small Mobile (Very small screens) */
+        @media (max-width: 320px) {
+            .page-header h1 {
+                font-size: 15px;
+            }
+            
+            .option-card {
+                padding: 12px;
+            }
+            
+            .ticket-details h4 {
+                font-size: 12px;
+            }
+            
+            .policy-point h4 {
+                font-size: 12px;
+            }
+            
+            .btn {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+        }
+
+        /* Landscape Mode Optimization */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .return-tickets-section {
+                margin: 20px auto;
+            }
+            
+            .page-header {
+                margin-bottom: 15px;
+            }
+            
+            .page-header h1 {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+            
+            .return-options {
+                grid-template-columns: repeat(2, 1fr);
+                margin-bottom: 20px;
+            }
+            
+            .option-card p {
+                min-height: 35px;
+            }
+            
+            .ticket-selection,
+            .policy-details,
+            .return-form {
+                margin-bottom: 20px;
+            }
+            
+            .action-buttons {
+                margin-bottom: 25px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .top-header,
+            .footer-new,
+            .action-buttons,
+            .menu-btn {
+                display: none !important;
+            }
+            
+            body {
+                font-size: 12px;
+                line-height: 1.2;
+            }
+            
+            .return-tickets-section {
+                margin: 10px auto;
+                padding: 0;
+                max-width: 100%;
+            }
+            
+            .page-header h1 {
+                color: #000;
+                font-size: 18px;
+            }
+            
+            .btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+        </div>
+
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="browse-events.html">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass header-icon"></i>
+            </div>
+
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<section class="return-tickets-section">
+    <div class="page-header">
+        <h1>RETURN TICKETS</h1>
+        <p>Request a return for your tickets. Please note all returns are subject to organizer approval and our Return & Refund Policy.</p>
+    </div>
+
+    <!-- Policy Warning Banner -->
+    <div class="policy-warning">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>
+            <strong>Important:</strong> According to our Return & Refund Policy, refund eligibility, amounts, and deadlines are determined by the event organizer. 
+            If refunds are permitted, a <strong>20% cancellation fee</strong> applies. Platform and service fees are non-refundable.
+        </p>
+    </div>
+
+    <!-- Return Options - Updated per policy -->
+    <div class="return-options">
+        <div class="option-card">
+            <div class="option-icon">
+                <i class="fas fa-undo-alt"></i>
+            </div>
+            <div class="option-badge">SUBJECT TO ORGANIZER APPROVAL</div>
+            <h3>Request Refund</h3>
+            <p>Submit a refund request to the event organizer. If approved, refunds will be processed minus 20% cancellation fee and non-refundable platform fees.</p>
+            <button class="btn btn-primary">REQUEST REFUND</button>
+        </div>
+        
+        <div class="option-card option-disabled">
+            <div class="option-icon">
+                <i class="fas fa-exchange-alt"></i>
+            </div>
+            <div class="option-disabled-badge">NOT AVAILABLE</div>
+            <h3>Exchange Tickets</h3>
+            <p>Ticket exchanges are not available through our platform. Please contact the event organizer directly for exchange options.</p>
+            <button class="btn btn-secondary" disabled>NOT AVAILABLE</button>
+        </div>
+    </div>
+
+    <!-- Policy Details Section -->
+    <div class="policy-details">
+        <h3><i class="fas fa-file-contract"></i> KEY POLICY POINTS</h3>
+        <div class="policy-points">
+            <div class="policy-point">
+                <h4><i class="fas fa-hand-pointer"></i> General Refund Policy</h4>
+                <ul>
+                    <li>Refund eligibility determined by event organizer</li>
+                    <li>Some events may be non-refundable</li>
+                    <li>Refund deadlines set by organizer</li>
+                </ul>
+            </div>
+            <div class="policy-point">
+                <h4><i class="fas fa-user-times"></i> User-Initiated Cancellations</h4>
+                <ul>
+                    <li>20% cancellation fee applies</li>
+                    <li>Must comply with organizer policies</li>
+                    <li>Platform fees non-refundable</li>
+                </ul>
+            </div>
+            <div class="policy-point">
+                <h4><i class="fas fa-calendar-times"></i> Event Cancellation</h4>
+                <p>If event is cancelled, organizer decides if refunds are offered. Any approved refunds issued by organizer, not Tanderrum Events.</p>
+            </div>
+            <div class="policy-point">
+                <h4><i class="fas fa-calendar-alt"></i> Event Postponement</h4>
+                <p>For postponed events, organizer determines if tickets remain valid for rescheduled date or if refunds will be offered.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticket Selection -->
+    <div class="ticket-selection">
+        <h2 class="section-title">SELECT TICKETS FOR RETURN REQUEST</h2>
+        <div class="ticket-list">
+            <div class="ticket-item">
+                <div class="ticket-checkbox">
+                    <input type="checkbox" id="ticket1" checked>
+                </div>
+                <div class="ticket-details">
+                    <h4>Comedy Festival Opening Night Gala</h4>
+                    <p><strong>Ticket #:</strong> TKT-7890-4567-1234</p>
+                    <p><strong>Date:</strong> Sat, 15 Mar 2024 | 7:30 PM</p>
+                    <p><strong>Seat:</strong> General Admission - Standing</p>
+                    <span class="ticket-status status-eligible">REFUND MAY BE AVAILABLE</span>
+                </div>
+                <div class="ticket-price">$55.00</div>
+            </div>
+            
+            <div class="ticket-item">
+                <div class="ticket-checkbox">
+                    <input type="checkbox" id="ticket2" checked>
+                </div>
+                <div class="ticket-details">
+                    <h4>Comedy Festival Opening Night Gala</h4>
+                    <p><strong>Ticket #:</strong> TKT-7890-4567-1235</p>
+                    <p><strong>Date:</strong> Sat, 15 Mar 2024 | 7:30 PM</p>
+                    <p><strong>Seat:</strong> General Admission - Standing</p>
+                    <span class="ticket-status status-eligible">REFUND MAY BE AVAILABLE</span>
+                </div>
+                <div class="ticket-price">$55.00</div>
+            </div>
+            
+            <div class="ticket-item">
+                <div class="ticket-checkbox">
+                    <input type="checkbox" id="ticket3">
+                </div>
+                <div class="ticket-details">
+                    <h4>VIP Backstage Experience</h4>
+                    <p><strong>Ticket #:</strong> TKT-7890-4567-1236</p>
+                    <p><strong>Date:</strong> Sat, 15 Mar 2024 | 7:30 PM</p>
+                    <p><strong>Seat:</strong> VIP Section A, Row 5, Seat 12</p>
+                    <span class="ticket-status status-nonrefundable">NON-REFUNDABLE</span>
+                </div>
+                <div class="ticket-price">$120.00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Return Form -->
+    <div class="return-form">
+        <h2 class="section-title">RETURN REQUEST DETAILS</h2>
+        
+        <div class="form-group">
+            <label for="reason"><i class="fas fa-question-circle"></i> Reason for Return Request</label>
+            <select id="reason">
+                <option value="">Select a reason</option>
+                <option value="change_of_plans">Change of Plans</option>
+                <option value="travel_issues">Travel Issues</option>
+                <option value="illness_emergency">Illness or Emergency</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="additional_info"><i class="fas fa-comment"></i> Additional Information (Optional)</label>
+            <textarea id="additional_info" placeholder="Please provide any additional details that may assist the organizer in reviewing your request..."></textarea>
+        </div>
+    </div>
+
+    <!-- Refund Summary - Updated with 20% cancellation fee -->
+    <div class="refund-summary">
+        <h2 class="section-title">ESTIMATED REFUND CALCULATION</h2>
+        <div class="summary-row">
+            <div class="summary-label">Ticket Face Value (2 tickets)</div>
+            <div class="summary-value">$110.00</div>
+        </div>
+        <div class="summary-row">
+            <div class="summary-label">20% Cancellation Fee</div>
+            <div class="summary-value fee-deduction">-$22.00</div>
+        </div>
+        <div class="summary-row">
+            <div class="summary-label">Non-refundable Service Fee</div>
+            <div class="summary-value fee-deduction">-$5.50</div>
+        </div>
+        <div class="summary-row">
+            <div class="summary-label">Non-refundable Booking Fee</div>
+            <div class="summary-value fee-deduction">-$2.50</div>
+        </div>
+        <div class="summary-row" style="border-top: 2px solid #eee; padding-top: 12px;">
+            <div class="summary-label">ESTIMATED REFUND AMOUNT</div>
+            <div class="summary-value summary-total">$80.00</div>
+        </div>
+        <div class="summary-note">
+            <strong>Note:</strong> This is an estimate only. Final refund amount is subject to organizer approval and their specific refund policy. 
+            Refunds are not returned to original payment method and may take 7-14 working days to process.
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button class="btn btn-primary" id="submitRequest">
+            <i class="fas fa-paper-plane"></i> SUBMIT TO ORGANIZER
+        </button>
+        <button class="btn btn-outline" id="saveRequest">
+            <i class="fas fa-save"></i> SAVE REQUEST
+        </button>
+        <button class="btn btn-secondary" id="cancelRequest">
+            <i class="fas fa-times"></i> CANCEL
+        </button>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+        <h3><i class="fas fa-headset"></i> NEED HELP WITH YOUR RETURN REQUEST?</h3>
+        <div class="contact-details">
+            <div class="contact-item">
+                <i class="fas fa-user-tie"></i>
+                <div>
+                    <h4>Contact Event Organizer</h4>
+                    <p>For refund-related questions, please contact the event organizer directly as they make all refund decisions.</p>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4>Tanderrum Events Support</h4>
+                    <p>For platform assistance: <a href="mailto:support@tanderrum.ai">support@tanderrum.ai</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-new">
+    <div class="footer-content">
+        <div class="footer-logo-social">
+            <div class="footer-logo-wrapper">
+                <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+                <div class="footer-logo-text">TANDERRUM<span>.Event</span></div>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-contact">
+            <div class="contact-item-footer">
+                <i class="fas fa-phone"></i>
+                <span>(03) 9123 4567</span>
+            </div>
+            <div class="contact-item-footer">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Level 3, 45 William St, Melbourne VIC 3000</span>
+            </div>
+            <div class="contact-item-footer">
+                <i class="fas fa-envelope"></i>
+                <span>support@tanderrum.ai</span>
+            </div>
+        </div>
+
+        <nav class="footer-nav">
+            <a href="#">HOME</a>
+            <a href="#">BROWSE EVENTS</a>
+            <a href="#">VENUES</a>
+            <a href="#">HELP CENTER</a>
+        </nav>
+
+        <div class="footer-newsletter-section">
+            <h3>NEVER MISS OUT</h3>
+            <p>Get notified about new events</p>
+            <form class="footer-newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">→</button>
+            </form>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-legal">
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Return & Refund Policy</a>
+                <a href="#">Sitemap</a>
+            </div>
+            <div class="footer-credit">
+                Design by 
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            document.body.style.overflow = topHeader.classList.contains('active') ? 'hidden' : '';
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && !topHeader.contains(event.target)) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu on link click (mobile)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                topHeader.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Update Refund Calculation
+    function updateRefundCalculation() {
+        const checkboxes = document.querySelectorAll('.ticket-checkbox input:checked');
+        const eligibleCheckboxes = Array.from(checkboxes).filter(cb => {
+            return cb.closest('.ticket-item').querySelector('.status-eligible');
+        });
+        
+        const eligibleCount = eligibleCheckboxes.length;
+        const ticketValue = eligibleCount * 55;
+        const cancellationFee = ticketValue * 0.20; // 20% fee
+        const serviceFee = eligibleCount * 2.75;
+        const bookingFee = eligibleCount * 1.25;
+        const estimatedRefund = ticketValue - cancellationFee - serviceFee - bookingFee;
+        
+        // Update the summary display
+        const summaryRows = document.querySelectorAll('.summary-row');
+        if (summaryRows.length >= 4) {
+            summaryRows[0].querySelector('.summary-value').textContent = `$${ticketValue.toFixed(2)}`;
+            summaryRows[1].querySelector('.summary-value').textContent = `-$${cancellationFee.toFixed(2)}`;
+            summaryRows[2].querySelector('.summary-value').textContent = `-$${serviceFee.toFixed(2)}`;
+            summaryRows[3].querySelector('.summary-value').textContent = `-$${bookingFee.toFixed(2)}`;
+            summaryRows[4].querySelector('.summary-total').textContent = `$${estimatedRefund.toFixed(2)}`;
+        }
+        
+        // Update button text based on selection
+        const submitBtn = document.getElementById('submitRequest');
+        if (submitBtn) {
+            if (eligibleCount > 0) {
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> SUBMIT FOR ${eligibleCount} TICKET${eligibleCount > 1 ? 'S' : ''}`;
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.innerHTML = `<i class="fas fa-paper-plane"></i> SUBMIT TO ORGANIZER`;
+                submitBtn.disabled = true;
+            }
+        }
+    }
+    
+    // Initialize refund calculation
+    document.querySelectorAll('.ticket-checkbox input').forEach(checkbox => {
+        checkbox.addEventListener('change', updateRefundCalculation);
+    });
+    updateRefundCalculation();
+    
+    // Submit Request Button
+    document.getElementById('submitRequest')?.addEventListener('click', function() {
+        const originalHTML = this.innerHTML;
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SUBMITTING...';
+        this.disabled = true;
+        
+        setTimeout(() => {
+            this.innerHTML = originalHTML;
+            this.disabled = false;
+            
+            // Show policy confirmation
+            const reason = document.getElementById('reason').value;
+            if (!reason) {
+                alert('Please select a reason for your return request.');
+                return;
+            }
+            
+            if (confirm(`Your return request has been submitted to the event organizer.\n\nIMPORTANT: This request is subject to:\n1. Organizer approval\n2. 20% cancellation fee\n3. Non-refundable platform fees\n4. 7-14 working days processing time\n\nYou will receive an email confirmation and the organizer's decision.`)) {
+                // In a real application, this would submit the form
+                alert('Return request successfully submitted to organizer. You will receive a confirmation email shortly.');
+            }
+        }, 1500);
+    });
+    
+    // Save Request Button
+    document.getElementById('saveRequest')?.addEventListener('click', function() {
+        alert('Return request details have been saved to your account. You can complete and submit it later.');
+    });
+    
+    // Cancel Button
+    document.getElementById('cancelRequest')?.addEventListener('click', function() {
+        if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
+            window.history.back();
+        }
+    });
+    
+    // Newsletter Form
+    document.querySelector('.footer-newsletter-form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = this.querySelector('input').value;
+        const button = this.querySelector('button');
+        const originalText = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        button.disabled = true;
+        
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+            alert(`Thank you! You've been subscribed with: ${email}`);
+            this.reset();
+        }, 1500);
+    });
+    
+    // Window resize handler
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && topHeader.classList.contains('active')) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+</script>
+
+</body>
+</html>
