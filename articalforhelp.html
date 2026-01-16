@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Find Your Tickets | Help Center | Tanderrum</title>
+    <link rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== GENERAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER (Your existing CSS) ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            padding-bottom: 6px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff6a00;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 4px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            width: 140px;
+            background: transparent;
+        }
+
+        .search-nav i {
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .header-icon {
+            font-size: 18px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        .login-text {
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .login-text:hover {
+            color: #ff6a00;
+        }
+
+        .menu-btn {
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            color: #000;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .menu-btn:hover {
+            color: #ff6a00;
+        }
+
+        /* ===== MOBILE MENU STYLES ===== */
+        .top-header.active .nav-links {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            gap: 0;
+        }
+
+        .top-header.active .nav-links a {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .top-header.active .nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .top-header.active .nav-links a.active::after {
+            display: none;
+        }
+
+        .top-header.active .nav-links a.active {
+            color: #ff6a00;
+            font-weight: bold;
+        }
+
+        /* ===== RESPONSIVE HEADER ===== */
+        @media (min-width: 901px) {
+            .nav-links { display: flex !important; }
+            .menu-btn { display: none !important; }
+            .header-actions { gap: 22px; }
+            .search-nav, .header-icon { display: flex !important; }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none !important; }
+            .menu-btn { display: block !important; order: 3; }
+            .header-container { padding: 15px 20px; }
+            .header-actions { gap: 15px; order: 2; margin-left: auto; }
+            .search-nav { display: none !important; }
+            .header-actions .header-icon:nth-child(2) { display: flex !important; }
+            .header-actions .login-text { display: none !important; }
+            .header-actions .header-icon:last-child { display: flex !important; }
+            .logo { order: 1; }
+            .logo img { width: 120px; }
+        }
+
+        /* ===== COMPACT HELP ARTICLE DESIGN ===== */
+        .compact-article-container {
+            max-width: 800px; /* Reduced from 1200px to 800px */
+            margin: 0 auto;
+            padding: 40px 30px; /* Reduced padding */
+        }
+
+        /* Hero Section - More Compact */
+        .compact-article-hero {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .compact-article-hero h1 {
+            font-size: 32px; /* Reduced from 42px */
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .compact-article-hero h1 span {
+            color: #F24B09;
+        }
+
+        /* Breadcrumb - Compact */
+        .compact-breadcrumb {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .compact-breadcrumb a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .compact-breadcrumb a:hover {
+            color: #F24B09;
+        }
+
+        .compact-breadcrumb span {
+            margin: 0 6px;
+            color: #999;
+        }
+
+        .compact-breadcrumb strong {
+            color: #111;
+            font-weight: 600;
+        }
+
+        /* Article Content - Compact */
+        .compact-article-content {
+            background: #fff;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 15px;
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .article-content {
+            padding: 0;
+        }
+
+        .article-content p {
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            color: #444;
+        }
+
+        .article-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 30px 0 15px;
+            color: #111;
+            padding-top: 15px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .article-content ul {
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .article-content li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+            font-size: 15px;
+            color: #444;
+        }
+
+        /* Quick Actions - Compact */
+        .quick-actions {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .quick-actions h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-actions h4 i {
+            color: #F24B09;
+        }
+
+        .quick-actions-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .quick-action-btn {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 13px;
+            color: #444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .quick-action-btn:hover {
+            border-color: #F24B09;
+            color: #F24B09;
+            transform: translateY(-2px);
+        }
+
+        .quick-action-btn i {
+            font-size: 12px;
+        }
+
+        /* Contact Help - Compact */
+        .contact-help {
+            text-align: center;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .contact-help h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .contact-help p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .contact-help strong {
+            color: #F24B09;
+            font-weight: 600;
+        }
+
+        .contact-help-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-help-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #444;
+            text-decoration: none;
+            padding: 6px 12px;
+            background: #fff;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .contact-help-link:hover {
+            border-color: #F24B09;
+            color: #F24B09;
+        }
+
+        .contact-help-link i {
+            font-size: 12px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        /* Apple/Ultra-wide desktops (2560px and above) */
+        @media (min-width: 2560px) {
+            .compact-article-container {
+                max-width: 900px;
+                padding: 50px 40px;
+            }
+
+            .compact-article-hero h1 {
+                font-size: 36px;
+            }
+
+            .article-content p {
+                font-size: 16px;
+            }
+
+            .article-content h3 {
+                font-size: 22px;
+            }
+
+            .quick-actions {
+                padding: 25px;
+            }
+        }
+
+        /* Large desktop (1920px - 2559px) */
+        @media (min-width: 1920px) and (max-width: 2559px) {
+            .compact-article-container {
+                max-width: 850px;
+                padding: 45px 35px;
+            }
+
+            .compact-article-hero h1 {
+                font-size: 34px;
+            }
+        }
+
+        /* Standard desktop (1440px - 1919px) */
+        @media (min-width: 1440px) and (max-width: 1919px) {
+            .compact-article-container {
+                max-width: 800px;
+                padding: 40px 30px;
+            }
+        }
+
+        /* Tablet Landscape (1024px - 1279px) */
+        @media (max-width: 1279px) {
+            .compact-article-container {
+                max-width: 750px;
+                padding: 35px 25px;
+            }
+
+            .compact-article-hero h1 {
+                font-size: 28px;
+            }
+
+            .article-content p {
+                font-size: 15px;
+            }
+
+            .article-content h3 {
+                font-size: 19px;
+            }
+
+            .quick-actions-buttons {
+                gap: 10px;
+            }
+
+            .quick-action-btn {
+                padding: 9px 14px;
+                font-size: 12px;
+            }
+        }
+
+        /* Tablet Portrait (768px - 1023px) */
+        @media (max-width: 1023px) {
+            .compact-article-container {
+                max-width: 700px;
+                padding: 30px 20px;
+            }
+
+            .compact-article-hero h1 {
+                font-size: 26px;
+            }
+
+            .compact-breadcrumb {
+                font-size: 12px;
+                margin-bottom: 15px;
+                padding-bottom: 12px;
+            }
+
+            .article-meta {
+                font-size: 12px;
+                margin-bottom: 15px;
+                padding-bottom: 12px;
+            }
+
+            .article-content p {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            .article-content h3 {
+                font-size: 18px;
+                margin: 25px 0 12px;
+            }
+
+            .article-content li {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            .quick-actions {
+                padding: 15px;
+                margin: 25px 0;
+            }
+
+            .quick-actions h4 {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            .contact-help {
+                padding: 15px;
+                margin-top: 25px;
+            }
+
+            .contact-help h4 {
+                font-size: 15px;
+            }
+
+            .contact-help p {
+                font-size: 13px;
+            }
+        }
+
+        /* Large Mobile (600px - 767px) */
+        @media (max-width: 767px) {
+            .compact-article-container {
+                padding: 25px 15px;
+            }
+
+            .compact-article-hero {
+                padding: 15px 0;
+                margin-bottom: 20px;
+            }
+
+            .compact-article-hero h1 {
+                font-size: 24px;
+            }
+
+            .compact-breadcrumb {
+                font-size: 11px;
+                padding-bottom: 10px;
+                margin-bottom: 12px;
+            }
+
+            .article-meta {
+                flex-direction: column;
+                gap: 5px;
+                font-size: 11px;
+            }
+
+            .article-content p {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .article-content h3 {
+                font-size: 17px;
+                margin: 20px 0 10px;
+            }
+
+            .article-content ul {
+                padding-left: 18px;
+                margin-bottom: 20px;
+            }
+
+            .article-content li {
+                font-size: 13px;
+            }
+
+            .quick-actions-buttons {
+                flex-direction: column;
+            }
+
+            .quick-action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .contact-help-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-help-link {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile (480px - 599px) */
+        @media (max-width: 599px) {
+            .compact-article-container {
+                padding: 20px 12px;
+            }
+
+            .compact-article-hero h1 {
+                font-size: 22px;
+            }
+
+            .article-content p {
+                font-size: 13px;
+            }
+
+            .article-content h3 {
+                font-size: 16px;
+            }
+
+            .quick-actions {
+                padding: 12px;
+                margin: 20px 0;
+            }
+
+            .contact-help {
+                padding: 12px;
+                margin-top: 20px;
+            }
+        }
+
+        /* Small Mobile (375px - 479px) */
+        @media (max-width: 479px) {
+            .compact-article-container {
+                padding: 18px 10px;
+            }
+
+            .compact-article-hero h1 {
+                font-size: 20px;
+            }
+
+            .compact-breadcrumb {
+                font-size: 10px;
+            }
+
+            .article-content p {
+                font-size: 12px;
+                line-height: 1.4;
+            }
+
+            .article-content h3 {
+                font-size: 15px;
+            }
+
+            .article-content li {
+                font-size: 12px;
+            }
+
+            .contact-help-link {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+        }
+
+        /* Extra Small Mobile (under 375px) */
+        @media (max-width: 374px) {
+            .compact-article-container {
+                padding: 15px 8px;
+            }
+
+            .compact-article-hero h1 {
+                font-size: 18px;
+            }
+
+            .article-content p {
+                font-size: 11px;
+            }
+
+            .quick-action-btn {
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+        }
+
+        /* ===== FOOTER (Your existing CSS - not modified) ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 30px 0 0;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-content-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .footer-logo-img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo-text span {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            padding: 3px 0;
+            position: relative;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-newsletter-form input:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .footer-bottom {
+            background: white;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        .footer-credit {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .footer-credit strong {
+            color: #000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="top-header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/tandurrum event.png" alt="Tanderrum">
+        </div>
+
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#" class="active">Help Center</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>CART</span>
+            </div>
+
+            <div class="login-section">
+                <i class="fa-solid fa-user"></i>
+                <span>LOGIN</span>
+            </div>
+
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== COMPACT HELP ARTICLE ===== -->
+<main class="compact-article-container">
+    <!-- Breadcrumb -->
+    <div class="compact-breadcrumb">
+        <a href="#">Home</a>
+        <span>›</span>
+        <a href="#">Help Center</a>
+        <span>›</span>
+        <strong>Find Your Tickets</strong>
+    </div>
+
+    <!-- Article Hero -->
+    <section class="compact-article-hero">
+        <h1>How to Find Your Tickets</h1>
+    </section>
+
+    <!-- Article Meta -->
+    <div class="article-meta">
+        <span>Updated: 16 Jan 2026</span>
+        <span>•</span>
+        <span>3 min read</span>
+    </div>
+
+    <!-- Article Content -->
+    <article class="article-content">
+        <p>
+            Finding your tickets is easy with Tanderrum. Whether you purchased them recently or months ago, 
+            your tickets are always accessible through your account or email.
+        </p>
+
+        <h3>Access Your Tickets Online</h3>
+        <ul>
+            <li><strong>Log into your Tanderrum account</strong> and go to "My Tickets"</li>
+            <li><strong>Check your email</strong> for the confirmation message with ticket links</li>
+            <li><strong>Use the mobile app</strong> to view and manage your tickets on the go</li>
+            <li><strong>Download PDF tickets</strong> directly from your account dashboard</li>
+        </ul>
+
+        <p>
+            All tickets purchased through Tanderrum are stored securely in your account. You can access them 
+            anytime before the event, even if you lose the original confirmation email.
+        </p>
+
+        <h3>Troubleshooting Tips</h3>
+        <ul>
+            <li>Ensure you're logged into the correct email account</li>
+            <li>Check your spam or junk folder for confirmation emails</li>
+            <li>Verify your purchase was completed successfully</li>
+            <li>Contact support if you can't find your tickets after 24 hours</li>
+        </ul>
+
+        <p>
+            For events requiring printed tickets, you can download and print your tickets from your account 
+            or show the digital version on your mobile device at the venue entrance.
+        </p>
+    </article>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+        <h4><i class="fas fa-bolt"></i> Quick Actions</h4>
+        <div class="quick-actions-buttons">
+            <button class="quick-action-btn">
+                <i class="fas fa-download"></i> Download Tickets
+            </button>
+            <button class="quick-action-btn">
+                <i class="fas fa-print"></i> Print Tickets
+            </button>
+            <button class="quick-action-btn">
+                <i class="fas fa-exchange-alt"></i> Transfer Tickets
+            </button>
+            <button class="quick-action-btn">
+                <i class="fas fa-share"></i> Share Tickets
+            </button>
+        </div>
+    </section>
+
+    <!-- Contact Help -->
+    <section class="contact-help">
+        <h4>Still Need Help?</h4>
+        <p>If you're having trouble finding your tickets, please contact our support team:</p>
+        <div class="contact-help-links">
+            <a href="tel:0391234567" class="contact-help-link">
+                <i class="fas fa-phone"></i> Call (03) 9123 4567
+            </a>
+            <a href="mailto:help@tanderrum.ai" class="contact-help-link">
+                <i class="fas fa-envelope"></i> Email help@tanderrum.ai
+            </a>
+            <a href="#" class="contact-help-link">
+                <i class="fas fa-comments"></i> Live Chat Support
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-new">
+    <div class="footer-content-container">
+        <!-- Logo and social media -->
+        <div class="footer-logo-social">
+            <div class="footer-logo-wrapper">
+                <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+                <div class="footer-logo-text">TANDERRUM<span>.Event</span></div>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact information -->
+        <div class="footer-contact">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>(03) 9123 4567</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hello@tanderrum.ai</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="footer-nav">
+            <a href="#">HOME</a>
+            <a href="#">BROWSE EVENTS</a>
+            <a href="#">VENUES</a>
+            <a href="#">HELP CENTER</a>
+        </nav>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter-section">
+            <h3>NEVER MISS OUT</h3>
+            <p>Get notified about new events</p>
+            <form class="footer-newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">→</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+        <div class="footer-credit">
+            Design by 
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.querySelector('.menu-btn');
+        const topHeader = document.querySelector('.top-header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                topHeader.classList.toggle('active');
+            });
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 900) {
+                    topHeader.classList.remove('active');
+                }
+            });
+        });
+        
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 900 && 
+                topHeader.classList.contains('active') &&
+                !event.target.closest('.header-container') &&
+                !event.target.closest('.menu-btn')) {
+                topHeader.classList.remove('active');
+            }
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                topHeader.classList.remove('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
