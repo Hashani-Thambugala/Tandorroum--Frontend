@@ -1,0 +1,2496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum</title>
+    <link rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+        }
+
+        /* ===== HEADER ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: relative;
+            background: white;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Nav - HIDDEN ON MOBILE, SHOW ON DESKTOP */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            padding-bottom: 6px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff6a00;
+        }
+
+        /* Header actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        /* Search box in header */
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 4px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            width: 140px;
+            background: transparent;
+        }
+
+        .search-nav i {
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        /* Icons */
+        .header-icon {
+            font-size: 18px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        /* Login text */
+        .login-text {
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .login-text:hover {
+            color: #ff6a00;
+        }
+
+        /* Menu icon - HIDDEN BY DEFAULT, SHOW ON MOBILE */
+        .menu-btn {
+            font-size: 20px;
+            cursor: pointer;
+            display: none; /* Hidden on desktop */
+            color: #000;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .menu-btn:hover {
+            color: #ff6a00;
+        }
+
+        /* ===== MOBILE RESPONSIVE STYLES ===== */
+        @media (max-width: 991px) {
+            /* Show menu button on mobile/tablet */
+            .menu-btn {
+                display: block;
+                order: 3; /* Position it after header-actions */
+            }
+            
+            /* Hide regular navigation links on mobile */
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            /* Show navigation links when menu is active */
+            .top-header.active .nav-links {
+                display: flex !important;
+            }
+            
+            /* Style mobile navigation links */
+            .nav-links a {
+                padding: 16px 30px;
+                border-bottom: 1px solid #eee;
+                font-size: 16px;
+                width: 100%;
+                display: block;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links a.active::after {
+                display: none;
+            }
+            
+            .nav-links a.active {
+                color: #ff6a00;
+                font-weight: bold;
+                background: rgba(255, 106, 0, 0.05);
+            }
+            
+            /* Adjust header layout for mobile */
+            .header-container {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+                position: relative;
+            }
+            
+            .logo {
+                order: 1;
+                flex: 1;
+            }
+            
+            .header-actions {
+                order: 2;
+                gap: 15px;
+            }
+            
+            /* Hide search bar on mobile */
+            .search-nav {
+                display: none;
+            }
+            
+            /* Hide login text on mobile, show only icon */
+            .login-text {
+                display: none;
+            }
+            
+            /* Adjust icons size for mobile */
+            .header-icon {
+                font-size: 20px;
+            }
+        }
+
+        /* Tablet specific adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 12px 15px;
+            }
+            
+            .nav-links a {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+            
+            .header-actions {
+                gap: 12px;
+            }
+        }
+
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 10px 12px;
+            }
+            
+            .logo img {
+                width: 100px;
+            }
+            
+            .nav-links a {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .header-icon {
+                font-size: 18px;
+            }
+        }
+
+        /* Extra small mobile */
+        @media (max-width: 360px) {
+            .logo img {
+                width: 90px;
+            }
+            
+            .header-actions {
+                gap: 8px;
+            }
+        }
+
+        /* ===== COMPACT TICKET BOOKING SECTION ===== */
+        .booking-section {
+            padding: 30px 0 50px;
+            background: #f8f9fa;
+        }
+
+        .booking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Compact Progress */
+        .compact-progress {
+            margin-bottom: 25px;
+        }
+
+        .progress-icons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .progress-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            min-width: 70px;
+        }
+
+        .progress-icon.active {
+            background: rgba(255, 106, 0, 0.1);
+        }
+
+        .progress-icon i {
+            width: 32px;
+            height: 32px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .progress-icon.active i {
+            background: #ff6a00;
+            color: white;
+            box-shadow: 0 3px 8px rgba(255, 106, 0, 0.3);
+        }
+
+        .progress-icon span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .progress-icon.active span {
+            color: #ff6a00;
+        }
+
+        .progress-line {
+            width: 30px;
+            height: 2px;
+            background: #e0e0e0;
+            margin: 0 5px;
+        }
+
+        /* Compact Booking Layout */
+        .compact-booking {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+        }
+
+        /* Ticket Selection */
+        .ticket-selection {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section-header h3 {
+            font-size: 18px;
+            color: #222;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-header h3 i {
+            color: #ff6a00;
+        }
+
+        .event-info {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Ticket Types - Now Hidden Since Seats Control Everything */
+        .ticket-types {
+            display: none; /* Hide the ticket type cards since we're using seat selection */
+        }
+
+        /* Seat Preview */
+        .seat-preview {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .preview-header h4 {
+            font-size: 14px;
+            color: #222;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .preview-header h4 i {
+            color: #ff6a00;
+            font-size: 12px;
+        }
+
+        .seat-legend {
+            display: flex;
+            gap: 10px;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .seat-sample {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            margin-right: 3px;
+        }
+
+        .seat-sample.premium {
+            background: #ff6a00;
+        }
+
+        .seat-sample.standard {
+            background: #4a90e2;
+        }
+
+        .seat-sample.economy {
+            background: #50c878;
+        }
+
+        .mini-stage {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stage-label {
+            background: #333;
+            color: white;
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .mini-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .mini-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mini-seat {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mini-seat:hover {
+            transform: scale(1.2);
+        }
+
+        .mini-seat.premium {
+            background: linear-gradient(135deg, #ff6a00, #ff8c42);
+        }
+
+        .mini-seat.standard {
+            background: linear-gradient(135deg, #4a90e2, #67a6f0);
+        }
+
+        .mini-seat.economy {
+            background: linear-gradient(135deg, #50c878, #70d891);
+        }
+
+        /* Compact Summary */
+        .compact-summary {
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid #ff6a00;
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-header h3 {
+            font-size: 16px;
+            color: #222;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-header h3 i {
+            color: #ff6a00;
+        }
+
+        .item-count {
+            font-size: 12px;
+            color: #ff6a00;
+            background: rgba(255, 106, 0, 0.1);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .order-items {
+            min-height: 60px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .item-qty {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .item-price {
+            font-size: 13px;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .empty-order {
+            text-align: center;
+            padding: 20px 0;
+            color: #999;
+        }
+
+        .empty-order i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            opacity: 0.5;
+        }
+
+        .empty-order p {
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .price-breakdown {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .price-row span:first-child {
+            color: #666;
+        }
+
+        .price-row span:last-child {
+            font-weight: 500;
+        }
+
+        .price-row.total {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 2px solid #eee;
+            font-weight: bold;
+            font-size: 16px;
+            color: #222;
+        }
+
+        .final-total {
+            color: #ff6a00;
+            font-size: 20px;
+        }
+
+        .promo-box {
+            margin: 20px 0;
+        }
+
+        .promo-input {
+            display: flex;
+            gap: 8px;
+        }
+
+        .promo-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .promo-input input:focus {
+            border-color: #ff6a00;
+        }
+
+        .promo-btn {
+            padding: 0 15px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .promo-btn:hover {
+            background: #ff6a00;
+        }
+
+        .next-action {
+            margin-top: 20px;
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #222, #444);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #ff6a00, #ff8c42);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+        }
+
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .secure-note {
+            text-align: center;
+            font-size: 11px;
+            color: #777;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .secure-note i {
+            color: #50c878;
+        }
+
+        .quick-info {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .info-point {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .info-point i {
+            color: #ff6a00;
+            font-size: 14px;
+            width: 20px;
+        }
+
+        .info-point div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-point strong {
+            font-size: 12px;
+            color: #222;
+        }
+
+        .info-point small {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 991px) {
+            .compact-booking {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .compact-summary {
+                position: static;
+            }
+            
+            .progress-icons {
+                gap: 5px;
+            }
+            
+            .progress-icon {
+                min-width: 60px;
+                padding: 6px 8px;
+            }
+            
+            .progress-icon i {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+            }
+            
+            .progress-icon span {
+                font-size: 11px;
+            }
+            
+            .progress-line {
+                width: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .booking-section {
+                padding: 20px 0 40px;
+            }
+            
+            .booking-container {
+                padding: 0 15px;
+            }
+            
+            .ticket-selection,
+            .summary-card {
+                padding: 15px;
+            }
+            
+            .progress-icons {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .progress-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .progress-icons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .progress-icon {
+                flex-direction: row;
+                min-width: auto;
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .section-header h3 {
+                font-size: 16px;
+            }
+            
+            .final-total {
+                font-size: 18px;
+            }
+            
+            .preview-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .seat-legend {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 30px 20px 0;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Logo and social media section */
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .footer-logo-img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo-text span {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Contact info section */
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Navigation section */
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            padding: 3px 0;
+            position: relative;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Newsletter section */
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-newsletter-form input:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Footer bottom */
+        .footer-bottom {
+            background: white;
+            padding: 15px 20px;
+            margin: 0 -20px -15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        .footer-credit {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .footer-credit strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        /* Footer responsive */
+        @media (max-width: 768px) {
+            .footer-new {
+                padding: 25px 15px 0;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .footer-nav {
+                gap: 15px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* ===== HERO IMAGE SECTION ===== */
+        .event-hero {
+            position: relative;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #000; /* Fallback color */
+        }
+
+        .hero-backdrop {
+            width: 100%;
+            position: relative;
+            min-height: 400px;
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.4) 40%,
+                rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            padding: 0 40px;
+            color: white;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: left;
+        }
+
+        .event-badge {
+            display: inline-block;
+            background: #ff6a00;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+        }
+
+        .event-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            max-width: 800px;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 18px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item i {
+            color: #ff6a00;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .meta-item span {
+            white-space: nowrap;
+        }
+
+        /* ===== RESPONSIVE HERO ===== */
+
+        /* Large Desktop */
+        @media (max-width: 1440px) {
+            .event-title {
+                font-size: 42px;
+                max-width: 700px;
+            }
+            
+            .hero-content {
+                padding: 0 60px;
+            }
+        }
+
+        /* Desktop */
+        @media (max-width: 1200px) {
+            .event-title {
+                font-size: 38px;
+                max-width: 650px;
+            }
+            
+            .hero-backdrop {
+                min-height: 380px;
+            }
+            
+            .hero-image {
+                min-height: 380px;
+            }
+            
+            .event-meta {
+                gap: 20px;
+            }
+            
+            .meta-item {
+                font-size: 15px;
+                padding: 8px 16px;
+            }
+        }
+
+        /* Laptop */
+        @media (max-width: 992px) {
+            .hero-content {
+                padding: 0 40px;
+            }
+            
+            .event-title {
+                font-size: 34px;
+                max-width: 600px;
+            }
+            
+            .hero-backdrop {
+                min-height: 350px;
+            }
+            
+            .hero-image {
+                min-height: 350px;
+            }
+            
+            .event-badge {
+                padding: 8px 20px;
+                font-size: 13px;
+                margin-bottom: 18px;
+            }
+            
+            .event-meta {
+                margin-top: 20px;
+                gap: 15px;
+            }
+            
+            .meta-item {
+                font-size: 14px;
+                padding: 8px 14px;
+                gap: 10px;
+            }
+            
+            .meta-item i {
+                font-size: 16px;
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 0 30px;
+            }
+            
+            .event-title {
+                font-size: 30px;
+                max-width: 500px;
+            }
+            
+            .hero-backdrop {
+                min-height: 320px;
+            }
+            
+            .hero-image {
+                min-height: 320px;
+            }
+            
+            .event-badge {
+                padding: 7px 18px;
+                font-size: 12px;
+                margin-bottom: 16px;
+            }
+            
+            .event-meta {
+                margin-top: 18px;
+                gap: 12px;
+            }
+            
+            .meta-item {
+                font-size: 13px;
+                padding: 7px 12px;
+                gap: 8px;
+            }
+            
+            .meta-item i {
+                font-size: 15px;
+            }
+        }
+
+        /* Large Mobile */
+        @media (max-width: 576px) {
+            .hero-content {
+                padding: 0 20px;
+                text-align: center;
+            }
+            
+            .event-title {
+                font-size: 26px;
+                max-width: 100%;
+                margin-bottom: 16px;
+            }
+            
+            .hero-backdrop {
+                min-height: 280px;
+            }
+            
+            .hero-image {
+                min-height: 280px;
+            }
+            
+            .event-badge {
+                padding: 6px 16px;
+                font-size: 11px;
+                margin-bottom: 15px;
+                align-self: center;
+            }
+            
+            .event-meta {
+                justify-content: center;
+                margin-top: 16px;
+                gap: 10px;
+            }
+            
+            .meta-item {
+                font-size: 12px;
+                padding: 6px 10px;
+                gap: 6px;
+                flex-direction: column;
+                text-align: center;
+                min-width: 110px;
+            }
+            
+            .meta-item span {
+                white-space: normal;
+                text-align: center;
+                line-height: 1.3;
+            }
+            
+            .meta-item i {
+                font-size: 14px;
+                margin-bottom: 2px;
+            }
+            
+            .hero-overlay {
+                background: linear-gradient(180deg, 
+                    rgba(0, 0, 0, 0.3) 0%,
+                    rgba(0, 0, 0, 0.5) 40%,
+                    rgba(0, 0, 0, 0.8) 100%);
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .hero-content {
+                padding: 0 16px;
+            }
+            
+            .event-title {
+                font-size: 22px;
+                margin-bottom: 14px;
+            }
+            
+            .hero-backdrop {
+                min-height: 250px;
+            }
+            
+            .hero-image {
+                min-height: 250px;
+            }
+            
+            .event-badge {
+                padding: 5px 14px;
+                font-size: 10px;
+                margin-bottom: 12px;
+            }
+            
+            .event-meta {
+                margin-top: 14px;
+                gap: 8px;
+            }
+            
+            .meta-item {
+                font-size: 11px;
+                padding: 5px 8px;
+                min-width: 100px;
+            }
+            
+            .meta-item i {
+                font-size: 12px;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 360px) {
+            .hero-content {
+                padding: 0 12px;
+            }
+            
+            .event-title {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            
+            .hero-backdrop {
+                min-height: 220px;
+            }
+            
+            .hero-image {
+                min-height: 220px;
+            }
+            
+            .event-meta {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .meta-item {
+                width: 100%;
+                max-width: 200px;
+                flex-direction: row;
+                justify-content: center;
+                gap: 8px;
+            }
+        }
+
+        /* Landscape Mode */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-backdrop {
+                min-height: 300px;
+                max-height: 100vh;
+            }
+            
+            .hero-image {
+                min-height: 300px;
+            }
+            
+            .hero-content {
+                padding: 0 30px;
+            }
+            
+            .event-title {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            
+            .event-meta {
+                margin-top: 12px;
+                gap: 10px;
+            }
+            
+            .meta-item {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+
+        /* Extra Large Screens */
+        @media (min-width: 1920px) {
+            .hero-content {
+                max-width: 1600px;
+            }
+            
+            .event-title {
+                font-size: 56px;
+                max-width: 900px;
+            }
+            
+            .hero-backdrop {
+                min-height: 500px;
+                max-height: 700px;
+            }
+            
+            .hero-image {
+                min-height: 500px;
+            }
+            
+            .meta-item {
+                font-size: 18px;
+                padding: 12px 22px;
+            }
+            
+            .event-badge {
+                font-size: 16px;
+                padding: 12px 26px;
+            }
+        }
+
+        /* ===== ADVANCED SEAT BOOKING MAP ===== */
+        .seat-booking-wrapper {
+            background: #fff;
+            border-radius: 14px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        }
+
+        .seat-map-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: auto;
+        }
+
+        /* Stage */
+        .seat-stage {
+            background: linear-gradient(135deg,#222,#444);
+            color: #fff;
+            padding: 10px 50px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Rows */
+        .seat-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        /* Seats */
+        .seat {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .seat:hover {
+            transform: scale(1.15);
+        }
+
+        /* Seat types */
+        .seat.vip { background:#ff6a00; }
+        .seat.premium { background:#ff8c42; }
+        .seat.standard { background:#4a90e2; }
+        .seat.economy { background:#50c878; }
+
+        /* Selected & unavailable */
+        .seat.selected {
+            outline: 3px solid #000;
+            transform: scale(1.15);
+        }
+
+        .seat.booked {
+            background:#ccc;
+            cursor:not-allowed;
+            opacity:0.5;
+        }
+
+        /* Legend */
+        .seat-legend-box {
+            display:flex;
+            gap:15px;
+            margin-top:25px;
+            flex-wrap:wrap;
+            justify-content:center;
+        }
+
+        .legend-item {
+            display:flex;
+            align-items:center;
+            gap:6px;
+            font-size:12px;
+        }
+
+        .legend-color {
+            width:14px;
+            height:14px;
+            border-radius:3px;
+        }
+
+        /* Responsive */
+        @media(max-width:768px){
+            .seat { width:28px; height:28px; }
+        }
+
+        @media(max-width:480px){
+            .seat { width:24px; height:24px; font-size:9px; }
+        }
+
+        /* For large desktop screens */
+        @media (min-width: 1920px) {
+            .booking-container {
+                max-width: 1600px;
+            }
+            
+            .seat {
+                width: 40px;
+                height: 40px;
+                font-size: 12px;
+            }
+            
+            .seat-stage {
+                padding: 15px 60px;
+                font-size: 18px;
+            }
+            
+            .seat-booking-wrapper {
+                padding: 35px;
+            }
+            
+            .compact-booking {
+                gap: 35px;
+            }
+            
+            .summary-card {
+                padding: 25px;
+            }
+        }
+
+        /* For Apple Cinema Display and similar */
+        @media (min-width: 2560px) {
+            .booking-container {
+                max-width: 2000px;
+            }
+            
+            .seat {
+                width: 45px;
+                height: 45px;
+                font-size: 14px;
+            }
+            
+            .seat-stage {
+                padding: 20px 80px;
+                font-size: 20px;
+            }
+            
+            .seat-booking-wrapper {
+                padding: 45px;
+            }
+            
+            .compact-booking {
+                gap: 45px;
+                grid-template-columns: 1fr 400px;
+            }
+            
+            .summary-card {
+                padding: 30px;
+            }
+            
+            .section-header h3 {
+                font-size: 22px;
+            }
+            
+            .final-total {
+                font-size: 24px;
+            }
+        }
+
+        /* Seat counter display */
+        .seat-counter {
+            background: rgba(255, 106, 0, 0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 106, 0, 0.2);
+        }
+
+        .counter-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .counter-row:last-child {
+            margin-bottom: 0;
+            padding-top: 8px;
+            border-top: 1px solid #eee;
+            font-weight: 600;
+            color: #222;
+        }
+
+        .counter-type {
+            color: #666;
+        }
+
+        .counter-count {
+            font-weight: 600;
+        }
+
+        /* Summary message */
+        .summary-message {
+            background: #e8f4ff;
+            border-left: 4px solid #4a90e2;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="browse-events.html">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <!-- Right actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Cart with icon and text -->
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <!-- Login with icon and text -->
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <!-- Menu -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== HERO IMAGE SECTION ===== -->
+<section class="event-hero">
+    <div class="hero-container">
+        <div class="hero-backdrop">
+            <!-- You can replace this with your actual hero image -->
+            <div class="hero-image" style="background-image: url('images/ev 3.png');">
+                <div class="hero-overlay"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="event-badge">Comedy</div>
+            <h1 class="event-title">Comedy Festival Opening Night Gala</h1>
+            <div class="event-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>SAT 15 MAR</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>7:30 PM - 10:00 PM</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Sydney Theatre Company</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== TICKET BOOKING SECTION - COMPACT VERSION ===== -->
+<section class="booking-section">
+    <div class="booking-container">
+        <!-- Compact Progress Indicator -->
+        <div class="compact-progress">
+            <div class="progress-icons">
+                <div class="progress-icon active">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Tickets</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-icon">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== FULL SEAT SELECTION MAP ===== -->
+        <div class="seat-booking-wrapper">
+            <h3 style="margin-bottom:15px;">
+                <i class="fas fa-chair"></i> Select Your Seats
+            </h3>
+            
+            <div class="summary-message">
+                <i class="fas fa-info-circle"></i> Click on seats to select them. Selected seats will be added to your order automatically.
+            </div>
+
+            <div class="seat-map-container">
+                <div class="seat-stage">STAGE</div>
+
+                <!-- VIP Row -->
+                <div class="seat-row">
+                    <div class="seat vip" data-seat="VIP-A1" data-type="vip" data-price="199"></div>
+                    <div class="seat vip" data-seat="VIP-A2" data-type="vip" data-price="199"></div>
+                    <div class="seat vip booked" data-seat="VIP-A3" data-type="vip" data-price="199"></div>
+                    <div class="seat vip" data-seat="VIP-A4" data-type="vip" data-price="199"></div>
+                </div>
+
+                <!-- Premium Row -->
+                <div class="seat-row">
+                    <div class="seat premium" data-seat="P-B1" data-type="premium" data-price="125"></div>
+                    <div class="seat premium" data-seat="P-B2" data-type="premium" data-price="125"></div>
+                    <div class="seat premium" data-seat="P-B3" data-type="premium" data-price="125"></div>
+                    <div class="seat premium booked" data-seat="P-B4" data-type="premium" data-price="125"></div>
+                    <div class="seat premium" data-seat="P-B5" data-type="premium" data-price="125"></div>
+                </div>
+
+                <!-- Standard Row -->
+                <div class="seat-row">
+                    <div class="seat standard" data-seat="S-C1" data-type="standard" data-price="85"></div>
+                    <div class="seat standard" data-seat="S-C2" data-type="standard" data-price="85"></div>
+                    <div class="seat standard" data-seat="S-C3" data-type="standard" data-price="85"></div>
+                    <div class="seat standard" data-seat="S-C4" data-type="standard" data-price="85"></div>
+                    <div class="seat standard" data-seat="S-C5" data-type="standard" data-price="85"></div>
+                    <div class="seat standard" data-seat="S-C6" data-type="standard" data-price="85"></div>
+                </div>
+
+                <!-- Economy Row -->
+                <div class="seat-row">
+                    <div class="seat economy" data-seat="E-D1" data-type="economy" data-price="55"></div>
+                    <div class="seat economy" data-seat="E-D2" data-type="economy" data-price="55"></div>
+                    <div class="seat economy" data-seat="E-D3" data-type="economy" data-price="55"></div>
+                    <div class="seat economy booked" data-seat="E-D4" data-type="economy" data-price="55"></div>
+                </div>
+
+                <!-- Legend -->
+                <div class="seat-legend-box">
+                    <div class="legend-item"><span class="legend-color" style="background:#ff6a00"></span>VIP - $199</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#ff8c42"></span>Premium - $125</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#4a90e2"></span>Standard - $85</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#50c878"></span>Economy - $55</div>
+                    <div class="legend-item"><span class="legend-color" style="background:#ccc"></span>Booked</div>
+                </div>
+            </div>
+            
+            <!-- Seat Counter -->
+            <div class="seat-counter" id="seatCounter">
+                <div class="counter-row">
+                    <span class="counter-type">VIP Seats:</span>
+                    <span class="counter-count" id="vipCount">0</span>
+                </div>
+                <div class="counter-row">
+                    <span class="counter-type">Premium Seats:</span>
+                    <span class="counter-count" id="premiumCount">0</span>
+                </div>
+                <div class="counter-row">
+                    <span class="counter-type">Standard Seats:</span>
+                    <span class="counter-count" id="standardCount">0</span>
+                </div>
+                <div class="counter-row">
+                    <span class="counter-type">Economy Seats:</span>
+                    <span class="counter-count" id="economyCount">0</span>
+                </div>
+                <div class="counter-row">
+                    <span class="counter-type">Total Seats Selected:</span>
+                    <span class="counter-count" id="totalSeats">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="compact-booking">
+            <!-- Ticket Selection (Left) - Now just showing instructions since seats control selection -->
+            <div class="ticket-selection">
+                <div class="section-header">
+                    <h3><i class="fas fa-ticket-alt"></i> Ticket Selection</h3>
+                    <p class="event-info">Select seats from the seating map above. Each seat selection will add the corresponding ticket type to your order.</p>
+                </div>
+                
+                <div class="summary-message">
+                    <i class="fas fa-mouse-pointer"></i> <strong>How to select tickets:</strong> Simply click on available seats in the seating map. Each seat represents one ticket of its type (VIP, Premium, Standard, or Economy).
+                </div>
+                
+                <!-- Ticket Price Reference -->
+                <div style="margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="margin-bottom: 15px; color: #222;"><i class="fas fa-tag"></i> Ticket Prices</h4>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                        <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #ff6a00;">
+                            <div style="font-weight: 600; color: #222;">VIP</div>
+                            <div style="font-size: 20px; color: #ff6a00; font-weight: bold;">$199</div>
+                            <div style="font-size: 12px; color: #666;">All Access Package</div>
+                        </div>
+                        <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #ff8c42;">
+                            <div style="font-weight: 600; color: #222;">Premium</div>
+                            <div style="font-size: 20px; color: #ff8c42; font-weight: bold;">$125</div>
+                            <div style="font-size: 12px; color: #666;">Front row center</div>
+                        </div>
+                        <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #4a90e2;">
+                            <div style="font-weight: 600; color: #222;">Standard</div>
+                            <div style="font-size: 20px; color: #4a90e2; font-weight: bold;">$85</div>
+                            <div style="font-size: 12px; color: #666;">Middle section</div>
+                        </div>
+                        <div style="padding: 12px; background: white; border-radius: 8px; border-left: 4px solid #50c878;">
+                            <div style="font-weight: 600; color: #222;">Economy</div>
+                            <div style="font-size: 20px; color: #50c878; font-weight: bold;">$55</div>
+                            <div style="font-size: 12px; color: #666;">Great value</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary (Right) -->
+            <div class="compact-summary">
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
+                        <span class="item-count" id="orderItemCount">0 items</span>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class="order-items" id="orderItemsContainer">
+                        <div class="empty-order">
+                            <i class="fas fa-ticket-alt"></i>
+                            <p>Select seats to add tickets</p>
+                        </div>
+                    </div>
+
+                    <!-- Price Breakdown -->
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Tickets Subtotal</span>
+                            <span class="tickets-total">$0.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Service Fee</span>
+                            <span class="service-fee">$5.95</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Processing Fee</span>
+                            <span class="processing-fee">$3.50</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total</span>
+                            <span class="final-total">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="promo-box">
+                        <div class="promo-input">
+                            <input type="text" placeholder="Promo code" id="promoCode">
+                            <button class="promo-btn" id="applyPromo">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Next Button -->
+                    <div class="next-action">
+                        <button class="next-btn" id="continueBtn" disabled>
+                            <span>Continue to Payment</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <p class="secure-note">
+                            <i class="fas fa-lock"></i> Secure checkout
+                        </p>
+                    </div>
+
+                    <!-- Quick Info -->
+                    <div class="quick-info">
+                        <div class="info-point">
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <strong>Last few seats!</strong>
+                                <small>Limited availability</small>
+                            </div>
+                        </div>
+                        <div class="info-point">
+                            <i class="fas fa-mobile"></i>
+                            <div>
+                                <strong>Mobile Ticket</strong>
+                                <small>Instant delivery</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-new">
+    <!-- Logo and social media -->
+    <div class="footer-logo-social">
+        <div class="footer-logo-wrapper">
+            <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+            <div class="footer-logo-text">TANDERRUM<span>.LIVE</span></div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact information -->
+    <div class="footer-contact">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(03) 9123 4567</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>hello@tanderrum.ai</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="footer-nav">
+        <a href="#">HOME</a>
+        <a href="#">BROWSE EVENTS</a>
+        <a href="#">VENUES</a>
+        <a href="#">HELP CENTER</a>
+    </nav>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter-section">
+        <h3>NEVER MISS OUT</h3>
+        <p>Get notified about new events</p>
+        <form class="footer-newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">→</button>
+        </form>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu functionality
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            
+            if (topHeader.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && 
+            !topHeader.contains(event.target) &&
+            window.innerWidth <= 900) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 900) {
+                topHeader.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900 && topHeader.classList.contains('active')) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // ===== SEAT SELECTION AND BILLING LOGIC =====
+    
+    // Prices for each seat type
+    const seatPrices = {
+        'vip': 199,
+        'premium': 125,
+        'standard': 85,
+        'economy': 55
+    };
+    
+    // Booking data
+    let selectedSeats = [];
+    let seatCounts = {
+        'vip': 0,
+        'premium': 0,
+        'standard': 0,
+        'economy': 0
+    };
+    
+    // Elements
+    const seats = document.querySelectorAll('.seat:not(.booked)');
+    const orderItemsContainer = document.getElementById('orderItemsContainer');
+    const ticketsTotalElement = document.querySelector('.tickets-total');
+    const finalTotalElement = document.querySelector('.final-total');
+    const itemCountElement = document.getElementById('orderItemCount');
+    const continueBtn = document.getElementById('continueBtn');
+    const applyPromoBtn = document.getElementById('applyPromo');
+    const promoCodeInput = document.getElementById('promoCode');
+    
+    // Counter elements
+    const vipCountElement = document.getElementById('vipCount');
+    const premiumCountElement = document.getElementById('premiumCount');
+    const standardCountElement = document.getElementById('standardCount');
+    const economyCountElement = document.getElementById('economyCount');
+    const totalSeatsElement = document.getElementById('totalSeats');
+    
+    // Service fees
+    const serviceFee = 5.95;
+    const processingFee = 3.50;
+    let discount = 0;
+    let discountPercentage = 0;
+    
+    // Seat selection event listeners
+    seats.forEach(seat => {
+        seat.addEventListener('click', function() {
+            if (this.classList.contains('booked')) return;
+            
+            const seatId = this.dataset.seat;
+            const seatType = this.dataset.type;
+            const seatPrice = parseFloat(this.dataset.price);
+            
+            // Toggle seat selection
+            if (this.classList.contains('selected')) {
+                // Deselect seat
+                this.classList.remove('selected');
+                selectedSeats = selectedSeats.filter(seat => seat.id !== seatId);
+                seatCounts[seatType]--;
+            } else {
+                // Select seat
+                this.classList.add('selected');
+                selectedSeats.push({
+                    id: seatId,
+                    type: seatType,
+                    price: seatPrice
+                });
+                seatCounts[seatType]++;
+            }
+            
+            // Update UI
+            updateSeatCounters();
+            updateOrderSummary();
+            updateContinueButton();
+        });
+    });
+    
+    // Update seat counters
+    function updateSeatCounters() {
+        vipCountElement.textContent = seatCounts.vip;
+        premiumCountElement.textContent = seatCounts.premium;
+        standardCountElement.textContent = seatCounts.standard;
+        economyCountElement.textContent = seatCounts.economy;
+        
+        const totalSeats = Object.values(seatCounts).reduce((a, b) => a + b, 0);
+        totalSeatsElement.textContent = totalSeats;
+    }
+    
+    // Update order summary
+    function updateOrderSummary() {
+        // Calculate subtotal
+        let subtotal = 0;
+        selectedSeats.forEach(seat => {
+            subtotal += seat.price;
+        });
+        
+        // Apply discount if any
+        const discountedSubtotal = subtotal - discount;
+        
+        // Calculate total with fees
+        const total = discountedSubtotal + serviceFee + processingFee;
+        
+        // Update order items display
+        updateOrderItemsDisplay();
+        
+        // Update price breakdown
+        ticketsTotalElement.textContent = `$${discountedSubtotal.toFixed(2)}`;
+        finalTotalElement.textContent = `$${total.toFixed(2)}`;
+        
+        // Update item count
+        const totalItems = selectedSeats.length;
+        itemCountElement.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
+    }
+    
+    // Update order items display
+    function updateOrderItemsDisplay() {
+        if (selectedSeats.length === 0) {
+            orderItemsContainer.innerHTML = `
+                <div class="empty-order">
+                    <i class="fas fa-ticket-alt"></i>
+                    <p>Select seats to add tickets</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Group seats by type for display
+        const groupedSeats = {};
+        selectedSeats.forEach(seat => {
+            if (!groupedSeats[seat.type]) {
+                groupedSeats[seat.type] = {
+                    count: 0,
+                    price: seat.price,
+                    typeName: seat.type.charAt(0).toUpperCase() + seat.type.slice(1)
+                };
+            }
+            groupedSeats[seat.type].count++;
+        });
+        
+        // Create HTML for order items
+        let itemsHTML = '';
+        
+        // Add individual seat items
+        selectedSeats.forEach(seat => {
+            itemsHTML += `
+                <div class="order-item">
+                    <div class="item-info">
+                        <span class="item-name">${seat.type.charAt(0).toUpperCase() + seat.type.slice(1)} - Seat ${seat.id}</span>
+                        <span class="item-qty">1 × $${seat.price.toFixed(2)}</span>
+                    </div>
+                    <div class="item-price">$${seat.price.toFixed(2)}</div>
+                </div>
+            `;
+        });
+        
+        // Add grouped summary if we have discount
+        if (discount > 0) {
+            itemsHTML += `
+                <div class="order-item" style="border-top: 2px solid #eee; margin-top: 10px; padding-top: 10px;">
+                    <div class="item-info">
+                        <span class="item-name" style="color: #50c878;"><i class="fas fa-tag"></i> Promo Discount</span>
+                        <span class="item-qty">${discountPercentage}% off</span>
+                    </div>
+                    <div class="item-price" style="color: #50c878;">-$${discount.toFixed(2)}</div>
+                </div>
+            `;
+        }
+        
+        orderItemsContainer.innerHTML = itemsHTML;
+    }
+    
+    // Update continue button state
+    function updateContinueButton() {
+        continueBtn.disabled = selectedSeats.length === 0;
+    }
+    
+    // Promo code functionality
+    applyPromoBtn.addEventListener('click', function() {
+        const promoCode = promoCodeInput.value.trim().toUpperCase();
+        
+        if (promoCode === 'SAVE10') {
+            discountPercentage = 10;
+            applyDiscount(10);
+            showPromoMessage('10% discount applied successfully!', 'success');
+        } else if (promoCode === 'SAVE20') {
+            discountPercentage = 20;
+            applyDiscount(20);
+            showPromoMessage('20% discount applied successfully!', 'success');
+        } else if (promoCode === 'FIRST5') {
+            discountPercentage = 5;
+            applyDiscount(5);
+            showPromoMessage('5% discount applied successfully!', 'success');
+        } else if (promoCode === '') {
+            showPromoMessage('Please enter a promo code', 'error');
+        } else {
+            showPromoMessage('Invalid promo code', 'error');
+        }
+    });
+    
+    // Apply discount
+    function applyDiscount(percentage) {
+        let subtotal = 0;
+        selectedSeats.forEach(seat => {
+            subtotal += seat.price;
+        });
+        
+        discount = subtotal * (percentage / 100);
+        updateOrderSummary();
+    }
+    
+    // Show promo message
+    function showPromoMessage(message, type) {
+        // Remove existing message
+        const existingMessage = document.querySelector('.promo-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        // Create new message
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `promo-message ${type}`;
+        messageDiv.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+            ${message}
+        `;
+        
+        // Style the message
+        messageDiv.style.cssText = `
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: ${type === 'success' ? 'rgba(80, 200, 120, 0.1)' : 'rgba(255, 106, 0, 0.1)'};
+            color: ${type === 'success' ? '#50c878' : '#ff6a00'};
+            border: 1px solid ${type === 'success' ? 'rgba(80, 200, 120, 0.3)' : 'rgba(255, 106, 0, 0.3)'};
+        `;
+        
+        // Insert after promo box
+        const promoBox = document.querySelector('.promo-box');
+        promoBox.parentNode.insertBefore(messageDiv, promoBox.nextSibling);
+        
+        // Auto remove after 5 seconds
+        if (type === 'success') {
+            setTimeout(() => {
+                if (messageDiv.parentNode) {
+                    messageDiv.remove();
+                }
+            }, 5000);
+        }
+    }
+    
+    // Continue button functionality
+    continueBtn.addEventListener('click', function() {
+        if (!this.disabled) {
+            // Show loading
+            const originalContent = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            // Store booking data
+            const bookingData = {
+                seats: selectedSeats,
+                seatCounts: seatCounts,
+                subtotal: parseFloat(ticketsTotalElement.textContent.replace('$', '')),
+                total: parseFloat(finalTotalElement.textContent.replace('$', '')),
+                discount: discount,
+                discountPercentage: discountPercentage
+            };
+            
+            // In a real app, you would send this to your backend
+            sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+            
+            // Simulate processing
+            setTimeout(() => {
+                alert(`Proceeding to payment with ${selectedSeats.length} seat(s).\n\nTotal: ${finalTotalElement.textContent}`);
+                
+                // Reset button
+                this.innerHTML = originalContent;
+                this.disabled = false;
+                
+                // In real app: window.location.href = 'payment.html';
+            }, 1500);
+        }
+    });
+    
+    // Initialize
+    updateSeatCounters();
+    updateOrderSummary();
+    updateContinueButton();
+});
+</script>
+</body>
+</html>
