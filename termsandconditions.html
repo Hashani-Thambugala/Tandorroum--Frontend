@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | Tanderrum</title>
+    <link rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== GENERAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER (Your existing CSS) ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            padding-bottom: 6px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff6a00;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 4px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            width: 140px;
+            background: transparent;
+        }
+
+        .search-nav i {
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .header-icon {
+            font-size: 18px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        .login-text {
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .login-text:hover {
+            color: #ff6a00;
+        }
+
+        .menu-btn {
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            color: #000;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .menu-btn:hover {
+            color: #ff6a00;
+        }
+
+        /* ===== MOBILE MENU STYLES ===== */
+        .top-header.active .nav-links {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            gap: 0;
+        }
+
+        .top-header.active .nav-links a {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .top-header.active .nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .top-header.active .nav-links a.active::after {
+            display: none;
+        }
+
+        .top-header.active .nav-links a.active {
+            color: #ff6a00;
+            font-weight: bold;
+        }
+
+        /* ===== RESPONSIVE HEADER ===== */
+        @media (min-width: 901px) {
+            .nav-links { display: flex !important; }
+            .menu-btn { display: none !important; }
+            .header-actions { gap: 22px; }
+            .search-nav, .header-icon { display: flex !important; }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none !important; }
+            .menu-btn { display: block !important; order: 3; }
+            .header-container { padding: 15px 20px; }
+            .header-actions { gap: 15px; order: 2; margin-left: auto; }
+            .search-nav { display: none !important; }
+            .header-actions .header-icon:nth-child(2) { display: flex !important; }
+            .header-actions .login-text { display: none !important; }
+            .header-actions .header-icon:last-child { display: flex !important; }
+            .logo { order: 1; }
+            .logo img { width: 120px; }
+        }
+
+        /* ===== TERMS & CONDITIONS PAGE ===== */
+        .terms-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            background: #fff;
+        }
+
+        /* Terms Header */
+        .terms-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .terms-header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .terms-header h1 span {
+            color: #F24B09;
+        }
+
+        .terms-subtitle {
+            font-size: 16px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Last Updated */
+        .last-updated {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .last-updated strong {
+            color: #F24B09;
+            font-weight: 600;
+        }
+
+        /* Terms Content */
+        .terms-content {
+            background: #fff;
+        }
+
+        .terms-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-left: 4px solid #F24B09;
+        }
+
+        .terms-section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .terms-section h2 i {
+            color: #F24B09;
+        }
+
+        .terms-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #222;
+            margin: 25px 0 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .terms-section p {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .terms-section ul,
+        .terms-section ol {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .terms-section li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-size: 15px;
+            color: #444;
+        }
+
+        .terms-section strong {
+            color: #111;
+            font-weight: 600;
+        }
+
+        /* Important Notice */
+        .important-notice {
+            background: #fff8f0;
+            border: 2px solid #ff6a00;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 40px 0;
+        }
+
+        .important-notice h3 {
+            color: #ff6a00;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .important-notice h3 i {
+            font-size: 20px;
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            background: #f0f7ff;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 40px 0;
+            border: 1px solid #e3f2fd;
+        }
+
+        .quick-nav h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-nav h3 i {
+            color: #F24B09;
+        }
+
+        .quick-nav-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 15px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            color: #444;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            border-color: #F24B09;
+            color: #F24B09;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-link i {
+            font-size: 12px;
+            color: #F24B09;
+        }
+
+        /* Contact Legal */
+        .contact-legal {
+            text-align: center;
+            padding: 25px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        .contact-legal h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #111;
+        }
+
+        .contact-legal p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-legal strong {
+            color: #F24B09;
+            font-weight: 600;
+        }
+
+        .contact-legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-legal-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #444;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #fff;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .contact-legal-link:hover {
+            border-color: #F24B09;
+            color: #F24B09;
+            background: #fff8f0;
+        }
+
+        .contact-legal-link i {
+            font-size: 14px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        /* Apple/Ultra-wide desktops (2560px and above) */
+        @media (min-width: 2560px) {
+            .terms-container {
+                max-width: 1200px;
+                padding: 70px 50px;
+            }
+
+            .terms-header h1 {
+                font-size: 42px;
+            }
+
+            .terms-subtitle {
+                font-size: 18px;
+            }
+
+            .terms-section {
+                padding: 35px;
+            }
+
+            .terms-section h2 {
+                font-size: 26px;
+            }
+
+            .terms-section h3 {
+                font-size: 22px;
+            }
+
+            .terms-section p {
+                font-size: 17px;
+            }
+
+            .terms-section li {
+                font-size: 17px;
+            }
+        }
+
+        /* Large desktop (1920px - 2559px) */
+        @media (min-width: 1920px) and (max-width: 2559px) {
+            .terms-container {
+                max-width: 1100px;
+                padding: 60px 45px;
+            }
+
+            .terms-header h1 {
+                font-size: 38px;
+            }
+
+            .terms-section {
+                padding: 30px;
+            }
+
+            .terms-section h2 {
+                font-size: 24px;
+            }
+
+            .terms-section h3 {
+                font-size: 20px;
+            }
+        }
+
+        /* Standard desktop (1440px - 1919px) */
+        @media (min-width: 1440px) and (max-width: 1919px) {
+            .terms-container {
+                max-width: 1000px;
+                padding: 50px 40px;
+            }
+
+            .terms-header h1 {
+                font-size: 36px;
+            }
+
+            .terms-section {
+                padding: 25px;
+            }
+        }
+
+        /* Tablet Landscape (1024px - 1279px) */
+        @media (max-width: 1279px) {
+            .terms-container {
+                max-width: 900px;
+                padding: 45px 35px;
+            }
+
+            .terms-header h1 {
+                font-size: 32px;
+            }
+
+            .terms-subtitle {
+                font-size: 15px;
+            }
+
+            .terms-section h2 {
+                font-size: 20px;
+            }
+
+            .terms-section h3 {
+                font-size: 18px;
+            }
+
+            .terms-section p {
+                font-size: 15px;
+            }
+
+            .quick-nav-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tablet Portrait (768px - 1023px) */
+        @media (max-width: 1023px) {
+            .terms-container {
+                padding: 40px 30px;
+            }
+
+            .terms-header {
+                margin-bottom: 30px;
+                padding-bottom: 25px;
+            }
+
+            .terms-header h1 {
+                font-size: 28px;
+            }
+
+            .terms-subtitle {
+                font-size: 15px;
+            }
+
+            .last-updated {
+                font-size: 13px;
+                margin-bottom: 25px;
+            }
+
+            .terms-section {
+                margin-bottom: 30px;
+                padding: 20px;
+            }
+
+            .terms-section h2 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
+            .terms-section h3 {
+                font-size: 18px;
+                margin: 20px 0 12px;
+            }
+
+            .terms-section p {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .terms-section li {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+
+            .important-notice {
+                padding: 20px;
+                margin: 30px 0;
+            }
+
+            .quick-nav {
+                padding: 20px;
+                margin: 30px 0;
+            }
+
+            .nav-link {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .contact-legal {
+                padding: 20px;
+                margin-top: 40px;
+            }
+
+            .contact-legal h4 {
+                font-size: 18px;
+            }
+
+            .contact-legal p {
+                font-size: 15px;
+            }
+        }
+
+        /* Large Mobile (600px - 767px) */
+        @media (max-width: 767px) {
+            .terms-container {
+                padding: 35px 25px;
+            }
+
+            .terms-header h1 {
+                font-size: 26px;
+                margin-bottom: 12px;
+            }
+
+            .terms-subtitle {
+                font-size: 14px;
+                line-height: 1.5;
+            }
+
+            .last-updated {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .terms-section {
+                padding: 18px;
+                margin-bottom: 25px;
+            }
+
+            .terms-section h2 {
+                font-size: 19px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .terms-section h3 {
+                font-size: 17px;
+                margin: 18px 0 10px;
+            }
+
+            .terms-section p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .terms-section ul,
+            .terms-section ol {
+                padding-left: 20px;
+            }
+
+            .terms-section li {
+                font-size: 14px;
+                margin-bottom: 8px;
+                line-height: 1.5;
+            }
+
+            .important-notice h3 {
+                font-size: 17px;
+            }
+
+            .quick-nav-links {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-legal-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .contact-legal-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile (480px - 599px) */
+        @media (max-width: 599px) {
+            .terms-container {
+                padding: 30px 20px;
+            }
+
+            .terms-header {
+                margin-bottom: 25px;
+                padding-bottom: 20px;
+            }
+
+            .terms-header h1 {
+                font-size: 24px;
+            }
+
+            .terms-section {
+                padding: 16px;
+            }
+
+            .terms-section h2 {
+                font-size: 18px;
+            }
+
+            .terms-section h3 {
+                font-size: 16px;
+            }
+
+            .terms-section p {
+                font-size: 14px;
+            }
+
+            .terms-section li {
+                font-size: 14px;
+            }
+
+            .nav-link {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .contact-legal {
+                padding: 18px;
+                margin-top: 35px;
+            }
+
+            .contact-legal h4 {
+                font-size: 17px;
+            }
+
+            .contact-legal p {
+                font-size: 14px;
+            }
+        }
+
+        /* Small Mobile (375px - 479px) */
+        @media (max-width: 479px) {
+            .terms-container {
+                padding: 25px 15px;
+            }
+
+            .terms-header h1 {
+                font-size: 22px;
+            }
+
+            .terms-subtitle {
+                font-size: 13px;
+            }
+
+            .last-updated {
+                font-size: 11px;
+            }
+
+            .terms-section h2 {
+                font-size: 17px;
+            }
+
+            .terms-section h3 {
+                font-size: 15px;
+            }
+
+            .terms-section p {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .terms-section li {
+                font-size: 13px;
+            }
+
+            .nav-link {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+
+            .contact-legal-link {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+        }
+
+        /* Extra Small Mobile (under 375px) */
+        @media (max-width: 374px) {
+            .terms-container {
+                padding: 20px 12px;
+            }
+
+            .terms-header h1 {
+                font-size: 20px;
+            }
+
+            .terms-section {
+                padding: 14px;
+            }
+
+            .terms-section h2 {
+                font-size: 16px;
+            }
+
+            .terms-section h3 {
+                font-size: 14px;
+            }
+
+            .terms-section p {
+                font-size: 12px;
+            }
+
+            .terms-section li {
+                font-size: 12px;
+            }
+
+            .contact-legal-link {
+                font-size: 12px;
+                padding: 7px 12px;
+            }
+        }
+
+        /* ===== FOOTER (Your existing CSS) ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 30px 0 0;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-content-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .footer-logo-img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo-text span {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            padding: 3px 0;
+            position: relative;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-newsletter-form input:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .footer-bottom {
+            background: white;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        .footer-credit {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .footer-credit strong {
+            color: #000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="top-header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/tandurrum event.png" alt="Tanderrum">
+        </div>
+
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>CART</span>
+            </div>
+
+            <div class="login-section">
+                <i class="fa-solid fa-user"></i>
+                <span>LOGIN</span>
+            </div>
+
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== TERMS & CONDITIONS PAGE ===== -->
+<main class="terms-container">
+    <!-- Header -->
+    <section class="terms-header">
+        <h1>Terms & Conditions<span></span></h1>
+        <p class="terms-subtitle">
+            Please read these terms and conditions carefully before using our services. 
+            By accessing or using Tanderrum's platform, you agree to be bound by these terms.
+        </p>
+    </section>
+
+    <!-- Last Updated -->
+    <div class="last-updated">
+        <strong>Last Updated:</strong> January 18, 2026 • <strong>Effective Date:</strong> January 1, 2026
+    </div>
+
+    <!-- Quick Navigation -->
+    <section class="quick-nav">
+        <h3><i class="fas fa-bookmark"></i> Quick Navigation</h3>
+        <div class="quick-nav-links">
+            <a href="#account-terms" class="nav-link">
+                <i class="fas fa-user"></i> Account Terms
+            </a>
+            <a href="#ticket-purchase" class="nav-link">
+                <i class="fas fa-ticket-alt"></i> Ticket Purchase
+            </a>
+            <a href="#refund-policy" class="nav-link">
+                <i class="fas fa-exchange-alt"></i> Refund Policy
+            </a>
+            <a href="#user-conduct" class="nav-link">
+                <i class="fas fa-users"></i> User Conduct
+            </a>
+            <a href="#intellectual-property" class="nav-link">
+                <i class="fas fa-copyright"></i> Intellectual Property
+            </a>
+            <a href="#liability" class="nav-link">
+                <i class="fas fa-balance-scale"></i> Liability
+            </a>
+            <a href="#privacy" class="nav-link">
+                <i class="fas fa-shield-alt"></i> Privacy
+            </a>
+            <a href="#changes" class="nav-link">
+                <i class="fas fa-edit"></i> Changes to Terms
+            </a>
+        </div>
+    </section>
+
+    <!-- Important Notice -->
+    <section class="important-notice">
+        <h3><i class="fas fa-exclamation-triangle"></i> Important Notice</h3>
+        <p>
+            These Terms & Conditions constitute a legally binding agreement between you and Tanderrum. 
+            If you do not agree with any part of these terms, you must not use our services. 
+            Continued use of the Tanderrum platform constitutes acceptance of these terms.
+        </p>
+    </section>
+
+    <!-- Terms Content -->
+    <div class="terms-content">
+        <!-- Section 1: Account Terms -->
+        <section id="account-terms" class="terms-section">
+            <h2><i class="fas fa-user"></i> 1. Account Terms</h2>
+            <p>
+                To access certain features of Tanderrum, you must create an account. You agree to:
+            </p>
+            <ul>
+                <li>Provide accurate, current, and complete information during registration</li>
+                <li>Maintain and promptly update your account information</li>
+                <li>Maintain the security of your password and accept all risks of unauthorized access</li>
+                <li>Notify us immediately of any unauthorized use of your account</li>
+                <li>You are responsible for all activities that occur under your account</li>
+            </ul>
+            <p>
+                We reserve the right to suspend or terminate your account if we suspect any fraudulent 
+                activity or violation of these terms.
+            </p>
+        </section>
+
+        <!-- Section 2: Ticket Purchase -->
+        <section id="ticket-purchase" class="terms-section">
+            <h2><i class="fas fa-ticket-alt"></i> 2. Ticket Purchase & Delivery</h2>
+            <h3>2.1 Purchase Process</h3>
+            <p>
+                All ticket purchases are final unless otherwise specified. By purchasing tickets, 
+                you agree to pay the full amount including all applicable fees and taxes.
+            </p>
+            
+            <h3>2.2 Ticket Delivery</h3>
+            <p>
+                Tickets are typically delivered electronically via email or through your Tanderrum account. 
+                Some events may offer physical ticket delivery at an additional cost.
+            </p>
+            
+            <h3>2.3 Event Changes & Cancellations</h3>
+            <p>
+                Event dates, times, and venues are subject to change. We are not responsible for event 
+                cancellations or changes made by event organizers.
+            </p>
+        </section>
+
+        <!-- Section 3: Refund Policy -->
+        <section id="refund-policy" class="terms-section">
+            <h2><i class="fas fa-exchange-alt"></i> 3. Refund & Cancellation Policy</h2>
+            <h3>3.1 General Policy</h3>
+            <p>
+                All ticket sales are final. Refunds are only available in the following circumstances:
+            </p>
+            <ul>
+                <li>Event cancellation by the organizer</li>
+                <li>Event rescheduling where the new date is not acceptable</li>
+                <li>Significant event changes as determined by Tanderrum</li>
+            </ul>
+            
+            <h3>3.2 Refund Process</h3>
+            <p>
+                Refunds will be processed to the original payment method within 10-14 business days. 
+                Service fees are generally non-refundable.
+            </p>
+            
+            <h3>3.3 Event Postponement</h3>
+            <p>
+                For postponed events, tickets remain valid for the rescheduled date. 
+                If you cannot attend the rescheduled date, contact us within the specified timeframe.
+            </p>
+        </section>
+
+        <!-- Section 4: User Conduct -->
+        <section id="user-conduct" class="terms-section">
+            <h2><i class="fas fa-users"></i> 4. User Conduct & Prohibited Activities</h2>
+            <p>
+                You agree not to use Tanderrum for any unlawful purpose or in any way that:
+            </p>
+            <ul>
+                <li>Violates any applicable laws or regulations</li>
+                <li>Infringes upon the rights of others</li>
+                <li>Involves fraudulent or deceptive practices</li>
+                <li>Attempts to gain unauthorized access to our systems</li>
+                <li>Disrupts or interferes with the security or functionality of our services</li>
+                <li>Involves ticket scalping or resale above face value without authorization</li>
+            </ul>
+            <p>
+                We reserve the right to investigate and take appropriate legal action against anyone 
+                who violates these provisions.
+            </p>
+        </section>
+
+        <!-- Section 5: Intellectual Property -->
+        <section id="intellectual-property" class="terms-section">
+            <h2><i class="fas fa-copyright"></i> 5. Intellectual Property</h2>
+            <h3>5.1 Our Content</h3>
+            <p>
+                All content on Tanderrum, including text, graphics, logos, and software, is our property 
+                or the property of our licensors and is protected by copyright and other intellectual 
+                property laws.
+            </p>
+            
+            <h3>5.2 Your Content</h3>
+            <p>
+                By submitting content to Tanderrum, you grant us a non-exclusive, worldwide, royalty-free 
+                license to use, modify, and display that content in connection with our services.
+            </p>
+            
+            <h3>5.3 Trademarks</h3>
+            <p>
+                "Tanderrum" and our logo are registered trademarks. You may not use our trademarks 
+                without our prior written permission.
+            </p>
+        </section>
+
+        <!-- Section 6: Liability -->
+        <section id="liability" class="terms-section">
+            <h2><i class="fas fa-balance-scale"></i> 6. Limitation of Liability</h2>
+            <h3>6.1 General Limitation</h3>
+            <p>
+                To the maximum extent permitted by law, Tanderrum shall not be liable for any indirect, 
+                incidental, special, consequential, or punitive damages arising from your use of our services.
+            </p>
+            
+            <h3>6.2 Maximum Liability</h3>
+            <p>
+                Our total liability to you for any claims arising from these terms shall not exceed 
+                the amount you paid to Tanderrum for the relevant tickets or services.
+            </p>
+            
+            <h3>6.3 Event Organizer Responsibility</h3>
+            <p>
+                We are not responsible for the actions or omissions of event organizers, venues, 
+                or performers. Your contract for event attendance is with the event organizer.
+            </p>
+        </section>
+
+        <!-- Section 7: Privacy -->
+        <section id="privacy" class="terms-section">
+            <h2><i class="fas fa-shield-alt"></i> 7. Privacy & Data Protection</h2>
+            <p>
+                Your privacy is important to us. Our Privacy Policy explains how we collect, use, 
+                and protect your personal information. By using our services, you consent to our 
+                collection and use of your information as described in our Privacy Policy.
+            </p>
+            <p>
+                We implement appropriate technical and organizational measures to protect your 
+                personal data against unauthorized access, alteration, or destruction.
+            </p>
+        </section>
+
+        <!-- Section 8: Changes to Terms -->
+        <section id="changes" class="terms-section">
+            <h2><i class="fas fa-edit"></i> 8. Changes to Terms & Conditions</h2>
+            <h3>8.1 Modification Rights</h3>
+            <p>
+                We reserve the right to modify these terms at any time. We will provide notice 
+                of material changes through our platform or via email.
+            </p>
+            
+            <h3>8.2 Acceptance of Changes</h3>
+            <p>
+                Your continued use of Tanderrum after any changes to these terms constitutes 
+                acceptance of those changes. If you do not agree with the modified terms, 
+                you must discontinue use of our services.
+            </p>
+            
+            <h3>8.3 Review Responsibility</h3>
+            <p>
+                It is your responsibility to review these terms periodically for changes. 
+                The date of the latest revision will be indicated at the top of this page.
+            </p>
+        </section>
+    </div>
+
+    <!-- Contact Legal -->
+    <section class="contact-legal">
+        <h4>Legal Contact Information</h4>
+        <p>
+            For questions about these Terms & Conditions or to request a copy, please contact us:
+        </p>
+        <div class="contact-legal-links">
+            <a href="mailto:legal@tanderrum.ai" class="contact-legal-link">
+                <i class="fas fa-envelope"></i> legal@tanderrum.ai
+            </a>
+            <a href="tel:0391234567" class="contact-legal-link">
+                <i class="fas fa-phone"></i> (03) 9123 4567
+            </a>
+            <a href="#" class="contact-legal-link">
+                <i class="fas fa-file-pdf"></i> Download PDF Version
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-new">
+    <div class="footer-content-container">
+        <!-- Logo and social media -->
+        <div class="footer-logo-social">
+            <div class="footer-logo-wrapper">
+                <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+                <div class="footer-logo-text">TANDERRUM<span>.Event</span></div>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact information -->
+        <div class="footer-contact">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>(03) 9123 4567</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hello@tanderrum.ai</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="footer-nav">
+            <a href="#">HOME</a>
+            <a href="#">BROWSE EVENTS</a>
+            <a href="#">VENUES</a>
+            <a href="#">HELP CENTER</a>
+        </nav>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter-section">
+            <h3>NEVER MISS OUT</h3>
+            <p>Get notified about new events</p>
+            <form class="footer-newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">→</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#" class="active">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+        <div class="footer-credit">
+            Design by 
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.querySelector('.menu-btn');
+        const topHeader = document.querySelector('.top-header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                topHeader.classList.toggle('active');
+            });
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 900) {
+                    topHeader.classList.remove('active');
+                }
+            });
+        });
+        
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 900 && 
+                topHeader.classList.contains('active') &&
+                !event.target.closest('.header-container') &&
+                !event.target.closest('.menu-btn')) {
+                topHeader.classList.remove('active');
+            }
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                topHeader.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
