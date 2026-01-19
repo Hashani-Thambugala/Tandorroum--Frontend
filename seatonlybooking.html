@@ -1,0 +1,3081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum - Seat Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+        }
+
+        /* ===== HEADER ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: relative;
+            background: white;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Nav - HIDDEN ON MOBILE, SHOW ON DESKTOP */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            padding-bottom: 6px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff6a00;
+        }
+
+        /* Header actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        /* Search box in header */
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 4px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            width: 140px;
+            background: transparent;
+        }
+
+        .search-nav i {
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        /* Icons */
+        .header-icon {
+            font-size: 18px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        /* Login text */
+        .login-text {
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .login-text:hover {
+            color: #ff6a00;
+        }
+
+        /* Menu icon - HIDDEN BY DEFAULT, SHOW ON MOBILE */
+        .menu-btn {
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            color: #000;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .menu-btn:hover {
+            color: #ff6a00;
+        }
+
+        /* ===== MOBILE RESPONSIVE STYLES ===== */
+        @media (max-width: 991px) {
+            .menu-btn {
+                display: block;
+                order: 3;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .top-header.active .nav-links {
+                display: flex !important;
+            }
+            
+            .nav-links a {
+                padding: 16px 30px;
+                border-bottom: 1px solid #eee;
+                font-size: 16px;
+                width: 100%;
+                display: block;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links a.active::after {
+                display: none;
+            }
+            
+            .nav-links a.active {
+                color: #ff6a00;
+                font-weight: bold;
+                background: rgba(255, 106, 0, 0.05);
+            }
+            
+            .header-container {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+                position: relative;
+            }
+            
+            .logo {
+                order: 1;
+                flex: 1;
+            }
+            
+            .header-actions {
+                order: 2;
+                gap: 15px;
+            }
+            
+            .search-nav {
+                display: none;
+            }
+            
+            .login-text {
+                display: none;
+            }
+            
+            .header-icon {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 12px 15px;
+            }
+            
+            .nav-links a {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+            
+            .header-actions {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 10px 12px;
+            }
+            
+            .logo img {
+                width: 100px;
+            }
+            
+            .nav-links a {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .header-icon {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo img {
+                width: 90px;
+            }
+            
+            .header-actions {
+                gap: 8px;
+            }
+        }
+
+        /* ===== ADVANCED ZONE-BASED SEAT BOOKING SECTION ===== */
+        .booking-section {
+            padding: 30px 0 50px;
+            background: #f8f9fa;
+        }
+
+        .booking-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Progress Indicator */
+        .compact-progress {
+            margin-bottom: 25px;
+        }
+
+        .progress-icons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .progress-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            min-width: 70px;
+        }
+
+        .progress-icon.active {
+            background: rgba(255, 106, 0, 0.1);
+        }
+
+        .progress-icon i {
+            width: 32px;
+            height: 32px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .progress-icon.active i {
+            background: #ff6a00;
+            color: white;
+            box-shadow: 0 3px 8px rgba(255, 106, 0, 0.3);
+        }
+
+        .progress-icon span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .progress-icon.active span {
+            color: #ff6a00;
+        }
+
+        .progress-line {
+            width: 30px;
+            height: 2px;
+            background: #e0e0e0;
+            margin: 0 5px;
+        }
+
+        /* Main Booking Layout */
+        .advanced-booking {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        /* Venue Map Container */
+        .venue-map-container {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .venue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .venue-header h3 {
+            font-size: 20px;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .venue-header h3 i {
+            color: #ff6a00;
+        }
+
+        .venue-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Venue Image with Overlay Zones */
+        .venue-image-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #000;
+            min-height: 450px;
+            margin-bottom: 25px;
+        }
+
+        .venue-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Zone Overlays on Venue Image */
+        .zone-overlays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .zone-area {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .zone-area:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .zone-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Zone A (VIP) */
+        .zone-a {
+            border-color: #ff6a00;
+            top: 15%;
+            left: 30%;
+            width: 40%;
+            height: 20%;
+        }
+
+        /* Zone B (Premium) */
+        .zone-b {
+            border-color: #4a90e2;
+            top: 38%;
+            left: 25%;
+            width: 50%;
+            height: 25%;
+        }
+
+        /* Zone C (Standard) */
+        .zone-c {
+            border-color: #50c878;
+            top: 65%;
+            left: 20%;
+            width: 60%;
+            height: 25%;
+        }
+
+        /* Zone D (Economy) */
+        .zone-d {
+            border-color: #9b59b6;
+            top: 15%;
+            left: 10%;
+            width: 15%;
+            height: 60%;
+        }
+
+        .zone-e {
+            border-color: #9b59b6;
+            top: 15%;
+            right: 10%;
+            width: 15%;
+            height: 60%;
+        }
+
+        /* Zone Selection Instructions */
+        .zone-instructions {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #ff6a00;
+        }
+
+        /* Zone-Based Seat Grid */
+        .zone-selection {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .zone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .zone-header h3 {
+            font-size: 20px;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .zone-header h3 i {
+            color: #ff6a00;
+        }
+
+        .zone-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Zone Tabs */
+        .zone-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .zone-tab {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .zone-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .zone-tab.active {
+            border-color: #ff6a00;
+            background: rgba(255, 106, 0, 0.1);
+            color: #ff6a00;
+        }
+
+        .zone-tab.vip {
+            border-left: 4px solid #ff6a00;
+        }
+
+        .zone-tab.premium {
+            border-left: 4px solid #4a90e2;
+        }
+
+        .zone-tab.standard {
+            border-left: 4px solid #50c878;
+        }
+
+        .zone-tab.economy {
+            border-left: 4px solid #9b59b6;
+        }
+
+        /* Zone Content */
+        .zone-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .zone-content.active {
+            display: block;
+        }
+
+        .zone-stage {
+            background: linear-gradient(135deg, #222, #444);
+            color: white;
+            text-align: center;
+            padding: 25px 40px;
+            margin: 0 auto 40px;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 800px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .zone-stage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6a00, #ffd700, #ff6a00);
+            animation: stageGlow 3s infinite;
+        }
+
+        @keyframes stageGlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Zone Grid Layout */
+        .zone-grid-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .zone-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .zone-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .row-label {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .seat-cell {
+            position: relative;
+        }
+
+        .zone-seat {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .zone-seat:hover:not(.booked):not(.selected) {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        .zone-seat:hover::after {
+            content: attr(data-price);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .zone-seat:hover::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-bottom-color: #333;
+        }
+
+        /* Zone Seat Types */
+        .zone-seat.vip {
+            background: linear-gradient(135deg, #ff6a00, #ff8c42);
+            border-color: #e55a00;
+        }
+
+        .zone-seat.premium {
+            background: linear-gradient(135deg, #4a90e2, #67a6f0);
+            border-color: #2a7fdf;
+        }
+
+        .zone-seat.standard {
+            background: linear-gradient(135deg, #50c878, #70d891);
+            border-color: #3db36a;
+        }
+
+        .zone-seat.economy {
+            background: linear-gradient(135deg, #9b59b6, #b07cc6);
+            border-color: #8e44ad;
+        }
+
+        /* Seat States */
+        .zone-seat.selected {
+            border: 3px solid #000;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0,0,0,0.2); }
+            70% { box-shadow: 0 0 0 10px rgba(0,0,0,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+        }
+
+        .zone-seat.booked {
+            background: linear-gradient(135deg, #95a5a6, #bdc3c7);
+            border-color: #7f8c8d;
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: none !important;
+        }
+
+        /* Enhanced Legend */
+        .zone-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #eee;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: transform 0.2s ease;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-2px);
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+
+        .legend-info {
+            flex: 1;
+        }
+
+        .legend-name {
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 4px;
+        }
+
+        .legend-price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ff6a00;
+        }
+
+        .legend-desc {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        /* Zone Counter Display */
+        .zone-counter-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 12px;
+            border: 2px solid #eee;
+        }
+
+        .counter-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .counter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .counter-type {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .counter-count {
+            font-size: 32px;
+            font-weight: 800;
+            color: #222;
+        }
+
+        .counter-price {
+            font-size: 14px;
+            color: #ff6a00;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Selection Confirmation */
+        .selection-confirmation {
+            background: linear-gradient(135deg, #e8f4ff, #ffffff);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid #4a90e2;
+            text-align: center;
+        }
+
+        .confirmation-icon {
+            font-size: 48px;
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+
+        .confirmation-message {
+            font-size: 18px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .confirmation-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Enhanced Summary */
+        .enhanced-summary {
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            border: 3px solid #ff6a00;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6a00, #ff8c42, #ff6a00);
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .summary-header h3 {
+            font-size: 18px;
+            color: #222;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .summary-header h3 i {
+            color: #ff6a00;
+        }
+
+        .item-count {
+            font-size: 14px;
+            color: #ff6a00;
+            background: rgba(255, 106, 0, 0.1);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        .order-items {
+            min-height: 80px;
+            margin-bottom: 25px;
+            max-height: 350px;
+            overflow-y: auto;
+            padding: 15px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            border: 2px solid #eee;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s ease;
+        }
+
+        .order-item:hover {
+            background: white;
+            padding: 12px 15px;
+            margin: 0 -15px;
+            border-radius: 6px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 4px;
+        }
+
+        .item-details {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .item-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #222;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .empty-order {
+            text-align: center;
+            padding: 30px 0;
+            color: #999;
+        }
+
+        .empty-order i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        .empty-order p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .price-breakdown {
+            border-top: 2px solid #eee;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            padding: 8px 0;
+        }
+
+        .price-row span:first-child {
+            color: #666;
+        }
+
+        .price-row span:last-child {
+            font-weight: 600;
+        }
+
+        .price-row.total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+            font-size: 18px;
+            color: #222;
+            font-weight: 800;
+        }
+
+        .final-total {
+            color: #ff6a00;
+            font-size: 28px;
+        }
+
+        .promo-box {
+            margin: 25px 0;
+        }
+
+        .promo-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .promo-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .promo-input input:focus {
+            border-color: #ff6a00;
+            box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.1);
+        }
+
+        .promo-btn {
+            padding: 0 25px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .promo-btn:hover {
+            background: #ff6a00;
+            transform: translateY(-2px);
+        }
+
+        .next-action {
+            margin-top: 25px;
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #222, #444);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #ff6a00, #ff8c42);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 106, 0, 0.4);
+        }
+
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .secure-note {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .secure-note i {
+            color: #50c878;
+        }
+
+        .quick-info {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+
+        .info-point {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .info-point:hover {
+            transform: translateX(5px);
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .info-point i {
+            color: #ff6a00;
+            font-size: 18px;
+            width: 24px;
+        }
+
+        .info-point div {
+            flex: 1;
+        }
+
+        .info-point strong {
+            font-size: 14px;
+            color: #222;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .info-point small {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        
+        /* Large Desktop Screens (1920px and above) */
+        @media (min-width: 1920px) {
+            .booking-container {
+                max-width: 1800px;
+            }
+            
+            .advanced-booking {
+                grid-template-columns: 1fr 450px;
+                gap: 40px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 550px;
+            }
+            
+            .zone-seat {
+                width: 60px;
+                height: 60px;
+                font-size: 16px;
+            }
+            
+            .row-label {
+                min-width: 50px;
+                font-size: 16px;
+            }
+            
+            .zone-stage {
+                font-size: 28px;
+                padding: 30px 50px;
+            }
+            
+            .summary-card {
+                padding: 30px;
+            }
+            
+            .final-total {
+                font-size: 32px;
+            }
+            
+            .next-btn {
+                padding: 20px;
+                font-size: 18px;
+            }
+        }
+
+        /* Apple Cinema Display & 4K Screens (2560px and above) */
+        @media (min-width: 2560px) {
+            .booking-container {
+                max-width: 2400px;
+            }
+            
+            .advanced-booking {
+                grid-template-columns: 1fr 500px;
+                gap: 50px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 650px;
+            }
+            
+            .zone-seat {
+                width: 70px;
+                height: 70px;
+                font-size: 18px;
+            }
+            
+            .row-label {
+                min-width: 60px;
+                font-size: 18px;
+            }
+            
+            .zone-stage {
+                font-size: 32px;
+                padding: 35px 60px;
+                margin-bottom: 50px;
+            }
+            
+            .zone-grid {
+                max-width: 1600px;
+            }
+            
+            .zone-row {
+                gap: 15px;
+            }
+            
+            .summary-card {
+                padding: 35px;
+            }
+            
+            .summary-header h3 {
+                font-size: 22px;
+            }
+            
+            .final-total {
+                font-size: 36px;
+            }
+            
+            .next-btn {
+                padding: 22px;
+                font-size: 20px;
+            }
+            
+            .legend-item {
+                padding: 15px;
+            }
+            
+            .legend-price {
+                font-size: 22px;
+            }
+        }
+
+        /* Ultra-wide Screens (3440px and above) */
+        @media (min-width: 3440px) {
+            .booking-container {
+                max-width: 3200px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 750px;
+            }
+            
+            .zone-seat {
+                width: 80px;
+                height: 80px;
+                font-size: 20px;
+            }
+            
+            .zone-stage {
+                font-size: 36px;
+                padding: 40px 80px;
+                margin-bottom: 60px;
+            }
+            
+            .zone-grid {
+                max-width: 2000px;
+            }
+            
+            .summary-card {
+                padding: 40px;
+            }
+            
+            .final-total {
+                font-size: 40px;
+            }
+        }
+
+        /* Tablet and Smaller Desktop (991px and below) */
+        @media (max-width: 991px) {
+            .advanced-booking {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .enhanced-summary {
+                position: static;
+            }
+            
+            .progress-icons {
+                gap: 8px;
+            }
+            
+            .progress-icon {
+                min-width: 65px;
+                padding: 6px 10px;
+            }
+            
+            .progress-icon i {
+                width: 28px;
+                height: 28px;
+                font-size: 13px;
+            }
+            
+            .progress-icon span {
+                font-size: 11px;
+            }
+            
+            .progress-line {
+                width: 25px;
+            }
+            
+            .venue-map-container,
+            .zone-selection {
+                padding: 20px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 350px;
+            }
+            
+            .zone-seat {
+                width: 45px;
+                height: 45px;
+                font-size: 13px;
+            }
+            
+            .row-label {
+                min-width: 35px;
+                font-size: 13px;
+            }
+        }
+
+        /* Tablet (768px and below) */
+        @media (max-width: 768px) {
+            .booking-section {
+                padding: 20px 0 40px;
+            }
+            
+            .booking-container {
+                padding: 0 15px;
+            }
+            
+            .venue-map-container,
+            .zone-selection,
+            .summary-card {
+                padding: 20px;
+            }
+            
+            .progress-icons {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .progress-line {
+                display: none;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 300px;
+            }
+            
+            .zone-seat {
+                width: 40px;
+                height: 40px;
+                font-size: 12px;
+            }
+            
+            .zone-row {
+                gap: 8px;
+            }
+            
+            .row-label {
+                min-width: 30px;
+                font-size: 12px;
+            }
+            
+            .zone-stage {
+                font-size: 20px;
+                padding: 20px 30px;
+                margin-bottom: 30px;
+            }
+            
+            .zone-counter-display {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 15px;
+            }
+            
+            .counter-card {
+                padding: 15px;
+            }
+            
+            .counter-count {
+                font-size: 28px;
+            }
+            
+            .final-total {
+                font-size: 24px;
+            }
+        }
+
+        /* Mobile (480px and below) */
+        @media (max-width: 480px) {
+            .progress-icons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .progress-icon {
+                flex-direction: row;
+                min-width: auto;
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .venue-header,
+            .zone-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 250px;
+            }
+            
+            .zone-grid-wrapper {
+                padding: 15px;
+            }
+            
+            .zone-seat {
+                width: 35px;
+                height: 35px;
+                font-size: 11px;
+            }
+            
+            .zone-row {
+                gap: 6px;
+            }
+            
+            .row-label {
+                min-width: 25px;
+                font-size: 11px;
+                margin-right: 5px;
+            }
+            
+            .zone-stage {
+                font-size: 18px;
+                padding: 15px 20px;
+                margin-bottom: 25px;
+            }
+            
+            .zone-counter-display {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .counter-card {
+                padding: 12px;
+            }
+            
+            .counter-count {
+                font-size: 24px;
+            }
+            
+            .zone-legend {
+                grid-template-columns: 1fr;
+            }
+            
+            .zone-tabs {
+                flex-direction: column;
+            }
+            
+            .zone-tab {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .promo-input {
+                flex-direction: column;
+            }
+            
+            .promo-btn {
+                width: 100%;
+                padding: 12px;
+            }
+            
+            .final-total {
+                font-size: 22px;
+            }
+        }
+
+        /* Small Mobile (360px and below) */
+        @media (max-width: 360px) {
+            .zone-seat {
+                width: 30px;
+                height: 30px;
+                font-size: 10px;
+            }
+            
+            .zone-row {
+                gap: 4px;
+            }
+            
+            .row-label {
+                min-width: 20px;
+                font-size: 10px;
+            }
+            
+            .venue-map-container,
+            .zone-selection,
+            .summary-card {
+                padding: 15px;
+            }
+            
+            .zone-stage {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 30px 20px 0;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .footer-logo-img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo-text span {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            padding: 3px 0;
+            position: relative;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-newsletter-form input:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .footer-bottom {
+            background: white;
+            padding: 15px 20px;
+            margin: 0 -20px -15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        /* Footer responsive */
+        @media (max-width: 768px) {
+            .footer-new {
+                padding: 25px 15px 0;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .footer-nav {
+                gap: 15px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* ===== HERO IMAGE SECTION ===== */
+        .event-hero {
+            position: relative;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero-backdrop {
+            width: 100%;
+            position: relative;
+            min-height: 400px;
+            max-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.4) 40%,
+                rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            padding: 0 40px;
+            color: white;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: left;
+        }
+
+        .event-badge {
+            display: inline-block;
+            background: #ff6a00;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+        }
+
+        .event-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            max-width: 800px;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 18px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item i {
+            color: #ff6a00;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .meta-item span {
+            white-space: nowrap;
+        }
+
+        /* Responsive Hero */
+        @media (max-width: 1200px) {
+            .event-title {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .event-title {
+                font-size: 30px;
+            }
+            
+            .event-meta {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-title {
+                font-size: 24px;
+            }
+            
+            .event-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .meta-item {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="browse-events.html">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <!-- Right actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Cart -->
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <!-- Login -->
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <!-- Menu -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== HERO IMAGE SECTION ===== -->
+<section class="event-hero">
+    <div class="hero-container">
+        <div class="hero-backdrop">
+            <div class="hero-image" style="background-image: url('images/ev 3.png');">
+                <div class="hero-overlay"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="event-badge">Comedy</div>
+            <h1 class="event-title">Comedy Festival Opening Night Gala</h1>
+            <div class="event-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>SAT 15 MAR</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>7:30 PM - 10:00 PM</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Sydney Theatre Company</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ZONE-BASED SEAT BOOKING SECTION ===== -->
+<section class="booking-section">
+    <div class="booking-container">
+        <!-- Progress Indicator -->
+        <div class="compact-progress">
+            <div class="progress-icons">
+                <div class="progress-icon active">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Select Seats</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-icon">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-icon">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Venue Map with Zones -->
+        <div class="venue-map-container">
+            <div class="venue-header">
+                <h3><i class="fas fa-map-marked-alt"></i> Venue Seat Map</h3>
+                <div class="venue-info">Sydney Theatre Company - Main Hall (Organizer's Map)</div>
+            </div>
+            
+            <div class="zone-instructions">
+                <i class="fas fa-info-circle"></i> 
+                <strong>How it works:</strong> View the venue map below to understand the layout. Click on colored zones to view available seats in that section. Then select individual seats from the zone grid.
+            </div>
+
+            <div class="venue-image-wrapper">
+                <!-- Venue Map Image (from organizer) -->
+                <img src="https://images.unsplash.com/photo-1574267432553-4b4628081c31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Venue Seat Map" class="venue-image">
+                
+                <!-- Interactive Zone Overlays -->
+                <div class="zone-overlays">
+                    <div class="zone-area zone-a" data-zone="vip">
+                        <div class="zone-label">VIP Zone A</div>
+                    </div>
+                    <div class="zone-area zone-b" data-zone="premium">
+                        <div class="zone-label">Premium Zone B</div>
+                    </div>
+                    <div class="zone-area zone-c" data-zone="standard">
+                        <div class="zone-label">Standard Zone C</div>
+                    </div>
+                    <div class="zone-area zone-d" data-zone="economy">
+                        <div class="zone-label">Economy Zone D</div>
+                    </div>
+                    <div class="zone-area zone-e" data-zone="economy">
+                        <div class="zone-label">Economy Zone E</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="zone-counter-display" id="zoneCounter">
+                <div class="counter-card">
+                    <div class="counter-type">VIP Zone A</div>
+                    <div class="counter-count" id="vipCount">0</div>
+                    <div class="counter-price">$199 each</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-type">Premium Zone B</div>
+                    <div class="counter-count" id="premiumCount">0</div>
+                    <div class="counter-price">$125 each</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-type">Standard Zone C</div>
+                    <div class="counter-count" id="standardCount">0</div>
+                    <div class="counter-price">$85 each</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-type">Economy Zone D/E</div>
+                    <div class="counter-count" id="economyCount">0</div>
+                    <div class="counter-price">$55 each</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="advanced-booking">
+            <!-- Zone-Based Seat Selection -->
+            <div class="zone-selection">
+                <div class="zone-header">
+                    <h3><i class="fas fa-chair"></i> Select Your Seats by Zone</h3>
+                    <div class="zone-info">Click on a zone above, then select seats below</div>
+                </div>
+
+                <!-- Zone Tabs -->
+                <div class="zone-tabs">
+                    <div class="zone-tab vip active" data-zone="vip">
+                        <i class="fas fa-crown"></i> VIP Zone A
+                    </div>
+                    <div class="zone-tab premium" data-zone="premium">
+                        <i class="fas fa-star"></i> Premium Zone B
+                    </div>
+                    <div class="zone-tab standard" data-zone="standard">
+                        <i class="fas fa-chair"></i> Standard Zone C
+                    </div>
+                    <div class="zone-tab economy" data-zone="economy">
+                        <i class="fas fa-tag"></i> Economy Zone D/E
+                    </div>
+                </div>
+
+                <!-- VIP Zone Content -->
+                <div class="zone-content active" id="vip-zone">
+                    <div class="zone-stage">
+                        <i class="fas fa-crown"></i> VIP ZONE A <i class="fas fa-crown"></i>
+                    </div>
+
+                    <div class="zone-grid-wrapper">
+                        <div class="zone-grid">
+                            <!-- Row A1 -->
+                            <div class="zone-row">
+                                <div class="row-label">A1</div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip" data-seat="A1-1" data-type="vip" data-price="199">1</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip" data-seat="A1-2" data-type="vip" data-price="199">2</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip booked" data-seat="A1-3" data-type="vip" data-price="199">3</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip" data-seat="A1-4" data-type="vip" data-price="199">4</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip" data-seat="A1-5" data-type="vip" data-price="199">5</div>
+                                </div>
+                            </div>
+                            <!-- Row A2 -->
+                            <div class="zone-row">
+                                <div class="row-label">A2</div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip" data-seat="A2-1" data-type="vip" data-price="199">1</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip" data-seat="A2-2" data-type="vip" data-price="199">2</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip" data-seat="A2-3" data-type="vip" data-price="199">3</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip" data-seat="A2-4" data-type="vip" data-price="199">4</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat vip booked" data-seat="A2-5" data-type="vip" data-price="199">5</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Zone Content -->
+                <div class="zone-content" id="premium-zone">
+                    <div class="zone-stage">
+                        <i class="fas fa-star"></i> PREMIUM ZONE B <i class="fas fa-star"></i>
+                    </div>
+
+                    <div class="zone-grid-wrapper">
+                        <div class="zone-grid">
+                            <!-- Row B1 -->
+                            <div class="zone-row">
+                                <div class="row-label">B1</div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B1-1" data-type="premium" data-price="125">1</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B1-2" data-type="premium" data-price="125">2</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B1-3" data-type="premium" data-price="125">3</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B1-4" data-type="premium" data-price="125">4</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B1-5" data-type="premium" data-price="125">5</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B1-6" data-type="premium" data-price="125">6</div>
+                                </div>
+                            </div>
+                            <!-- Row B2 -->
+                            <div class="zone-row">
+                                <div class="row-label">B2</div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B2-1" data-type="premium" data-price="125">1</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B2-2" data-type="premium" data-price="125">2</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium booked" data-seat="B2-3" data-type="premium" data-price="125">3</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B2-4" data-type="premium" data-price="125">4</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B2-5" data-type="premium" data-price="125">5</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat premium" data-seat="B2-6" data-type="premium" data-price="125">6</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Zone Content -->
+                <div class="zone-content" id="standard-zone">
+                    <div class="zone-stage">
+                        <i class="fas fa-chair"></i> STANDARD ZONE C <i class="fas fa-chair"></i>
+                    </div>
+
+                    <div class="zone-grid-wrapper">
+                        <div class="zone-grid">
+                            <!-- Row C1 -->
+                            <div class="zone-row">
+                                <div class="row-label">C1</div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C1-1" data-type="standard" data-price="85">1</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C1-2" data-type="standard" data-price="85">2</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C1-3" data-type="standard" data-price="85">3</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C1-4" data-type="standard" data-price="85">4</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C1-5" data-type="standard" data-price="85">5</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C1-6" data-type="standard" data-price="85">6</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C1-7" data-type="standard" data-price="85">7</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C1-8" data-type="standard" data-price="85">8</div>
+                                </div>
+                            </div>
+                            <!-- Row C2 -->
+                            <div class="zone-row">
+                                <div class="row-label">C2</div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C2-1" data-type="standard" data-price="85">1</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C2-2" data-type="standard" data-price="85">2</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard booked" data-seat="C2-3" data-type="standard" data-price="85">3</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard booked" data-seat="C2-4" data-type="standard" data-price="85">4</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C2-5" data-type="standard" data-price="85">5</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C2-6" data-type="standard" data-price="85">6</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C2-7" data-type="standard" data-price="85">7</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat standard" data-seat="C2-8" data-type="standard" data-price="85">8</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Economy Zone Content -->
+                <div class="zone-content" id="economy-zone">
+                    <div class="zone-stage">
+                        <i class="fas fa-tag"></i> ECONOMY ZONE D/E <i class="fas fa-tag"></i>
+                    </div>
+
+                    <div class="zone-grid-wrapper">
+                        <div class="zone-grid">
+                            <!-- Row D1 -->
+                            <div class="zone-row">
+                                <div class="row-label">D1</div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="D1-1" data-type="economy" data-price="55">1</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="D1-2" data-type="economy" data-price="55">2</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="D1-3" data-type="economy" data-price="55">3</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="D1-4" data-type="economy" data-price="55">4</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="D1-5" data-type="economy" data-price="55">5</div>
+                                </div>
+                            </div>
+                            <!-- Row E1 -->
+                            <div class="zone-row">
+                                <div class="row-label">E1</div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="E1-1" data-type="economy" data-price="55">1</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="E1-2" data-type="economy" data-price="55">2</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy booked" data-seat="E1-3" data-type="economy" data-price="55">3</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="E1-4" data-type="economy" data-price="55">4</div>
+                                </div>
+                                <div class="seat-cell">
+                                    <div class="zone-seat economy" data-seat="E1-5" data-type="economy" data-price="55">5</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zone Legend -->
+                <div class="zone-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #ff6a00, #ff8c42);"></div>
+                        <div class="legend-info">
+                            <div class="legend-name">VIP Zone A</div>
+                            <div class="legend-price">$199</div>
+                            <div class="legend-desc">Front center, premium experience</div>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #4a90e2, #67a6f0);"></div>
+                        <div class="legend-info">
+                            <div class="legend-name">Premium Zone B</div>
+                            <div class="legend-price">$125</div>
+                            <div class="legend-desc">Excellent view, center section</div>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #50c878, #70d891);"></div>
+                        <div class="legend-info">
+                            <div class="legend-name">Standard Zone C</div>
+                            <div class="legend-price">$85</div>
+                            <div class="legend-desc">Great value, good view</div>
+                        </div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: linear-gradient(135deg, #9b59b6, #b07cc6);"></div>
+                        <div class="legend-info">
+                            <div class="legend-name">Economy Zone D/E</div>
+                            <div class="legend-price">$55</div>
+                            <div class="legend-desc">Budget-friendly side sections</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selection Confirmation -->
+                <div class="selection-confirmation" id="confirmationMessage" style="display: none;">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="confirmation-message" id="confirmationText"></div>
+                    <div class="confirmation-details">
+                        Your selected seats have been added to your order. Continue to payment to complete your booking.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="enhanced-summary">
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
+                        <span class="item-count" id="orderItemCount">0 items</span>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class="order-items" id="orderItemsContainer">
+                        <div class="empty-order">
+                            <i class="fas fa-ticket-alt"></i>
+                            <p>Select seats to add tickets</p>
+                        </div>
+                    </div>
+
+                    <!-- Price Breakdown -->
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Tickets Subtotal</span>
+                            <span class="tickets-total">$0.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Service Fee</span>
+                            <span class="service-fee">$5.95</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Processing Fee</span>
+                            <span class="processing-fee">$3.50</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total Amount</span>
+                            <span class="final-total">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="promo-box">
+                        <div class="promo-input">
+                            <input type="text" placeholder="Enter promo code" id="promoCode">
+                            <button class="promo-btn" id="applyPromo">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Next Button -->
+                    <div class="next-action">
+                        <button class="next-btn" id="continueBtn" disabled>
+                            <span>Continue to Payment</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <p class="secure-note">
+                            <i class="fas fa-lock"></i> 256-bit SSL secure checkout
+                        </p>
+                    </div>
+
+                    <!-- Quick Info -->
+                    <div class="quick-info">
+                        <div class="info-point">
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <strong>Limited Availability</strong>
+                                <small>Only 15% seats remaining</small>
+                            </div>
+                        </div>
+                        <div class="info-point">
+                            <i class="fas fa-mobile"></i>
+                            <div>
+                                <strong>Mobile Tickets</strong>
+                                <small>Instant delivery via SMS & Email</small>
+                            </div>
+                        </div>
+                        <div class="info-point">
+                            <i class="fas fa-undo"></i>
+                            <div>
+                                <strong>Flexible Cancellation</strong>
+                                <small>Free cancellation up to 24 hours</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-new">
+    <!-- Logo and social media -->
+    <div class="footer-logo-social">
+        <div class="footer-logo-wrapper">
+            <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+            <div class="footer-logo-text">TANDERRUM<span>.LIVE</span></div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact information -->
+    <div class="footer-contact">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(03) 9123 4567</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>hello@tanderrum.ai</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="footer-nav">
+        <a href="#">HOME</a>
+        <a href="#">BROWSE EVENTS</a>
+        <a href="#">VENUES</a>
+        <a href="#">HELP CENTER</a>
+    </nav>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter-section">
+        <h3>NEVER MISS OUT</h3>
+        <p>Get notified about new events</p>
+        <form class="footer-newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">→</button>
+        </form>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu functionality
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            
+            if (topHeader.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && 
+            !topHeader.contains(event.target) &&
+            window.innerWidth <= 900) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 900) {
+                topHeader.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900 && topHeader.classList.contains('active')) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // ===== ZONE-BASED SEAT SELECTION SYSTEM =====
+    
+    // Seat prices by zone
+    const zonePrices = {
+        'vip': 199,
+        'premium': 125,
+        'standard': 85,
+        'economy': 55
+    };
+    
+    // Zone labels
+    const zoneLabels = {
+        'vip': 'VIP Zone A',
+        'premium': 'Premium Zone B',
+        'standard': 'Standard Zone C',
+        'economy': 'Economy Zone D/E'
+    };
+    
+    // Booking data
+    let selectedSeats = [];
+    let seatCounts = {
+        'vip': 0,
+        'premium': 0,
+        'standard': 0,
+        'economy': 0
+    };
+    
+    // Current active zone
+    let activeZone = 'vip';
+    
+    // Elements
+    const zoneTabs = document.querySelectorAll('.zone-tab');
+    const zoneContents = document.querySelectorAll('.zone-content');
+    const zoneAreas = document.querySelectorAll('.zone-area');
+    const seats = document.querySelectorAll('.zone-seat:not(.booked)');
+    const orderItemsContainer = document.getElementById('orderItemsContainer');
+    const ticketsTotalElement = document.querySelector('.tickets-total');
+    const finalTotalElement = document.querySelector('.final-total');
+    const itemCountElement = document.getElementById('orderItemCount');
+    const continueBtn = document.getElementById('continueBtn');
+    const applyPromoBtn = document.getElementById('applyPromo');
+    const promoCodeInput = document.getElementById('promoCode');
+    
+    // Counter elements
+    const vipCountElement = document.getElementById('vipCount');
+    const premiumCountElement = document.getElementById('premiumCount');
+    const standardCountElement = document.getElementById('standardCount');
+    const economyCountElement = document.getElementById('economyCount');
+    
+    // Confirmation message elements
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const confirmationText = document.getElementById('confirmationText');
+    
+    // Service fees
+    const serviceFee = 5.95;
+    const processingFee = 3.50;
+    let discount = 0;
+    let discountPercentage = 0;
+    
+    // Zone tab switching
+    zoneTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const zone = this.dataset.zone;
+            
+            // Update active tab
+            zoneTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update active content
+            zoneContents.forEach(content => content.classList.remove('active'));
+            document.getElementById(`${zone}-zone`).classList.add('active');
+            
+            // Update active zone
+            activeZone = zone;
+            
+            // Show zone message
+            showConfirmationMessage(`Now viewing seats in ${zoneLabels[zone]}`);
+        });
+    });
+    
+    // Zone area clicks on venue map
+    zoneAreas.forEach(area => {
+        area.addEventListener('click', function() {
+            const zone = this.dataset.zone;
+            
+            // Update active tab
+            zoneTabs.forEach(t => t.classList.remove('active'));
+            document.querySelector(`.zone-tab[data-zone="${zone}"]`).classList.add('active');
+            
+            // Update active content
+            zoneContents.forEach(content => content.classList.remove('active'));
+            document.getElementById(`${zone}-zone`).classList.add('active');
+            
+            // Update active zone
+            activeZone = zone;
+            
+            // Show zone message
+            showConfirmationMessage(`Now viewing seats in ${zoneLabels[zone]}`);
+            
+            // Scroll to zone selection
+            document.querySelector('.zone-selection').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+    
+    // Seat selection event listeners
+    seats.forEach(seat => {
+        seat.addEventListener('click', function() {
+            if (this.classList.contains('booked')) return;
+            
+            const seatId = this.dataset.seat;
+            const seatType = this.dataset.type;
+            const seatPrice = parseFloat(this.dataset.price);
+            
+            // Toggle seat selection
+            if (this.classList.contains('selected')) {
+                // Deselect seat
+                this.classList.remove('selected');
+                selectedSeats = selectedSeats.filter(seat => seat.id !== seatId);
+                seatCounts[seatType]--;
+                
+                // Show deselection message
+                showConfirmationMessage(`Seat ${seatId} removed from selection`);
+            } else {
+                // Select seat
+                this.classList.add('selected');
+                selectedSeats.push({
+                    id: seatId,
+                    type: seatType,
+                    price: seatPrice,
+                    label: zoneLabels[seatType],
+                    zone: activeZone
+                });
+                seatCounts[seatType]++;
+                
+                // Show selection message
+                showConfirmationMessage(`Seat ${seatId} (${zoneLabels[seatType]}) added to your order`);
+            }
+            
+            // Update UI
+            updateZoneCounters();
+            updateOrderSummary();
+            updateContinueButton();
+        });
+        
+        // Add price display on hover
+        seat.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('booked') && !this.classList.contains('selected')) {
+                const seatType = this.dataset.type;
+                const seatLabel = zoneLabels[seatType];
+                const seatPrice = this.dataset.price;
+                
+                // Add tooltip
+                this.setAttribute('title', `${this.dataset.seat} - ${seatLabel}: $${seatPrice}`);
+            }
+        });
+    });
+    
+    // Update zone counters
+    function updateZoneCounters() {
+        vipCountElement.textContent = seatCounts.vip;
+        premiumCountElement.textContent = seatCounts.premium;
+        standardCountElement.textContent = seatCounts.standard;
+        economyCountElement.textContent = seatCounts.economy;
+    }
+    
+    // Show confirmation message
+    function showConfirmationMessage(message) {
+        confirmationText.textContent = message;
+        confirmationMessage.style.display = 'block';
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            confirmationMessage.style.display = 'none';
+        }, 5000);
+    }
+    
+    // Update order summary
+    function updateOrderSummary() {
+        // Calculate subtotal
+        let subtotal = 0;
+        selectedSeats.forEach(seat => {
+            subtotal += seat.price;
+        });
+        
+        // Apply discount if any
+        const discountedSubtotal = subtotal - discount;
+        
+        // Calculate total with fees
+        const total = discountedSubtotal + serviceFee + processingFee;
+        
+        // Update order items display
+        updateOrderItemsDisplay();
+        
+        // Update price breakdown
+        ticketsTotalElement.textContent = `$${discountedSubtotal.toFixed(2)}`;
+        finalTotalElement.textContent = `$${total.toFixed(2)}`;
+        
+        // Update item count
+        const totalItems = selectedSeats.length;
+        itemCountElement.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
+    }
+    
+    // Update order items display
+    function updateOrderItemsDisplay() {
+        if (selectedSeats.length === 0) {
+            orderItemsContainer.innerHTML = `
+                <div class="empty-order">
+                    <i class="fas fa-ticket-alt"></i>
+                    <p>Select seats to add tickets</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Group seats by zone for summary
+        const zoneSummary = {};
+        selectedSeats.forEach(seat => {
+            if (!zoneSummary[seat.type]) {
+                zoneSummary[seat.type] = {
+                    count: 0,
+                    total: 0,
+                    label: seat.label
+                };
+            }
+            zoneSummary[seat.type].count++;
+            zoneSummary[seat.type].total += seat.price;
+        });
+        
+        // Create HTML for order items
+        let itemsHTML = '';
+        
+        // Add summary by zone
+        Object.keys(zoneSummary).forEach(zoneType => {
+            const summary = zoneSummary[zoneType];
+            itemsHTML += `
+                <div class="order-item">
+                    <div class="item-info">
+                        <span class="item-name">${summary.label} × ${summary.count}</span>
+                        <div class="item-details">
+                            <span>$${zonePrices[zoneType].toFixed(2)} each</span>
+                            <span>${getSeatNumbersByZone(zoneType)}</span>
+                        </div>
+                    </div>
+                    <div class="item-price">$${summary.total.toFixed(2)}</div>
+                </div>
+            `;
+        });
+        
+        // Add discount if applied
+        if (discount > 0) {
+            itemsHTML += `
+                <div class="order-item" style="background: #f0fff4; border-left: 4px solid #50c878; margin: 10px -15px; padding: 10px 15px;">
+                    <div class="item-info">
+                        <span class="item-name" style="color: #50c878;">
+                            <i class="fas fa-tag"></i> Promo Discount
+                        </span>
+                        <div class="item-details">
+                            <span>${discountPercentage}% off</span>
+                        </div>
+                    </div>
+                    <div class="item-price" style="color: #50c878;">-$${discount.toFixed(2)}</div>
+                </div>
+            `;
+        }
+        
+        orderItemsContainer.innerHTML = itemsHTML;
+    }
+    
+    // Helper function to get seat numbers by zone
+    function getSeatNumbersByZone(zoneType) {
+        const seatsOfZone = selectedSeats.filter(seat => seat.type === zoneType);
+        return seatsOfZone.map(seat => seat.id).join(', ');
+    }
+    
+    // Update continue button state
+    function updateContinueButton() {
+        continueBtn.disabled = selectedSeats.length === 0;
+        
+        if (!continueBtn.disabled) {
+            continueBtn.innerHTML = `
+                <span>Continue to Payment (${selectedSeats.length} ${selectedSeats.length === 1 ? 'seat' : 'seats'})</span>
+                <i class="fas fa-arrow-right"></i>
+            `;
+        } else {
+            continueBtn.innerHTML = `
+                <span>Continue to Payment</span>
+                <i class="fas fa-arrow-right"></i>
+            `;
+        }
+    }
+    
+    // Promo code functionality
+    applyPromoBtn.addEventListener('click', function() {
+        const promoCode = promoCodeInput.value.trim().toUpperCase();
+        
+        if (promoCode === '') {
+            showPromoMessage('Please enter a promo code', 'error');
+            return;
+        }
+        
+        // Valid promo codes
+        const validPromos = {
+            'SAVE10': 10,
+            'SAVE20': 20,
+            'FIRST5': 5,
+            'COMEDY15': 15,
+            'ZONEVIP': 25  // Special VIP zone discount
+        };
+        
+        if (validPromos[promoCode]) {
+            discountPercentage = validPromos[promoCode];
+            applyDiscount(discountPercentage);
+            showPromoMessage(`${discountPercentage}% discount applied successfully!`, 'success');
+            promoCodeInput.value = '';
+        } else {
+            showPromoMessage('Invalid promo code. Try SAVE10, SAVE20, or FIRST5', 'error');
+        }
+    });
+    
+    // Apply discount
+    function applyDiscount(percentage) {
+        let subtotal = 0;
+        selectedSeats.forEach(seat => {
+            subtotal += seat.price;
+        });
+        
+        discount = subtotal * (percentage / 100);
+        updateOrderSummary();
+    }
+    
+    // Show promo message
+    function showPromoMessage(message, type) {
+        // Remove existing message
+        const existingMessage = document.querySelector('.promo-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        // Create new message
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `promo-message ${type}`;
+        messageDiv.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+            ${message}
+        `;
+        
+        // Style the message
+        messageDiv.style.cssText = `
+            margin-top: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: ${type === 'success' ? 'rgba(80, 200, 120, 0.1)' : 'rgba(255, 106, 0, 0.1)'};
+            color: ${type === 'success' ? '#50c878' : '#ff6a00'};
+            border: 2px solid ${type === 'success' ? 'rgba(80, 200, 120, 0.3)' : 'rgba(255, 106, 0, 0.3)'};
+        `;
+        
+        // Insert after promo box
+        const promoBox = document.querySelector('.promo-box');
+        promoBox.parentNode.insertBefore(messageDiv, promoBox.nextSibling);
+        
+        // Auto remove after 5 seconds for success, 7 for error
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.remove();
+            }
+        }, type === 'success' ? 5000 : 7000);
+    }
+    
+    // Continue button functionality
+    continueBtn.addEventListener('click', function() {
+        if (!this.disabled) {
+            // Show loading
+            const originalContent = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            // Store booking data
+            const bookingData = {
+                seats: selectedSeats,
+                seatCounts: seatCounts,
+                subtotal: parseFloat(ticketsTotalElement.textContent.replace('$', '')),
+                total: parseFloat(finalTotalElement.textContent.replace('$', '')),
+                discount: discount,
+                discountPercentage: discountPercentage,
+                serviceFee: serviceFee,
+                processingFee: processingFee
+            };
+            
+            // Store in session storage for next page
+            sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+            
+            // Simulate processing delay
+            setTimeout(() => {
+                // In a real app, redirect to payment page
+                // window.location.href = 'payment.html';
+                
+                // For demo purposes, show alert
+                alert(`Booking Summary:\n\nSeats: ${selectedSeats.map(s => `${s.id} (${s.label})`).join(', ')}\nTotal: ${finalTotalElement.textContent}\n\nRedirecting to payment...`);
+                
+                // Reset button (in real app, this wouldn't happen)
+                this.innerHTML = originalContent;
+                this.disabled = false;
+            }, 2000);
+        }
+    });
+    
+    // Allow Enter key for promo code
+    promoCodeInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applyPromoBtn.click();
+        }
+    });
+    
+    // Initialize
+    updateZoneCounters();
+    updateOrderSummary();
+    updateContinueButton();
+});
+</script>
+</body>
+</html>
