@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Tanderrum</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== GENERAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER (Your existing CSS) ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            padding-bottom: 6px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff6a00;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 4px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            width: 140px;
+            background: transparent;
+        }
+
+        .search-nav i {
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .header-icon {
+            font-size: 18px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        .login-text {
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .login-text:hover {
+            color: #ff6a00;
+        }
+
+        .menu-btn {
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            color: #000;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .menu-btn:hover {
+            color: #ff6a00;
+        }
+
+        /* ===== MOBILE MENU STYLES ===== */
+        .top-header.active .nav-links {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            gap: 0;
+        }
+
+        .top-header.active .nav-links a {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .top-header.active .nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .top-header.active .nav-links a.active::after {
+            display: none;
+        }
+
+        .top-header.active .nav-links a.active {
+            color: #ff6a00;
+            font-weight: bold;
+        }
+
+        /* ===== RESPONSIVE HEADER ===== */
+        @media (min-width: 901px) {
+            .nav-links { display: flex !important; }
+            .menu-btn { display: none !important; }
+            .header-actions { gap: 22px; }
+            .search-nav, .header-icon { display: flex !important; }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none !important; }
+            .menu-btn { display: block !important; order: 3; }
+            .header-container { padding: 15px 20px; }
+            .header-actions { gap: 15px; order: 2; margin-left: auto; }
+            .search-nav { display: none !important; }
+            .header-actions .header-icon:nth-child(2) { display: flex !important; }
+            .header-actions .login-text { display: none !important; }
+            .header-actions .header-icon:last-child { display: flex !important; }
+            .logo { order: 1; }
+            .logo img { width: 120px; }
+        }
+
+        /* ===== PRIVACY POLICY PAGE ===== */
+        .privacy-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            background: #fff;
+        }
+
+        /* Header Section */
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .privacy-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .privacy-header h1 span {
+            color: #F24B09;
+        }
+
+        .privacy-subtitle {
+            font-size: 18px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        .last-updated {
+            display: inline-block;
+            background: #F24B09;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Content Sections */
+        .privacy-content {
+            background: #fff;
+        }
+
+        .privacy-section {
+            margin-bottom: 45px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border-left: 5px solid #F24B09;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .privacy-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .privacy-section h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .privacy-section h2 i {
+            color: #F24B09;
+            font-size: 24px;
+        }
+
+        .privacy-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #222;
+            margin: 30px 0 15px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .privacy-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 18px;
+            color: #444;
+        }
+
+        .privacy-section ul,
+        .privacy-section ol {
+            padding-left: 30px;
+            margin-bottom: 25px;
+        }
+
+        .privacy-section li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+            font-size: 16px;
+            color: #444;
+            position: relative;
+        }
+
+        .privacy-section li:before {
+            content: "•";
+            color: #F24B09;
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+
+        .privacy-section strong {
+            color: #111;
+            font-weight: 600;
+        }
+
+        /* Data Collection Table */
+        .data-table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            min-width: 600px;
+        }
+
+        .data-table th {
+            background: #F24B09;
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        .data-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 15px;
+            color: #444;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background: #f8f8f8;
+        }
+
+        /* Cookie Notice */
+        .cookie-notice {
+            background: linear-gradient(135deg, #fff8f0 0%, #ffe6d5 100%);
+            border: 3px solid #F24B09;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cookie-notice:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #F24B09;
+        }
+
+        .cookie-notice h3 {
+            color: #F24B09;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cookie-notice h3 i {
+            font-size: 28px;
+        }
+
+        /* Cookie Types */
+        .cookie-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .cookie-type {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cookie-type:hover {
+            transform: translateY(-10px);
+            border-color: #F24B09;
+            box-shadow: 0 15px 30px rgba(242, 75, 9, 0.1);
+        }
+
+        .cookie-type i {
+            font-size: 32px;
+            color: #F24B09;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .cookie-type h4 {
+            font-size: 18px;
+            color: #111;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .cookie-type p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e3f2fd 100%);
+            border-radius: 15px;
+            padding: 35px;
+            margin: 50px 0;
+            border: 2px solid #d1e9ff;
+        }
+
+        .quick-nav h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #111;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quick-nav h3 i {
+            color: #F24B09;
+            font-size: 26px;
+        }
+
+        .quick-nav-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 15px;
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            color: #444;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            border-color: #F24B09;
+            color: #F24B09;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-link i {
+            font-size: 24px;
+            color: #F24B09;
+            margin-bottom: 8px;
+        }
+
+        .nav-link span {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Contact DPO */
+        .contact-dpo {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            border-radius: 15px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-dpo:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #F24B09;
+        }
+
+        .contact-dpo h4 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .contact-dpo p {
+            font-size: 17px;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        .contact-dpo strong {
+            color: #F24B09;
+            font-weight: 700;
+        }
+
+        .contact-dpo-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .contact-dpo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            color: #444;
+            text-decoration: none;
+            padding: 15px 30px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .contact-dpo-link:hover {
+            border-color: #F24B09;
+            color: #F24B09;
+            background: #fff8f0;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-dpo-link i {
+            font-size: 18px;
+        }
+
+        /* Important Notice */
+        .important-notice {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 3px solid #ff9800;
+            border-radius: 15px;
+            padding: 35px;
+            margin: 50px 0;
+        }
+
+        .important-notice h3 {
+            color: #ff6a00;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .important-notice h3 i {
+            font-size: 28px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        /* Apple/Ultra-wide desktops (2560px and above) */
+        @media (min-width: 2560px) {
+            .privacy-container {
+                max-width: 1400px;
+                padding: 80px 60px;
+            }
+
+            .privacy-header h1 {
+                font-size: 48px;
+            }
+
+            .privacy-subtitle {
+                font-size: 22px;
+            }
+
+            .privacy-section {
+                padding: 40px;
+            }
+
+            .privacy-section h2 {
+                font-size: 32px;
+            }
+
+            .privacy-section h3 {
+                font-size: 26px;
+            }
+
+            .privacy-section p {
+                font-size: 18px;
+            }
+
+            .privacy-section li {
+                font-size: 18px;
+            }
+
+            .cookie-types {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 35px;
+            }
+
+            .quick-nav-links {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Large desktop (1920px - 2559px) */
+        @media (min-width: 1920px) and (max-width: 2559px) {
+            .privacy-container {
+                max-width: 1200px;
+                padding: 70px 50px;
+            }
+
+            .privacy-header h1 {
+                font-size: 42px;
+            }
+
+            .privacy-section {
+                padding: 35px;
+            }
+
+            .privacy-section h2 {
+                font-size: 28px;
+            }
+
+            .privacy-section h3 {
+                font-size: 22px;
+            }
+
+            .cookie-types {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Standard desktop (1440px - 1919px) */
+        @media (min-width: 1440px) and (max-width: 1919px) {
+            .privacy-container {
+                max-width: 1100px;
+                padding: 60px 45px;
+            }
+
+            .privacy-header h1 {
+                font-size: 38px;
+            }
+
+            .privacy-section {
+                padding: 30px;
+            }
+
+            .cookie-types {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .quick-nav-links {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Tablet Landscape (1024px - 1279px) */
+        @media (max-width: 1279px) {
+            .privacy-container {
+                max-width: 950px;
+                padding: 50px 40px;
+            }
+
+            .privacy-header h1 {
+                font-size: 34px;
+            }
+
+            .privacy-subtitle {
+                font-size: 17px;
+            }
+
+            .privacy-section h2 {
+                font-size: 24px;
+            }
+
+            .privacy-section h3 {
+                font-size: 20px;
+            }
+
+            .privacy-section p {
+                font-size: 16px;
+            }
+
+            .cookie-types {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .quick-nav-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Tablet Portrait (768px - 1023px) */
+        @media (max-width: 1023px) {
+            .privacy-container {
+                padding: 40px 30px;
+            }
+
+            .privacy-header {
+                margin-bottom: 40px;
+                padding-bottom: 25px;
+            }
+
+            .privacy-header h1 {
+                font-size: 32px;
+            }
+
+            .privacy-subtitle {
+                font-size: 16px;
+            }
+
+            .last-updated {
+                font-size: 14px;
+                padding: 6px 18px;
+            }
+
+            .privacy-section {
+                margin-bottom: 35px;
+                padding: 25px;
+            }
+
+            .privacy-section h2 {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+
+            .privacy-section h3 {
+                font-size: 19px;
+                margin: 25px 0 15px;
+            }
+
+            .privacy-section p {
+                font-size: 15px;
+            }
+
+            .privacy-section li {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+
+            .cookie-types {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .cookie-notice {
+                padding: 25px;
+                margin: 40px 0;
+            }
+
+            .cookie-notice h3 {
+                font-size: 22px;
+            }
+
+            .quick-nav {
+                padding: 30px;
+                margin: 40px 0;
+            }
+
+            .quick-nav h3 {
+                font-size: 22px;
+            }
+
+            .quick-nav-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-link {
+                padding: 15px 10px;
+                font-size: 14px;
+            }
+
+            .contact-dpo {
+                padding: 30px;
+                margin-top: 50px;
+            }
+
+            .contact-dpo h4 {
+                font-size: 24px;
+            }
+
+            .contact-dpo p {
+                font-size: 16px;
+            }
+
+            .contact-dpo-links {
+                gap: 15px;
+            }
+
+            .contact-dpo-link {
+                padding: 12px 25px;
+                font-size: 15px;
+            }
+        }
+
+        /* Large Mobile (600px - 767px) */
+        @media (max-width: 767px) {
+            .privacy-container {
+                padding: 35px 25px;
+            }
+
+            .privacy-header h1 {
+                font-size: 28px;
+                margin-bottom: 12px;
+            }
+
+            .privacy-subtitle {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .privacy-section {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .privacy-section h2 {
+                font-size: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .privacy-section h3 {
+                font-size: 18px;
+                margin: 20px 0 12px;
+            }
+
+            .privacy-section p {
+                font-size: 15px;
+            }
+
+            .privacy-section ul,
+            .privacy-section ol {
+                padding-left: 20px;
+            }
+
+            .privacy-section li {
+                font-size: 15px;
+                margin-bottom: 8px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            .quick-nav-links {
+                grid-template-columns: 1fr;
+            }
+
+            .cookie-types {
+                grid-template-columns: 1fr;
+            }
+
+            .cookie-notice h3 {
+                font-size: 20px;
+            }
+
+            .contact-dpo-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .contact-dpo-link {
+                width: 100%;
+                max-width: 350px;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile (480px - 599px) */
+        @media (max-width: 599px) {
+            .privacy-container {
+                padding: 30px 20px;
+            }
+
+            .privacy-header {
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+            }
+
+            .privacy-header h1 {
+                font-size: 26px;
+            }
+
+            .privacy-section {
+                padding: 18px;
+            }
+
+            .privacy-section h2 {
+                font-size: 19px;
+            }
+
+            .privacy-section h3 {
+                font-size: 17px;
+            }
+
+            .privacy-section p {
+                font-size: 14px;
+            }
+
+            .privacy-section li {
+                font-size: 14px;
+            }
+
+            .data-table {
+                min-width: 500px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .nav-link {
+                padding: 12px 10px;
+                font-size: 13px;
+            }
+
+            .contact-dpo {
+                padding: 25px;
+                margin-top: 40px;
+            }
+
+            .contact-dpo h4 {
+                font-size: 22px;
+            }
+
+            .contact-dpo p {
+                font-size: 15px;
+            }
+        }
+
+        /* Small Mobile (375px - 479px) */
+        @media (max-width: 479px) {
+            .privacy-container {
+                padding: 25px 15px;
+            }
+
+            .privacy-header h1 {
+                font-size: 24px;
+            }
+
+            .privacy-subtitle {
+                font-size: 14px;
+            }
+
+            .last-updated {
+                font-size: 13px;
+                padding: 5px 15px;
+            }
+
+            .privacy-section h2 {
+                font-size: 18px;
+            }
+
+            .privacy-section h3 {
+                font-size: 16px;
+            }
+
+            .privacy-section p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .privacy-section li {
+                font-size: 14px;
+            }
+
+            .data-table {
+                min-width: 450px;
+            }
+
+            .nav-link {
+                padding: 10px 8px;
+                font-size: 12px;
+            }
+
+            .contact-dpo-link {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* Extra Small Mobile (under 375px) */
+        @media (max-width: 374px) {
+            .privacy-container {
+                padding: 20px 12px;
+            }
+
+            .privacy-header h1 {
+                font-size: 22px;
+            }
+
+            .privacy-section {
+                padding: 15px;
+            }
+
+            .privacy-section h2 {
+                font-size: 17px;
+            }
+
+            .privacy-section h3 {
+                font-size: 15px;
+            }
+
+            .privacy-section p {
+                font-size: 13px;
+            }
+
+            .privacy-section li {
+                font-size: 13px;
+            }
+
+            .data-table {
+                min-width: 400px;
+            }
+
+            .contact-dpo-link {
+                font-size: 13px;
+                padding: 8px 15px;
+            }
+        }
+
+        /* ===== FOOTER (Your existing CSS) ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 30px 0 0;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-content-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .footer-logo-img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo-text span {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            padding: 3px 0;
+            position: relative;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-newsletter-form input:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .footer-bottom {
+            background: white;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        .footer-credit {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .footer-credit strong {
+            color: #000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="top-header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/tandurrum event.png" alt="Tanderrum">
+        </div>
+
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>CART</span>
+            </div>
+
+            <div class="login-section">
+                <i class="fa-solid fa-user"></i>
+                <span>LOGIN</span>
+            </div>
+
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== PRIVACY POLICY PAGE ===== -->
+<main class="privacy-container">
+    <!-- Header -->
+    <section class="privacy-header">
+        <h1>Privacy Policy<span></span></h1>
+        <p class="privacy-subtitle">
+            At Tanderrum, we are committed to protecting your privacy and ensuring the security of your personal information. 
+            This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services.
+        </p>
+        <div class="last-updated">Last Updated: January 18, 2026</div>
+    </section>
+
+    <!-- Quick Navigation -->
+    <section class="quick-nav">
+        <h3><i class="fas fa-bookmark"></i> Quick Navigation</h3>
+        <div class="quick-nav-links">
+            <a href="#data-collection" class="nav-link">
+                <i class="fas fa-database"></i>
+                <span>Data Collection</span>
+            </a>
+            <a href="#data-use" class="nav-link">
+                <i class="fas fa-chart-bar"></i>
+                <span>Data Usage</span>
+            </a>
+            <a href="#data-sharing" class="nav-link">
+                <i class="fas fa-share-alt"></i>
+                <span>Data Sharing</span>
+            </a>
+            <a href="#cookies" class="nav-link">
+                <i class="fas fa-cookie-bite"></i>
+                <span>Cookies</span>
+            </a>
+            <a href="#rights" class="nav-link">
+                <i class="fas fa-user-shield"></i>
+                <span>Your Rights</span>
+            </a>
+            <a href="#security" class="nav-link">
+                <i class="fas fa-lock"></i>
+                <span>Security</span>
+            </a>
+            <a href="#children" class="nav-link">
+                <i class="fas fa-child"></i>
+                <span>Children</span>
+            </a>
+            <a href="#changes" class="nav-link">
+                <i class="fas fa-edit"></i>
+                <span>Policy Updates</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Important Notice -->
+    <section class="important-notice">
+        <h3><i class="fas fa-exclamation-circle"></i> Important Notice</h3>
+        <p>
+            <strong>Please read this Privacy Policy carefully.</strong> By accessing or using Tanderrum's services, 
+            you acknowledge that you have read, understood, and agree to be bound by all the terms of this Privacy Policy. 
+            If you do not agree, please do not access or use our services.
+        </p>
+    </section>
+
+    <!-- Privacy Content -->
+    <div class="privacy-content">
+        <!-- Section 1: Data Collection -->
+        <section id="data-collection" class="privacy-section">
+            <h2><i class="fas fa-database"></i> 1. Information We Collect</h2>
+            <p>
+                We collect various types of information to provide and improve our services to you:
+            </p>
+            
+            <h3>1.1 Personal Information You Provide</h3>
+            <ul>
+                <li><strong>Account Information:</strong> Name, email address, phone number, password when you create an account</li>
+                <li><strong>Profile Information:</strong> Profile picture, preferences, interests, and other details you choose to provide</li>
+                <li><strong>Payment Information:</strong> Credit/debit card details, billing address, and transaction history</li>
+                <li><strong>Event Information:</strong> Tickets purchased, event preferences, and attendance history</li>
+                <li><strong>Communications:</strong> Contents of your messages, feedback, and support requests</li>
+            </ul>
+            
+            <h3>1.2 Information Collected Automatically</h3>
+            <div class="data-table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type of Data</th>
+                            <th>Examples</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Device Information</strong></td>
+                            <td>IP address, browser type, operating system, device identifiers</td>
+                            <td>Service optimization and security</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Usage Data</strong></td>
+                            <td>Pages visited, features used, time spent, click patterns</td>
+                            <td>Analytics and service improvement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Location Data</strong></td>
+                            <td>Approximate location based on IP, precise location (with consent)</td>
+                            <td>Personalized recommendations and local events</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cookies & Tracking</strong></td>
+                            <td>Session cookies, persistent cookies, tracking pixels</td>
+                            <td>Authentication, preferences, analytics</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Cookie Types -->
+        <div class="cookie-types">
+            <div class="cookie-type">
+                <i class="fas fa-cookie"></i>
+                <h4>Essential Cookies</h4>
+                <p>Required for basic site functionality including authentication and security. Cannot be disabled.</p>
+            </div>
+            <div class="cookie-type">
+                <i class="fas fa-chart-line"></i>
+                <h4>Analytics Cookies</h4>
+                <p>Collect anonymous data about how visitors use our website to help us improve our services.</p>
+            </div>
+            <div class="cookie-type">
+                <i class="fas fa-ad"></i>
+                <h4>Marketing Cookies</h4>
+                <p>Track browsing habits to deliver relevant advertisements and measure campaign effectiveness.</p>
+            </div>
+        </div>
+
+        <!-- Cookie Notice -->
+        <section class="cookie-notice">
+            <h3><i class="fas fa-cookie-bite"></i> Cookie & Tracking Technologies</h3>
+            <p>
+                We use cookies and similar tracking technologies to enhance your browsing experience, analyze site traffic, 
+                and deliver personalized content. You can control cookies through your browser settings, but disabling 
+                essential cookies may affect the functionality of our services.
+            </p>
+        </section>
+
+        <!-- Section 2: How We Use Data -->
+        <section id="data-use" class="privacy-section">
+            <h2><i class="fas fa-chart-bar"></i> 2. How We Use Your Information</h2>
+            <p>
+                We use the information we collect for various business purposes:
+            </p>
+            
+            <h3>2.1 Service Provision & Operation</h3>
+            <ul>
+                <li>Create and manage your account</li>
+                <li>Process ticket purchases and transactions</li>
+                <li>Provide customer support and respond to inquiries</li>
+                <li>Send important service-related communications</li>
+                <li>Verify your identity and prevent fraud</li>
+            </ul>
+            
+            <h3>2.2 Personalization & Improvement</h3>
+            <ul>
+                <li>Personalize your experience and content recommendations</li>
+                <li>Suggest events and venues based on your preferences</li>
+                <li>Improve our services, features, and user interface</li>
+                <li>Conduct research and analysis to enhance user experience</li>
+            </ul>
+            
+            <h3>2.3 Communication & Marketing</h3>
+            <ul>
+                <li>Send promotional emails about new events and special offers (with consent)</li>
+                <li>Notify you about event updates, changes, or cancellations</li>
+                <li>Request feedback and reviews about your experience</li>
+                <li>Administer contests, surveys, and promotional activities</li>
+            </ul>
+            
+            <h3>2.4 Legal & Security Purposes</h3>
+            <ul>
+                <li>Comply with legal obligations and regulatory requirements</li>
+                <li>Protect the security and integrity of our services</li>
+                <li>Investigate and prevent fraudulent or illegal activities</li>
+                <li>Enforce our Terms & Conditions and other policies</li>
+            </ul>
+        </section>
+
+        <!-- Section 3: Data Sharing -->
+        <section id="data-sharing" class="privacy-section">
+            <h2><i class="fas fa-share-alt"></i> 3. Information Sharing & Disclosure</h2>
+            <p>
+                We may share your information in the following circumstances:
+            </p>
+            
+            <h3>3.1 With Event Organizers</h3>
+            <p>
+                When you purchase tickets, we share necessary information with event organizers 
+                to facilitate entry, event management, and communication related to the event.
+            </p>
+            
+            <h3>3.2 Service Providers</h3>
+            <p>
+                We engage trusted third-party service providers to perform functions on our behalf, 
+                such as payment processing, data analysis, email delivery, hosting services, and 
+                customer support.
+            </p>
+            
+            <h3>3.3 Legal Requirements</h3>
+            <p>
+                We may disclose information if required by law, court order, or government request, 
+                or to protect the rights, property, or safety of Tanderrum, our users, or others.
+            </p>
+            
+            <h3>3.4 Business Transfers</h3>
+            <p>
+                In connection with any merger, sale of company assets, financing, or acquisition 
+                of all or a portion of our business, your information may be transferred as part 
+                of that transaction.
+            </p>
+        </section>
+
+        <!-- Section 4: Your Rights -->
+        <section id="rights" class="privacy-section">
+            <h2><i class="fas fa-user-shield"></i> 4. Your Privacy Rights</h2>
+            <p>
+                Depending on your location, you may have certain rights regarding your personal information:
+            </p>
+            
+            <h3>4.1 Access & Control Rights</h3>
+            <ul>
+                <li><strong>Right to Access:</strong> Request a copy of the personal data we hold about you</li>
+                <li><strong>Right to Rectification:</strong> Request correction of inaccurate or incomplete data</li>
+                <li><strong>Right to Erasure:</strong> Request deletion of your personal data (subject to legal limitations)</li>
+                <li><strong>Right to Restrict Processing:</strong> Request limitation on how we use your data</li>
+                <li><strong>Right to Data Portability:</strong> Receive your data in a structured, commonly used format</li>
+                <li><strong>Right to Object:</strong> Object to certain types of processing, including direct marketing</li>
+            </ul>
+            
+            <h3>4.2 Consent Management</h3>
+            <p>
+                Where we rely on your consent for processing, you may withdraw consent at any time. 
+                This does not affect the lawfulness of processing based on consent before its withdrawal.
+            </p>
+            
+            <h3>4.3 Exercising Your Rights</h3>
+            <p>
+                To exercise any of these rights, please contact us using the information provided in 
+                the "Contact Our Data Protection Officer" section below. We may need to verify your 
+                identity before processing your request.
+            </p>
+        </section>
+
+        <!-- Section 5: Data Security -->
+        <section id="security" class="privacy-section">
+            <h2><i class="fas fa-lock"></i> 5. Data Security & Retention</h2>
+            
+            <h3>5.1 Security Measures</h3>
+            <p>
+                We implement appropriate technical and organizational security measures to protect 
+                your personal information against unauthorized access, alteration, disclosure, 
+                or destruction:
+            </p>
+            <ul>
+                <li>Encryption of sensitive data both in transit (SSL/TLS) and at rest</li>
+                <li>Regular security assessments, vulnerability testing, and penetration testing</li>
+                <li>Strict access controls and authentication mechanisms</li>
+                <li>Regular employee training on data protection and security best practices</li>
+                <li>Secure data center facilities with physical security measures</li>
+            </ul>
+            
+            <h3>5.2 Data Retention</h3>
+            <p>
+                We retain personal information only as long as necessary for the purposes outlined 
+                in this Privacy Policy, or as required by applicable laws. Our retention periods 
+                are determined by:
+            </p>
+            <ul>
+                <li>The ongoing business need for the information</li>
+                <li>Legal obligations (e.g., tax, accounting, regulatory requirements)</li>
+                <li>Dispute resolution and enforcement of our agreements</li>
+                <li>Historical and statistical purposes (with appropriate anonymization)</li>
+            </ul>
+            <p>
+                When personal information is no longer needed, we securely delete or anonymize it.
+            </p>
+        </section>
+
+        <!-- Section 6: Children's Privacy -->
+        <section id="children" class="privacy-section">
+            <h2><i class="fas fa-child"></i> 6. Children's Privacy</h2>
+            <p>
+                Our services are not directed to individuals under the age of 16. We do not knowingly 
+                collect personal information from children under 16.
+            </p>
+            <p>
+                If we become aware that we have collected personal information from a child under 
+                16 without parental consent, we will take steps to delete that information promptly.
+            </p>
+            <p>
+                Parents or guardians who believe their child has provided personal information to us 
+                should contact us immediately to request deletion of that information.
+            </p>
+        </section>
+
+        <!-- Section 7: International Data Transfers -->
+        <section id="international" class="privacy-section">
+            <h2><i class="fas fa-globe"></i> 7. International Data Transfers</h2>
+            <p>
+                As a global platform, we may transfer your personal information to countries outside 
+                your country of residence, including Australia, the United States, and other locations 
+                where our service providers operate.
+            </p>
+            <p>
+                When we transfer personal information internationally, we implement appropriate 
+                safeguards in accordance with applicable data protection laws, such as standard 
+                contractual clauses or other approved mechanisms.
+            </p>
+        </section>
+
+        <!-- Section 8: Policy Changes -->
+        <section id="changes" class="privacy-section">
+            <h2><i class="fas fa-edit"></i> 8. Changes to This Privacy Policy</h2>
+            
+            <h3>8.1 Updates & Revisions</h3>
+            <p>
+                We may update this Privacy Policy from time to time to reflect changes in our 
+                practices, technology, legal requirements, or other factors. When we make changes, 
+                we will update the "Last Updated" date at the top of this policy.
+            </p>
+            
+            <h3>8.2 Notification of Changes</h3>
+            <p>
+                For material changes, we will provide notice through our services or by other means, 
+                such as email, to give you the opportunity to review the changes before they become 
+                effective.
+            </p>
+            
+            <h3>8.3 Continued Use</h3>
+            <p>
+                Your continued use of our services after the effective date of the revised Privacy 
+                Policy constitutes your acceptance of the terms. We encourage you to periodically 
+                review this page for the latest information on our privacy practices.
+            </p>
+        </section>
+    </div>
+
+    <!-- Contact DPO -->
+    <section class="contact-dpo">
+        <h4>Contact Our Data Protection Officer</h4>
+        <p>
+            If you have questions about this Privacy Policy, wish to exercise your privacy rights, 
+            or have concerns about how we handle your personal information, please contact our 
+            Data Protection Officer:
+        </p>
+        <div class="contact-dpo-links">
+            <a href="mailto:privacy@tanderrum.ai" class="contact-dpo-link">
+                <i class="fas fa-envelope"></i> privacy@tanderrum.ai
+            </a>
+            <a href="tel:0391234567" class="contact-dpo-link">
+                <i class="fas fa-phone"></i> (03) 9123 4567
+            </a>
+            <a href="#" class="contact-dpo-link">
+                <i class="fas fa-file-pdf"></i> Download Full Policy
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-new">
+    <div class="footer-content-container">
+        <!-- Logo and social media -->
+        <div class="footer-logo-social">
+            <div class="footer-logo-wrapper">
+                <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+                <div class="footer-logo-text">TANDERRUM<span>.Event</span></div>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact information -->
+        <div class="footer-contact">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>(03) 9123 4567</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hello@tanderrum.ai</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="footer-nav">
+            <a href="#">HOME</a>
+            <a href="#">BROWSE EVENTS</a>
+            <a href="#">VENUES</a>
+            <a href="#">HELP CENTER</a>
+        </nav>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter-section">
+            <h3>NEVER MISS OUT</h3>
+            <p>Get notified about new events</p>
+            <form class="footer-newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">→</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#" class="active">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+        <div class="footer-credit">
+            Design by 
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.querySelector('.menu-btn');
+        const topHeader = document.querySelector('.top-header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                topHeader.classList.toggle('active');
+            });
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 900) {
+                    topHeader.classList.remove('active');
+                }
+            });
+        });
+        
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 900 && 
+                topHeader.classList.contains('active') &&
+                !event.target.closest('.header-container') &&
+                !event.target.closest('.menu-btn')) {
+                topHeader.classList.remove('active');
+            }
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                topHeader.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Update footer link to active state for Privacy Policy
+        const footerPrivacyLink = document.querySelector('.footer-legal a[href*="privacy"]');
+        if (footerPrivacyLink) {
+            footerPrivacyLink.classList.add('active');
+        }
+    });
+</script>
+
+</body>
+</html>
