@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Policy | Tanderrum</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== GENERAL ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* ===== HEADER (Your existing CSS) ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 110px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 13px;
+            padding-bottom: 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -16px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #ff6a00;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 3px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 13px;
+            width: 130px;
+            background: transparent;
+        }
+
+        .search-nav i {
+            font-size: 13px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .header-icon {
+            font-size: 16px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        .login-text {
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .login-text:hover {
+            color: #ff6a00;
+        }
+
+        .menu-btn {
+            font-size: 18px;
+            cursor: pointer;
+            display: none;
+            color: #000;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .menu-btn:hover {
+            color: #ff6a00;
+        }
+
+        /* ===== MOBILE MENU STYLES ===== */
+        .top-header.active .nav-links {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            gap: 0;
+        }
+
+        .top-header.active .nav-links a {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 15px;
+            width: 100%;
+        }
+
+        .top-header.active .nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .top-header.active .nav-links a.active::after {
+            display: none;
+        }
+
+        .top-header.active .nav-links a.active {
+            color: #ff6a00;
+            font-weight: bold;
+        }
+
+        /* ===== RESPONSIVE HEADER ===== */
+        @media (min-width: 901px) {
+            .nav-links { display: flex !important; }
+            .menu-btn { display: none !important; }
+            .header-actions { gap: 20px; }
+            .search-nav, .header-icon { display: flex !important; }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none !important; }
+            .menu-btn { display: block !important; order: 3; }
+            .header-container { padding: 12px 20px; }
+            .header-actions { gap: 15px; order: 2; margin-left: auto; }
+            .search-nav { display: none !important; }
+            .header-actions .header-icon:nth-child(2) { display: flex !important; }
+            .header-actions .login-text { display: none !important; }
+            .header-actions .header-icon:last-child { display: flex !important; }
+            .logo { order: 1; }
+            .logo img { width: 100px; }
+        }
+
+        /* ===== COMPACT RETURN POLICY PAGE ===== */
+        .return-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            background: #fff;
+        }
+
+        /* Header */
+        .return-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .return-header h1 {
+            font-size: 34px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .return-header h1 i {
+            color: #F24B09;
+            font-size: 32px;
+        }
+
+        .return-subtitle {
+            font-size: 16px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 20px;
+            line-height: 1.5;
+        }
+
+        .update-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #F24B09;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .update-date i {
+            font-size: 14px;
+        }
+
+        /* Main Content */
+        .return-content {
+            background: #fff;
+        }
+
+        .return-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            border-left: 4px solid #F24B09;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: #fff8f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F24B09;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #111;
+            margin: 0;
+        }
+
+        .return-section p {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .return-section ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .return-section li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+            font-size: 15px;
+            color: #444;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .timeline-step {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #F24B09;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0 auto 12px;
+        }
+
+        .timeline-step h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 8px;
+        }
+
+        .timeline-step p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* Notice */
+        .notice-box {
+            background: #fff8f0;
+            border: 2px solid #F24B09;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notice-box i {
+            color: #F24B09;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .notice-box p {
+            font-size: 15px;
+            font-weight: 500;
+            color: #111;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Cases Grid */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .case-item {
+            background: white;
+            border-radius: 10px;
+            padding: 18px;
+            border: 1px solid #eee;
+        }
+
+        .case-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .case-item h4 i {
+            color: #F24B09;
+            font-size: 16px;
+        }
+
+        .case-item p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* Contact */
+        .contact-section {
+            text-align: center;
+            padding: 30px;
+            background: #f5f5f5;
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .contact-section h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .contact-section h3 i {
+            color: #F24B09;
+        }
+
+        .contact-section p {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #444;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            border-color: #F24B09;
+            color: #F24B09;
+        }
+
+        .contact-link i {
+            font-size: 14px;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+
+        /* Tablet Landscape (1024px - 1279px) */
+        @media (max-width: 1279px) {
+            .return-container {
+                max-width: 900px;
+                padding: 35px 25px;
+            }
+
+            .return-header h1 {
+                font-size: 30px;
+            }
+
+            .timeline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cases-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Tablet Portrait (768px - 1023px) */
+        @media (max-width: 1023px) {
+            .return-container {
+                padding: 30px 20px;
+            }
+
+            .return-header h1 {
+                font-size: 26px;
+            }
+
+            .return-subtitle {
+                font-size: 15px;
+            }
+
+            .return-section {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+
+            .section-header h2 {
+                font-size: 20px;
+            }
+
+            .return-section p {
+                font-size: 14px;
+            }
+
+            .return-section li {
+                font-size: 14px;
+            }
+
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .contact-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Large Mobile (600px - 767px) */
+        @media (max-width: 767px) {
+            .return-container {
+                padding: 25px 15px;
+            }
+
+            .return-header h1 {
+                font-size: 24px;
+            }
+
+            .return-section {
+                padding: 18px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .section-header h2 {
+                font-size: 18px;
+            }
+
+            .notice-box {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+                padding: 15px;
+            }
+        }
+
+        /* Mobile (480px - 599px) */
+        @media (max-width: 599px) {
+            .return-container {
+                padding: 20px 12px;
+            }
+
+            .return-header h1 {
+                font-size: 22px;
+            }
+
+            .return-section {
+                padding: 15px;
+            }
+
+            .contact-section {
+                padding: 20px;
+            }
+        }
+
+        /* Small Mobile (375px - 479px) */
+        @media (max-width: 479px) {
+            .return-container {
+                padding: 15px 10px;
+            }
+
+            .return-header h1 {
+                font-size: 20px;
+            }
+
+            .section-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+
+        /* ===== FOOTER (Your existing CSS) ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 30px 0 0;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-content-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .footer-logo-img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo-text span {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            padding: 3px 0;
+            position: relative;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-newsletter-form input:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .footer-bottom {
+            background: white;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .footer-bottom-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        .footer-credit {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .footer-credit strong {
+            color: #000;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="top-header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/tandurrum event.png" alt="Tanderrum">
+        </div>
+
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>CART</span>
+            </div>
+
+            <div class="login-section">
+                <i class="fa-solid fa-user"></i>
+                <span>LOGIN</span>
+            </div>
+
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== COMPACT RETURN POLICY PAGE ===== -->
+<main class="return-container">
+    <!-- Header -->
+    <section class="return-header">
+        <h1><i class="fas fa-exchange-alt"></i> Return Policy</h1>
+        <p class="return-subtitle">
+            Our policy for event ticket returns and refunds. Please read before purchasing.
+        </p>
+        <div class="update-date">
+            <i class="fas fa-calendar-alt"></i> Last Updated: January 18, 2026
+        </div>
+    </section>
+
+    <!-- Content -->
+    <div class="return-content">
+        <!-- Section 1 -->
+        <section class="return-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h2>General Policy</h2>
+            </div>
+            <p>All ticket sales are final. Refunds only for:</p>
+            <ul>
+                <li>Event cancellations</li>
+                <li>Significant event changes</li>
+                <li>As required by law</li>
+            </ul>
+        </section>
+
+        <!-- Timeline -->
+        <div class="timeline">
+            <div class="timeline-step">
+                <div class="step-number">1</div>
+                <h4>Request</h4>
+                <p>Submit refund request</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">2</div>
+                <h4>Review</h4>
+                <p>Reviewed within 48 hours</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">3</div>
+                <h4>Process</h4>
+                <p>Refund initiated</p>
+            </div>
+            <div class="timeline-step">
+                <div class="step-number">4</div>
+                <h4>Complete</h4>
+                <p>5-10 business days</p>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <section class="return-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-calendar-times"></i>
+                </div>
+                <h2>Event Cancellations</h2>
+            </div>
+            <p>Full refund for canceled events:</p>
+            <ul>
+                <li>Auto-processed to original payment</li>
+                <li>Email notification sent</li>
+                <li>5-10 business day processing</li>
+            </ul>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="return-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-calendar-plus"></i>
+                </div>
+                <h2>Event Postponements</h2>
+            </div>
+            <p>If event is rescheduled:</p>
+            <ul>
+                <li>Tickets remain valid for new date</li>
+                <li>Refund within 7 days of announcement</li>
+                <li>Submit request via your account</li>
+            </ul>
+        </section>
+
+        <!-- Notice -->
+        <div class="notice-box">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>Service fees are non-refundable unless event is canceled by organizer.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <section class="return-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-ban"></i>
+                </div>
+                <h2>Non-Refundable</h2>
+            </div>
+            <p>No refunds for:</p>
+            <div class="cases-grid">
+                <div class="case-item">
+                    <h4><i class="fas fa-user-clock"></i> Change of Plans</h4>
+                    <p>Personal schedule changes</p>
+                </div>
+                <div class="case-item">
+                    <h4><i class="fas fa-map-marker-alt"></i> Travel Issues</h4>
+                    <p>Transportation problems</p>
+                </div>
+                <div class="case-item">
+                    <h4><i class="fas fa-eye"></i> Event Experience</h4>
+                    <p>Dissatisfaction with event</p>
+                </div>
+                <div class="case-item">
+                    <h4><i class="fas fa-user-check"></i> Lost Tickets</h4>
+                    <p>Lost or stolen tickets</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section class="return-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h2>Refund Methods</h2>
+            </div>
+            <p>Refunds to original payment:</p>
+            <ul>
+                <li>Credit/Debit: 5-10 business days</li>
+                <li>PayPal: 3-5 business days</li>
+                <li>Bank Transfer: 7-14 business days</li>
+                <li>Gift Cards: Re-credited</li>
+            </ul>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact-section">
+            <h3><i class="fas fa-headset"></i> Need Help?</h3>
+            <p>Contact our support team for assistance:</p>
+            <div class="contact-links">
+                <a href="mailto:support@tanderrum.ai" class="contact-link">
+                    <i class="fas fa-envelope"></i> support@tanderrum.ai
+                </a>
+                <a href="tel:0391234567" class="contact-link">
+                    <i class="fas fa-phone"></i> (03) 9123 4567
+                </a>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-new">
+    <div class="footer-content-container">
+        <!-- Logo and social media -->
+        <div class="footer-logo-social">
+            <div class="footer-logo-wrapper">
+                <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+                <div class="footer-logo-text">TANDERRUM<span>.Event</span></div>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact information -->
+        <div class="footer-contact">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <span>(03) 9123 4567</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>hello@tanderrum.ai</span>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="footer-nav">
+            <a href="#">HOME</a>
+            <a href="#">BROWSE EVENTS</a>
+            <a href="#">VENUES</a>
+            <a href="#">HELP CENTER</a>
+        </nav>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter-section">
+            <h3>NEVER MISS OUT</h3>
+            <p>Get notified about new events</p>
+            <form class="footer-newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">→</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#" class="active">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+        <div class="footer-credit">
+            Design by 
+        </div>
+    </div>
+</footer>
+
+<!-- JavaScript for Mobile Menu -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.querySelector('.menu-btn');
+        const topHeader = document.querySelector('.top-header');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                topHeader.classList.toggle('active');
+            });
+        }
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 900) {
+                    topHeader.classList.remove('active');
+                }
+            });
+        });
+        
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 900 && 
+                topHeader.classList.contains('active') &&
+                !event.target.closest('.header-container') &&
+                !event.target.closest('.menu-btn')) {
+                topHeader.classList.remove('active');
+            }
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) {
+                topHeader.classList.remove('active');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
