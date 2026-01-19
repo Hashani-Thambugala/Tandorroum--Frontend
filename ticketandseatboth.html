@@ -1,0 +1,3756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tanderrum - Seat Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #fff;
+            color: #111;
+        }
+
+        /* ===== HEADER ===== */
+        .top-header {
+            border-bottom: 1px solid #eee;
+            position: relative;
+            background: white;
+        }
+
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Nav - HIDDEN ON MOBILE, SHOW ON DESKTOP */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            padding-bottom: 6px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active {
+            color: #ff6a00;
+        }
+
+        .nav-links a.active::after {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #ff6a00;
+        }
+
+        /* Header actions */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        /* Search box in header */
+        .search-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #0c0b0b;
+            padding-bottom: 4px;
+        }
+
+        .search-nav input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            width: 140px;
+            background: transparent;
+        }
+
+        .search-nav i {
+            font-size: 14px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        /* Icons */
+        .header-icon {
+            font-size: 18px;
+            cursor: pointer;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        .header-icon:hover {
+            color: #ff6a00;
+        }
+
+        /* Login text */
+        .login-text {
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .login-text:hover {
+            color: #ff6a00;
+        }
+
+        /* Menu icon - HIDDEN BY DEFAULT, SHOW ON MOBILE */
+        .menu-btn {
+            font-size: 20px;
+            cursor: pointer;
+            display: none;
+            color: #000;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .menu-btn:hover {
+            color: #ff6a00;
+        }
+
+        /* ===== MOBILE RESPONSIVE STYLES ===== */
+        @media (max-width: 991px) {
+            .menu-btn {
+                display: block;
+                order: 3;
+            }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .top-header.active .nav-links {
+                display: flex !important;
+            }
+            
+            .nav-links a {
+                padding: 16px 30px;
+                border-bottom: 1px solid #eee;
+                font-size: 16px;
+                width: 100%;
+                display: block;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-links a.active::after {
+                display: none;
+            }
+            
+            .nav-links a.active {
+                color: #ff6a00;
+                font-weight: bold;
+                background: rgba(255, 106, 0, 0.05);
+            }
+            
+            .header-container {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+                position: relative;
+            }
+            
+            .logo {
+                order: 1;
+                flex: 1;
+            }
+            
+            .header-actions {
+                order: 2;
+                gap: 15px;
+            }
+            
+            .search-nav {
+                display: none;
+            }
+            
+            .login-text {
+                display: none;
+            }
+            
+            .header-icon {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 12px 15px;
+            }
+            
+            .nav-links a {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+            
+            .header-actions {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 10px 12px;
+            }
+            
+            .logo img {
+                width: 100px;
+            }
+            
+            .nav-links a {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .header-actions {
+                gap: 10px;
+            }
+            
+            .header-icon {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo img {
+                width: 90px;
+            }
+            
+            .header-actions {
+                gap: 8px;
+            }
+        }
+
+        /* ===== HERO IMAGE SECTION ===== */
+        .event-hero {
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .hero-backdrop {
+            width: 100%;
+            position: relative;
+            min-height: 280px;
+            max-height: 400px;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0.2) 0%,
+                rgba(0, 0, 0, 0.4) 40%,
+                rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            padding: 0 30px;
+            color: white;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            text-align: left;
+        }
+
+        .event-badge {
+            display: inline-block;
+            background: #ff6a00;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
+        }
+
+        .event-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+            max-width: 800px;
+        }
+
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item i {
+            color: #ff6a00;
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .meta-item span {
+            white-space: nowrap;
+        }
+
+        /* Responsive Hero */
+        @media (max-width: 1200px) {
+            .event-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .event-title {
+                font-size: 24px;
+            }
+            
+            .event-meta {
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .event-title {
+                font-size: 20px;
+            }
+            
+            .event-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .meta-item {
+                font-size: 13px;
+                padding: 6px 12px;
+            }
+        }
+
+        /* ===== DUAL SELECTION BOOKING SECTION ===== */
+        .booking-section {
+            padding: 15px 0 30px;
+            background: #f8f9fa;
+        }
+
+        .booking-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Progress Indicator - COMPACT */
+        .compact-progress {
+            margin-bottom: 20px;
+        }
+
+        .progress-icons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .progress-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            min-width: 60px;
+        }
+
+        .progress-icon.active {
+            background: rgba(255, 106, 0, 0.1);
+        }
+
+        .progress-icon i {
+            width: 28px;
+            height: 28px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .progress-icon.active i {
+            background: #ff6a00;
+            color: white;
+            box-shadow: 0 3px 8px rgba(255, 106, 0, 0.3);
+        }
+
+        .progress-icon span {
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .progress-icon.active span {
+            color: #ff6a00;
+        }
+
+        .progress-line {
+            width: 25px;
+            height: 2px;
+            background: #e0e0e0;
+            margin: 0 3px;
+        }
+
+        /* Main Booking Layout */
+        .dual-booking {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+        }
+
+        /* Selection Tabs */
+        .selection-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0;
+        }
+
+        .selection-tab {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .selection-tab:hover {
+            background: white;
+            color: #ff6a00;
+        }
+
+        .selection-tab.active {
+            background: white;
+            color: #ff6a00;
+            border-bottom: 3px solid #ff6a00;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Venue Map Container - OPTIMIZED */
+        .venue-map-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .venue-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .venue-header h3 {
+            font-size: 18px;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .venue-header h3 i {
+            color: #ff6a00;
+        }
+
+        .venue-info {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Venue Image with Overlay Zones - OPTIMIZED */
+        .venue-image-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #000;
+            min-height: 300px;
+            margin-bottom: 20px;
+            border: 2px solid #eee;
+        }
+
+        .venue-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Zone Overlays on Venue Image */
+        .zone-overlays {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .zone-area {
+            position: absolute;
+            border: 2px solid;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .zone-area:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .zone-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Zone A (VIP) */
+        .zone-a {
+            border-color: #ff6a00;
+            top: 15%;
+            left: 30%;
+            width: 40%;
+            height: 20%;
+        }
+
+        /* Zone B (Premium) */
+        .zone-b {
+            border-color: #4a90e2;
+            top: 38%;
+            left: 25%;
+            width: 50%;
+            height: 25%;
+        }
+
+        /* Zone C (Standard) */
+        .zone-c {
+            border-color: #50c878;
+            top: 65%;
+            left: 20%;
+            width: 60%;
+            height: 25%;
+        }
+
+        /* Zone D (Economy) */
+        .zone-d {
+            border-color: #9b59b6;
+            top: 15%;
+            left: 10%;
+            width: 15%;
+            height: 60%;
+        }
+
+        .zone-e {
+            border-color: #9b59b6;
+            top: 15%;
+            right: 10%;
+            width: 15%;
+            height: 60%;
+        }
+
+        /* Zone Selection Instructions */
+        .zone-instructions {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 3px solid #ff6a00;
+        }
+
+        /* Selection Counter Display - Compact with Subtitles */
+        .selection-counter-display {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+            padding: 16px;
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border-radius: 10px;
+            border: 1px solid #eee;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+        }
+
+        .counter-card {
+            background: rgb(245, 242, 242);
+            padding: 14px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #ff6a00;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .counter-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-color: #ddd;
+        }
+
+        .counter-type {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .counter-subtitle {
+            font-size: 10px;
+            color: #999;
+            margin-bottom: 8px;
+            font-weight: 500;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .counter-count {
+            font-size: 22px;
+            font-weight: 800;
+            color: #222;
+            line-height: 1;
+            margin: 6px 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .counter-price {
+            font-size: 11px;
+            color: #ff6a00;
+            font-weight: 600;
+            margin-top: 4px;
+            background: rgba(255, 106, 0, 0.08);
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+
+
+        /* Ticket Selection Container */
+        .ticket-selection-container {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .ticket-header h3 {
+            font-size: 18px;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ticket-header h3 i {
+            color: #ff6a00;
+        }
+
+        .ticket-info {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Ticket Types - Compact Cards */
+        .ticket-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .ticket-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-color: #ddd;
+        }
+
+        .ticket-card.vip {
+            border-color: #ff6a00;
+            background: linear-gradient(135deg, #fff8f3, #ffffff);
+        }
+
+        .ticket-card.premium {
+            border-color: #4a90e2;
+            background: linear-gradient(135deg, #f0f8ff, #ffffff);
+        }
+
+        .ticket-card.standard {
+            border-color: #50c878;
+            background: linear-gradient(135deg, #f0fff4, #ffffff);
+        }
+
+        .ticket-card.economy {
+            border-color: #9b59b6;
+            background: linear-gradient(135deg, #f8f0ff, #ffffff);
+        }
+
+        .ticket-header-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .ticket-title {
+            flex: 1;
+        }
+
+        .ticket-title h4 {
+            font-size: 16px;
+            color: #222;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ticket-title h4 i {
+            color: #ff6a00;
+        }
+
+        .ticket-badge {
+            display: inline-block;
+            background: #ff6a00;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .ticket-card.premium .ticket-badge {
+            background: #4a90e2;
+        }
+
+        .ticket-card.standard .ticket-badge {
+            background: #50c878;
+        }
+
+        .ticket-card.economy .ticket-badge {
+            background: #9b59b6;
+        }
+
+        .ticket-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: #222;
+        }
+
+        .ticket-card.vip .ticket-price {
+            color: #ff6a00;
+        }
+
+        .ticket-card.premium .ticket-price {
+            color: #4a90e2;
+        }
+
+        .ticket-card.standard .ticket-price {
+            color: #50c878;
+        }
+
+        .ticket-card.economy .ticket-price {
+            color: #9b59b6;
+        }
+
+        .ticket-desc {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .ticket-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: white;
+            color: #666;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-btn:hover {
+            border-color: #ff6a00;
+            color: #ff6a00;
+            transform: scale(1.1);
+        }
+
+        .qty-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .ticket-card.vip .qty-btn:hover {
+            border-color: #ff6a00;
+            color: #ff6a00;
+        }
+
+        .ticket-card.premium .qty-btn:hover {
+            border-color: #4a90e2;
+            color: #4a90e2;
+        }
+
+        .ticket-card.standard .qty-btn:hover {
+            border-color: #50c878;
+            color: #50c878;
+        }
+
+        .ticket-card.economy .qty-btn:hover {
+            border-color: #9b59b6;
+            color: #9b59b6;
+        }
+
+        .ticket-controls input {
+            width: 50px;
+            height: 32px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #222;
+            background: white;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .ticket-controls input:focus {
+            border-color: #ff6a00;
+        }
+
+        .ticket-card.vip .ticket-controls input:focus {
+            border-color: #ff6a00;
+        }
+
+        .ticket-card.premium .ticket-controls input:focus {
+            border-color: #4a90e2;
+        }
+
+        .ticket-card.standard .ticket-controls input:focus {
+            border-color: #50c878;
+        }
+
+        .ticket-card.economy .ticket-controls input:focus {
+            border-color: #9b59b6;
+        }
+
+        /* Ticket Legend */
+        .ticket-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 25px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            transition: transform 0.2s ease;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-2px);
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 5px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .legend-info {
+            flex: 1;
+        }
+
+        .legend-name {
+            font-weight: 600;
+            color: #222;
+            margin-bottom: 3px;
+            font-size: 13px;
+        }
+
+        .legend-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ff6a00;
+        }
+
+        .legend-desc {
+            font-size: 11px;
+            color: #666;
+            margin-top: 2px;
+        }
+
+        /* Selection Confirmation */
+        .selection-confirmation {
+            background: linear-gradient(135deg, #e8f4ff, #ffffff);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #4a90e2;
+            text-align: center;
+        }
+
+        .confirmation-icon {
+            font-size: 36px;
+            color: #4a90e2;
+            margin-bottom: 12px;
+        }
+
+        .confirmation-message {
+            font-size: 16px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 8px;
+        }
+
+        .confirmation-details {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Zone Selection Styles - OPTIMIZED */
+        .zone-selection {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .zone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .zone-header h3 {
+            font-size: 18px;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .zone-header h3 i {
+            color: #ff6a00;
+        }
+
+        .zone-info {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Zone Tabs */
+        .zone-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 12px;
+        }
+
+        .zone-tab {
+            padding: 8px 16px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            border: 1px solid transparent;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .zone-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .zone-tab.active {
+            border-color: #ff6a00;
+            background: rgba(255, 106, 0, 0.1);
+            color: #ff6a00;
+        }
+
+        .zone-tab.vip {
+            border-left: 3px solid #ff6a00;
+        }
+
+        .zone-tab.premium {
+            border-left: 3px solid #4a90e2;
+        }
+
+        .zone-tab.standard {
+            border-left: 3px solid #50c878;
+        }
+
+        .zone-tab.economy {
+            border-left: 3px solid #9b59b6;
+        }
+
+        /* Zone Content */
+        .zone-content {
+            display: none;
+        }
+
+        .zone-content.active {
+            display: block;
+        }
+
+        .zone-stage {
+            background: linear-gradient(135deg, #222, #444);
+            color: white;
+            text-align: center;
+            padding: 20px 30px;
+            margin: 0 auto 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            max-width: 700px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .zone-stage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6a00, #ffd700, #ff6a00);
+            animation: stageGlow 3s infinite;
+        }
+
+        @keyframes stageGlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Zone Grid Layout - OPTIMIZED */
+        .zone-grid-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+
+        .zone-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        .zone-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .row-label {
+            min-width: 35px;
+            text-align: center;
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+            margin-right: 8px;
+        }
+
+        .seat-cell {
+            position: relative;
+        }
+
+        .zone-seat {
+            width: 42px;
+            height: 42px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            border: 2px solid transparent;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .zone-seat:hover:not(.booked):not(.selected) {
+            transform: scale(1.08);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+        }
+
+        .zone-seat:hover::after {
+            content: attr(data-price);
+            position: absolute;
+            bottom: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 3px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .zone-seat:hover::before {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid transparent;
+            border-bottom-color: #333;
+        }
+
+        /* Zone Seat Types */
+        .zone-seat.vip {
+            background: linear-gradient(135deg, #ff6a00, #ff8c42);
+            border-color: #e55a00;
+        }
+
+        .zone-seat.premium {
+            background: linear-gradient(135deg, #4a90e2, #67a6f0);
+            border-color: #2a7fdf;
+        }
+
+        .zone-seat.standard {
+            background: linear-gradient(135deg, #50c878, #70d891);
+            border-color: #3db36a;
+        }
+
+        .zone-seat.economy {
+            background: linear-gradient(135deg, #9b59b6, #b07cc6);
+            border-color: #8e44ad;
+        }
+
+        /* Seat States */
+        .zone-seat.selected {
+            border: 2px solid #000;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0,0,0,0.2); }
+            70% { box-shadow: 0 0 0 8px rgba(0,0,0,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+        }
+
+        .zone-seat.booked {
+            background: linear-gradient(135deg, #95a5a6, #bdc3c7);
+            border-color: #7f8c8d;
+            cursor: not-allowed;
+            opacity: 0.5;
+            transform: none !important;
+        }
+
+        /* Zone Legend */
+        .zone-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        /* Enhanced Summary - OPTIMIZED */
+        .enhanced-summary {
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #ff6a00;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6a00, #ff8c42, #ff6a00);
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-header h3 {
+            font-size: 16px;
+            color: #222;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-header h3 i {
+            color: #ff6a00;
+        }
+
+        .item-count {
+            font-size: 12px;
+            color: #ff6a00;
+            background: rgba(255, 106, 0, 0.1);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-weight: 700;
+        }
+
+        .order-items {
+            min-height: 70px;
+            margin-bottom: 20px;
+            max-height: 280px;
+            overflow-y: auto;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s ease;
+        }
+
+        .order-item:hover {
+            background: white;
+            padding: 10px 12px;
+            margin: 0 -12px;
+            border-radius: 6px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 3px;
+        }
+
+        .item-details {
+            display: flex;
+            gap: 12px;
+            font-size: 11px;
+            color: #666;
+        }
+
+        .item-price {
+            font-size: 14px;
+            font-weight: 700;
+            color: #222;
+            min-width: 70px;
+            text-align: right;
+        }
+
+        .empty-order {
+            text-align: center;
+            padding: 20px 0;
+            color: #999;
+        }
+
+        .empty-order i {
+            font-size: 36px;
+            margin-bottom: 12px;
+            opacity: 0.3;
+        }
+
+        .empty-order p {
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .price-breakdown {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 13px;
+            padding: 6px 0;
+        }
+
+        .price-row span:first-child {
+            color: #666;
+        }
+
+        .price-row span:last-child {
+            font-weight: 600;
+        }
+
+        .price-row.total {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 16px;
+            color: #222;
+            font-weight: 800;
+        }
+
+        .final-total {
+            color: #ff6a00;
+            font-size: 22px;
+        }
+
+        .promo-box {
+            margin: 20px 0;
+        }
+
+        .promo-input {
+            display: flex;
+            gap: 8px;
+        }
+
+        .promo-input input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .promo-input input:focus {
+            border-color: #ff6a00;
+            box-shadow: 0 0 0 2px rgba(255, 106, 0, 0.1);
+        }
+
+        .promo-btn {
+            padding: 0 18px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .promo-btn:hover {
+            background: #ff6a00;
+            transform: translateY(-2px);
+        }
+
+        .next-action {
+            margin-top: 20px;
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #222, #444);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #ff6a00, #ff8c42);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 106, 0, 0.3);
+        }
+
+        .next-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .secure-note {
+            text-align: center;
+            font-size: 11px;
+            color: #777;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .secure-note i {
+            color: #50c878;
+        }
+
+        .quick-info {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .info-point {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .info-point:hover {
+            transform: translateX(5px);
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+
+        .info-point i {
+            color: #ff6a00;
+            font-size: 16px;
+            width: 20px;
+        }
+
+        .info-point div {
+            flex: 1;
+        }
+
+        .info-point strong {
+            font-size: 13px;
+            color: #222;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .info-point small {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        
+        /* Large Desktop Screens (1920px and above) */
+        @media (min-width: 1920px) {
+            .booking-container {
+                max-width: 1600px;
+            }
+            
+            .dual-booking {
+                grid-template-columns: 1fr 400px;
+                gap: 30px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 380px;
+            }
+            
+            .zone-seat {
+                width: 48px;
+                height: 48px;
+                font-size: 14px;
+            }
+            
+            .row-label {
+                min-width: 40px;
+                font-size: 14px;
+            }
+            
+            .zone-stage {
+                font-size: 22px;
+                padding: 25px 40px;
+            }
+            
+            .ticket-types {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .ticket-card {
+                padding: 18px;
+            }
+            
+            .summary-card {
+                padding: 25px;
+            }
+            
+            .final-total {
+                font-size: 26px;
+            }
+            
+            .next-btn {
+                padding: 16px;
+                font-size: 16px;
+            }
+        }
+
+        /* Apple Cinema Display & 4K Screens (2560px and above) */
+        @media (min-width: 2560px) {
+            .booking-container {
+                max-width: 2000px;
+            }
+            
+            .dual-booking {
+                grid-template-columns: 1fr 450px;
+                gap: 35px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 450px;
+            }
+            
+            .zone-seat {
+                width: 55px;
+                height: 55px;
+                font-size: 15px;
+            }
+            
+            .row-label {
+                min-width: 45px;
+                font-size: 15px;
+            }
+            
+            .zone-stage {
+                font-size: 24px;
+                padding: 30px 50px;
+                margin-bottom: 35px;
+            }
+            
+            .zone-grid {
+                max-width: 1200px;
+            }
+            
+            .zone-row {
+                gap: 12px;
+            }
+            
+            .ticket-types {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .ticket-card {
+                padding: 20px;
+            }
+            
+            .ticket-price {
+                font-size: 24px;
+            }
+            
+            .summary-card {
+                padding: 30px;
+            }
+            
+            .summary-header h3 {
+                font-size: 18px;
+            }
+            
+            .final-total {
+                font-size: 28px;
+            }
+            
+            .next-btn {
+                padding: 18px;
+                font-size: 17px;
+            }
+            
+            .legend-item {
+                padding: 12px;
+            }
+            
+            .legend-price {
+                font-size: 18px;
+            }
+        }
+
+        /* Ultra-wide Screens (3440px and above) */
+        @media (min-width: 3440px) {
+            .booking-container {
+                max-width: 2400px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 550px;
+            }
+            
+            .zone-seat {
+                width: 60px;
+                height: 60px;
+                font-size: 16px;
+            }
+            
+            .zone-stage {
+                font-size: 26px;
+                padding: 35px 60px;
+                margin-bottom: 40px;
+            }
+            
+            .zone-grid {
+                max-width: 1400px;
+            }
+            
+            .ticket-types {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+            
+            .summary-card {
+                padding: 35px;
+            }
+            
+            .final-total {
+                font-size: 30px;
+            }
+        }
+
+        /* Tablet and Smaller Desktop (991px and below) */
+        @media (max-width: 991px) {
+            .dual-booking {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .enhanced-summary {
+                position: static;
+            }
+            
+            .progress-icons {
+                gap: 6px;
+            }
+            
+            .progress-icon {
+                min-width: 55px;
+                padding: 5px 8px;
+            }
+            
+            .progress-icon i {
+                width: 24px;
+                height: 24px;
+                font-size: 11px;
+            }
+            
+            .progress-icon span {
+                font-size: 10px;
+            }
+            
+            .progress-line {
+                width: 20px;
+            }
+            
+            .venue-map-container,
+            .zone-selection,
+            .ticket-selection-container {
+                padding: 15px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 280px;
+            }
+            
+            .zone-seat {
+                width: 38px;
+                height: 38px;
+                font-size: 11px;
+            }
+            
+            .row-label {
+                min-width: 30px;
+                font-size: 12px;
+            }
+        }
+
+        /* Tablet (768px and below) */
+        @media (max-width: 768px) {
+            .booking-section {
+                padding: 10px 0 25px;
+            }
+            
+            .booking-container {
+                padding: 0 15px;
+            }
+            
+            .venue-map-container,
+            .zone-selection,
+            .ticket-selection-container,
+            .summary-card {
+                padding: 15px;
+            }
+            
+            .progress-icons {
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .progress-line {
+                display: none;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 250px;
+            }
+            
+            .zone-seat {
+                width: 36px;
+                height: 36px;
+                font-size: 10px;
+            }
+            
+            .zone-row {
+                gap: 6px;
+            }
+            
+            .row-label {
+                min-width: 28px;
+                font-size: 11px;
+            }
+            
+            .zone-stage {
+                font-size: 16px;
+                padding: 15px 25px;
+                margin-bottom: 25px;
+            }
+            
+            .ticket-types {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .selection-counter-display {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 12px;
+                gap: 10px;
+            }
+            
+            .counter-card {
+                padding: 12px;
+            }
+            
+            .counter-count {
+                font-size: 22px;
+            }
+            
+            .final-total {
+                font-size: 20px;
+            }
+        }
+
+        /* Mobile (480px and below) */
+        @media (max-width: 480px) {
+            .progress-icons {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .progress-icon {
+                flex-direction: row;
+                min-width: auto;
+                width: 100%;
+                max-width: 180px;
+            }
+            
+            .selection-tabs {
+                flex-direction: column;
+                gap: 4px;
+            }
+            
+            .selection-tab {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            
+            .venue-header,
+            .zone-header,
+            .ticket-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .venue-image-wrapper {
+                min-height: 220px;
+            }
+            
+            .zone-grid-wrapper {
+                padding: 12px;
+            }
+            
+            .zone-seat {
+                width: 32px;
+                height: 32px;
+                font-size: 10px;
+            }
+            
+            .zone-row {
+                gap: 4px;
+            }
+            
+            .row-label {
+                min-width: 24px;
+                font-size: 10px;
+                margin-right: 4px;
+            }
+            
+            .zone-stage {
+                font-size: 14px;
+                padding: 12px 18px;
+                margin-bottom: 20px;
+            }
+            
+            .zone-tabs {
+                flex-direction: column;
+            }
+            
+            .zone-tab {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .selection-counter-display {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .counter-card {
+                padding: 10px;
+            }
+            
+            .counter-count {
+                font-size: 20px;
+            }
+            
+            .zone-legend,
+            .ticket-legend {
+                grid-template-columns: 1fr;
+            }
+            
+            .promo-input {
+                flex-direction: column;
+            }
+            
+            .promo-btn {
+                width: 100%;
+                padding: 10px;
+            }
+            
+            .final-total {
+                font-size: 18px;
+            }
+        }
+
+        /* Small Mobile (360px and below) */
+        @media (max-width: 360px) {
+            .zone-seat {
+                width: 28px;
+                height: 28px;
+                font-size: 9px;
+            }
+            
+            .zone-row {
+                gap: 3px;
+            }
+            
+            .row-label {
+                min-width: 22px;
+                font-size: 9px;
+            }
+            
+            .venue-map-container,
+            .zone-selection,
+            .ticket-selection-container,
+            .summary-card {
+                padding: 12px;
+            }
+            
+            .zone-stage {
+                font-size: 13px;
+                padding: 10px 15px;
+            }
+            
+            .ticket-card {
+                padding: 12px;
+            }
+            
+            .ticket-price {
+                font-size: 20px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-new {
+            background: #F24B09;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 25px 20px 0;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-logo-social {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo-img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .footer-logo-text span {
+            color: #fff;
+            opacity: 0.9;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .social-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #000;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            color: #fff;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            padding: 3px 0;
+            position: relative;
+        }
+
+        .footer-nav a:hover {
+            color: #000;
+        }
+
+        .footer-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .footer-nav a:hover::after {
+            width: 100%;
+        }
+
+        .footer-newsletter-section {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-newsletter-section h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-newsletter-section p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+        }
+
+        .footer-newsletter-form {
+            display: flex;
+            justify-content: center;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .footer-newsletter-form input {
+            flex: 1;
+            padding: 8px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .footer-newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-newsletter-form input:focus {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .footer-newsletter-form button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 0 16px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-newsletter-form button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .footer-bottom {
+            background: white;
+            padding: 12px 20px;
+            margin: 0 -20px -15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-legal a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-legal a:hover {
+            color: #F24B09;
+        }
+
+        /* Footer responsive */
+        @media (max-width: 768px) {
+            .footer-new {
+                padding: 20px 15px 0;
+            }
+            
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .footer-nav {
+                gap: 12px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .footer-legal {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="top-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="images/logo tandurrom.png" alt="Tanderrum">
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="browse-events.html">Browse Events</a>
+            <a href="#">Venues</a>
+            <a href="#">Help Center</a>
+        </nav>
+
+        <!-- Right actions -->
+        <div class="header-actions">
+            <!-- Search -->
+            <div class="search-nav">
+                <input type="text" placeholder="search events">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <!-- Cart -->
+            <div class="cart-section">
+                <i class="fa-solid fa-cart-shopping header-icon"></i>
+                <span class="login-text">CART</span>
+            </div>
+
+            <!-- Login -->
+            <div class="login-section">
+                <i class="fa-solid fa-user header-icon"></i>
+                <span class="login-text">LOGIN</span>
+            </div>
+
+            <!-- Menu -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </div>
+    </div>
+</header>
+
+<!-- ===== HERO IMAGE SECTION ===== -->
+<section class="event-hero">
+    <div class="hero-container">
+        <div class="hero-backdrop">
+            <div class="hero-image" style="background-image: url('images/ev 3.png');">
+                <div class="hero-overlay"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="event-badge">Comedy</div>
+            <h1 class="event-title">Comedy Festival Opening Night Gala</h1>
+            <div class="event-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>SAT 15 MAR</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>7:30 PM - 10:00 PM</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Sydney Theatre Company</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== DUAL SELECTION BOOKING SECTION ===== -->
+<section class="booking-section">
+    <div class="booking-container">
+        <!-- Progress Indicator -->
+        <div class="compact-progress">
+            <div class="progress-icons">
+                <div class="progress-icon active">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>Select Tickets</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-icon">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Payment</span>
+                </div>
+                <!-- <div class="progress-line"></div> -->
+                <!-- <div class="progress-icon">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Confirmation</span>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Venue Map with Zones -->
+        <div class="venue-map-container">
+            <div class="venue-header">
+                <h3><i class="fas fa-map-marked-alt"></i> Venue Seat Map</h3>
+                <div class="venue-info">Sydney Theatre Company - Main Hall (Organizer's Map)</div>
+            </div>
+            
+            <div class="zone-instructions">
+                <i class="fas fa-info-circle"></i> 
+                <strong>Choose your selection method:</strong> Use the tabs below to switch between ticket quantity selection or zone-based seat selection.
+            </div>
+
+            <div class="venue-image-wrapper">
+                <!-- Venue Map Image (from organizer) -->
+                <img src="images/map3.jpg" alt="Venue Seat Map" class="venue-image">
+                
+                <!-- Interactive Zone Overlays -->
+                <!-- <div class="zone-overlays">
+                    <div class="zone-area zone-a" data-zone="vip">
+                        <div class="zone-label">VIP Zone A</div>
+                    </div>
+                    <div class="zone-area zone-b" data-zone="premium">
+                        <div class="zone-label">Premium Zone B</div>
+                    </div>
+                    <div class="zone-area zone-c" data-zone="standard">
+                        <div class="zone-label">Standard Zone C</div>
+                    </div>
+                    <div class="zone-area zone-d" data-zone="economy">
+                        <div class="zone-label">Economy Zone D</div>
+                    </div>
+                    <div class="zone-area zone-e" data-zone="economy">
+                        <div class="zone-label">Economy Zone E</div>
+                    </div>
+                </div> -->
+            </div>
+
+            <!-- Selection Counter Display -->
+            <div class="selection-counter-display" id="selectionCounter">
+                <div class="counter-card">
+                    <div class="counter-type">VIP Tickets</div>
+                    <div class="counter-subtitle"> Seat Selection</div>
+                    <div class="counter-count" id="vipCount">0</div>
+                    <div class="counter-price">$199 each</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-type">Premium Tickets</div>
+                    <div class="counter-subtitle">Ticket Selection</div>
+                    <div class="counter-count" id="premiumCount">0</div>
+                    <div class="counter-price">$125 each</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-type">Standard Tickets</div>
+                    <div class="counter-subtitle">Ticket selection</div>
+                    <div class="counter-count" id="standardCount">0</div>
+                    <div class="counter-price">$85 each</div>
+                </div>
+                 <div class="counter-card">
+                    <div class="counter-type">Economy Tickets</div>
+                    <div class="counter-subtitle">Seat selection</div>
+                    <div class="counter-count" id="economyCount">0</div>
+                    <div class="counter-price">$55 each</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dual-booking">
+            <!-- Left Column: Selection Methods -->
+            <div>
+                <!-- Selection Tabs -->
+                <div class="selection-tabs">
+                    <button class="selection-tab active" data-tab="ticket-selection">
+                        <i class="fas fa-ticket-alt"></i> Ticket Quantity
+                    </button>
+                    <button class="selection-tab" data-tab="seat-selection">
+                        <i class="fas fa-chair"></i> Select Seats by Zone
+                    </button>
+                </div>
+
+                <!-- Ticket Selection Tab -->
+                <div class="tab-content active" id="ticket-selection">
+                    <div class="ticket-selection-container">
+                        <div class="ticket-header">
+                            <h3><i class="fas fa-ticket-alt"></i> Select Ticket Quantities</h3>
+                            <div class="ticket-info">Choose the number of tickets for each category</div>
+                        </div>
+
+                        <!-- Ticket Types - Compact Cards -->
+                        <div class="ticket-types">
+                            <!-- VIP Ticket -->
+                            <div class="ticket-card vip" data-type="vip">
+                                <div class="ticket-header-card">
+                                    <div class="ticket-title">
+                                        <h4><i class="fas fa-crown"></i> VIP Package</h4>
+                                        <span class="ticket-badge">All Access</span>
+                                    </div>
+                                    <div class="ticket-price">$199</div>
+                                </div>
+                                <p class="ticket-desc">Meet & Greet + Souvenir. Front row center seats with premium experience.</p>
+                                <div class="ticket-controls">
+                                    <button class="qty-btn minus" data-type="vip">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="vipQty" value="0" min="0" max="4" readonly>
+                                    <button class="qty-btn plus" data-type="vip">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Premium Ticket -->
+                            <div class="ticket-card premium" data-type="premium">
+                                <div class="ticket-header-card">
+                                    <div class="ticket-title">
+                                        <h4>Premium</h4>
+                                        <span class="ticket-badge">Best View</span>
+                                    </div>
+                                    <div class="ticket-price">$125</div>
+                                </div>
+                                <p class="ticket-desc">Front row center seats with excellent view in center section.</p>
+                                <div class="ticket-controls">
+                                    <button class="qty-btn minus" data-type="premium">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="premiumQty" value="0" min="0" max="8" readonly>
+                                    <button class="qty-btn plus" data-type="premium">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Standard Ticket -->
+                            <div class="ticket-card standard" data-type="standard">
+                                <div class="ticket-header-card">
+                                    <div class="ticket-title">
+                                        <h4>Standard</h4>
+                                        <span class="ticket-badge">Popular</span>
+                                    </div>
+                                    <div class="ticket-price">$85</div>
+                                </div>
+                                <p class="ticket-desc">Middle section great view at an affordable price.</p>
+                                <div class="ticket-controls">
+                                    <button class="qty-btn minus" data-type="standard">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="standardQty" value="0" min="0" max="8" readonly>
+                                    <button class="qty-btn plus" data-type="standard">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Economy Ticket -->
+                            <div class="ticket-card economy" data-type="economy">
+                                <div class="ticket-header-card">
+                                    <div class="ticket-title">
+                                        <h4>Economy</h4>
+                                        <span class="ticket-badge">Value</span>
+                                    </div>
+                                    <div class="ticket-price">$55</div>
+                                </div>
+                                <p class="ticket-desc">Good view at great price from side sections.</p>
+                                <div class="ticket-controls">
+                                    <button class="qty-btn minus" data-type="economy">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input type="number" id="economyQty" value="0" min="0" max="8" readonly>
+                                    <button class="qty-btn plus" data-type="economy">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ticket Legend -->
+                        <div class="ticket-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: linear-gradient(135deg, #ff6a00, #ff8c42);"></div>
+                                <div class="legend-info">
+                                    <div class="legend-name">VIP Package</div>
+                                    <div class="legend-price">$199</div>
+                                    <div class="legend-desc">All Access + Front row</div>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: linear-gradient(135deg, #4a90e2, #67a6f0);"></div>
+                                <div class="legend-info">
+                                    <div class="legend-name">Premium</div>
+                                    <div class="legend-price">$125</div>
+                                    <div class="legend-desc">Best view, center section</div>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: linear-gradient(135deg, #50c878, #70d891);"></div>
+                                <div class="legend-info">
+                                    <div class="legend-name">Standard</div>
+                                    <div class="legend-price">$85</div>
+                                    <div class="legend-desc">Great value, good view</div>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: linear-gradient(135deg, #9b59b6, #b07cc6);"></div>
+                                <div class="legend-info">
+                                    <div class="legend-name">Economy</div>
+                                    <div class="legend-price">$55</div>
+                                    <div class="legend-desc">Budget-friendly option</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selection Confirmation -->
+                        <div class="selection-confirmation" id="confirmationMessage" style="display: none;">
+                            <div class="confirmation-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="confirmation-message" id="confirmationText"></div>
+                            <div class="confirmation-details">
+                                Your selected tickets have been added to your order. Continue to payment to complete your booking.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seat Selection Tab -->
+                <div class="tab-content" id="seat-selection">
+                    <div class="zone-selection">
+                        <div class="zone-header">
+                            <h3><i class="fas fa-chair"></i> Select Your Seats by Zone</h3>
+                            <div class="zone-info">Click on a zone above, then select seats below</div>
+                        </div>
+
+                        <!-- Zone Tabs -->
+                        <div class="zone-tabs">
+                            <div class="zone-tab vip active" data-zone="vip">
+                                <i class="fas fa-crown"></i> VIP Zone A
+                            </div>
+                            <div class="zone-tab premium" data-zone="premium">
+                                <i class="fas fa-star"></i> Premium Zone B
+                            </div>
+                            <div class="zone-tab standard" data-zone="standard">
+                                <i class="fas fa-chair"></i> Standard Zone C
+                            </div>
+                            <div class="zone-tab economy" data-zone="economy">
+                                <i class="fas fa-tag"></i> Economy Zone D/E
+                            </div>
+                        </div>
+
+                        <!-- VIP Zone Content -->
+                        <div class="zone-content active" id="vip-zone">
+                            <div class="zone-stage">
+                                <i class="fas fa-crown"></i> VIP ZONE A <i class="fas fa-crown"></i>
+                            </div>
+
+                            <div class="zone-grid-wrapper">
+                                <div class="zone-grid">
+                                    <!-- Row A1 -->
+                                    <div class="zone-row">
+                                        <div class="row-label">A1</div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip" data-seat="A1-1" data-type="vip" data-price="199">1</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip" data-seat="A1-2" data-type="vip" data-price="199">2</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip booked" data-seat="A1-3" data-type="vip" data-price="199">3</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip" data-seat="A1-4" data-type="vip" data-price="199">4</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip" data-seat="A1-5" data-type="vip" data-price="199">5</div>
+                                        </div>
+                                    </div>
+                                    <!-- Row A2 -->
+                                    <div class="zone-row">
+                                        <div class="row-label">A2</div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip" data-seat="A2-1" data-type="vip" data-price="199">1</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip" data-seat="A2-2" data-type="vip" data-price="199">2</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip" data-seat="A2-3" data-type="vip" data-price="199">3</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip" data-seat="A2-4" data-type="vip" data-price="199">4</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat vip booked" data-seat="A2-5" data-type="vip" data-price="199">5</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Premium Zone Content -->
+                        <div class="zone-content" id="premium-zone">
+                            <div class="zone-stage">
+                                <i class="fas fa-star"></i> PREMIUM ZONE B <i class="fas fa-star"></i>
+                            </div>
+
+                            <div class="zone-grid-wrapper">
+                                <div class="zone-grid">
+                                    <!-- Row B1 -->
+                                    <div class="zone-row">
+                                        <div class="row-label">B1</div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B1-1" data-type="premium" data-price="125">1</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B1-2" data-type="premium" data-price="125">2</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B1-3" data-type="premium" data-price="125">3</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B1-4" data-type="premium" data-price="125">4</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B1-5" data-type="premium" data-price="125">5</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B1-6" data-type="premium" data-price="125">6</div>
+                                        </div>
+                                    </div>
+                                    <!-- Row B2 -->
+                                    <div class="zone-row">
+                                        <div class="row-label">B2</div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B2-1" data-type="premium" data-price="125">1</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B2-2" data-type="premium" data-price="125">2</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium booked" data-seat="B2-3" data-type="premium" data-price="125">3</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B2-4" data-type="premium" data-price="125">4</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B2-5" data-type="premium" data-price="125">5</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat premium" data-seat="B2-6" data-type="premium" data-price="125">6</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Standard Zone Content -->
+                        <div class="zone-content" id="standard-zone">
+                            <div class="zone-stage">
+                                <i class="fas fa-chair"></i> STANDARD ZONE C <i class="fas fa-chair"></i>
+                            </div>
+
+                            <div class="zone-grid-wrapper">
+                                <div class="zone-grid">
+                                    <!-- Row C1 -->
+                                    <div class="zone-row">
+                                        <div class="row-label">C1</div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C1-1" data-type="standard" data-price="85">1</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C1-2" data-type="standard" data-price="85">2</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C1-3" data-type="standard" data-price="85">3</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C1-4" data-type="standard" data-price="85">4</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C1-5" data-type="standard" data-price="85">5</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C1-6" data-type="standard" data-price="85">6</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C1-7" data-type="standard" data-price="85">7</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C1-8" data-type="standard" data-price="85">8</div>
+                                        </div>
+                                    </div>
+                                    <!-- Row C2 -->
+                                    <div class="zone-row">
+                                        <div class="row-label">C2</div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C2-1" data-type="standard" data-price="85">1</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C2-2" data-type="standard" data-price="85">2</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard booked" data-seat="C2-3" data-type="standard" data-price="85">3</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard booked" data-seat="C2-4" data-type="standard" data-price="85">4</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C2-5" data-type="standard" data-price="85">5</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C2-6" data-type="standard" data-price="85">6</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C2-7" data-type="standard" data-price="85">7</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat standard" data-seat="C2-8" data-type="standard" data-price="85">8</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Economy Zone Content -->
+                        <div class="zone-content" id="economy-zone">
+                            <div class="zone-stage">
+                                <i class="fas fa-tag"></i> ECONOMY ZONE D/E <i class="fas fa-tag"></i>
+                            </div>
+
+                            <div class="zone-grid-wrapper">
+                                <div class="zone-grid">
+                                    <!-- Row D1 -->
+                                    <div class="zone-row">
+                                        <div class="row-label">D1</div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="D1-1" data-type="economy" data-price="55">1</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="D1-2" data-type="economy" data-price="55">2</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="D1-3" data-type="economy" data-price="55">3</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="D1-4" data-type="economy" data-price="55">4</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="D1-5" data-type="economy" data-price="55">5</div>
+                                        </div>
+                                    </div>
+                                    <!-- Row E1 -->
+                                    <div class="zone-row">
+                                        <div class="row-label">E1</div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="E1-1" data-type="economy" data-price="55">1</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="E1-2" data-type="economy" data-price="55">2</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy booked" data-seat="E1-3" data-type="economy" data-price="55">3</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="E1-4" data-type="economy" data-price="55">4</div>
+                                        </div>
+                                        <div class="seat-cell">
+                                            <div class="zone-seat economy" data-seat="E1-5" data-type="economy" data-price="55">5</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Zone Legend -->
+                        <div class="zone-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: linear-gradient(135deg, #ff6a00, #ff8c42);"></div>
+                                <div class="legend-info">
+                                    <div class="legend-name">VIP Zone A</div>
+                                    <div class="legend-price">$199</div>
+                                    <div class="legend-desc">Front center, premium experience</div>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: linear-gradient(135deg, #4a90e2, #67a6f0);"></div>
+                                <div class="legend-info">
+                                    <div class="legend-name">Premium Zone B</div>
+                                    <div class="legend-price">$125</div>
+                                    <div class="legend-desc">Excellent view, center section</div>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: linear-gradient(135deg, #50c878, #70d891);"></div>
+                                <div class="legend-info">
+                                    <div class="legend-name">Standard Zone C</div>
+                                    <div class="legend-price">$85</div>
+                                    <div class="legend-desc">Great value, good view</div>
+                                </div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: linear-gradient(135deg, #9b59b6, #b07cc6);"></div>
+                                <div class="legend-info">
+                                    <div class="legend-name">Economy Zone D/E</div>
+                                    <div class="legend-price">$55</div>
+                                    <div class="legend-desc">Budget-friendly side sections</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Order Summary -->
+            <div class="enhanced-summary">
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
+                        <span class="item-count" id="orderItemCount">0 items</span>
+                    </div>
+
+                    <!-- Order Items -->
+                    <div class="order-items" id="orderItemsContainer">
+                        <div class="empty-order">
+                            <i class="fas fa-ticket-alt"></i>
+                            <p>Select tickets or seats to add to your order</p>
+                        </div>
+                    </div>
+
+                    <!-- Price Breakdown -->
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Tickets Subtotal</span>
+                            <span class="tickets-total">$0.00</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Service Fee</span>
+                            <span class="service-fee">$5.95</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Processing Fee</span>
+                            <span class="processing-fee">$3.50</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total Amount</span>
+                            <span class="final-total">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="promo-box">
+                        <div class="promo-input">
+                            <input type="text" placeholder="Enter promo code" id="promoCode">
+                            <button class="promo-btn" id="applyPromo">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Next Button -->
+                    <div class="next-action">
+                        <button class="next-btn" id="continueBtn" disabled>
+                            <span>Continue to Payment</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <p class="secure-note">
+                            <i class="fas fa-lock"></i> 256-bit SSL secure checkout
+                        </p>
+                    </div>
+
+                    <!-- Quick Info -->
+                    <div class="quick-info">
+                        <div class="info-point">
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <strong>Limited Availability</strong>
+                                <small>Only 15% seats remaining</small>
+                            </div>
+                        </div>
+                        <div class="info-point">
+                            <i class="fas fa-mobile"></i>
+                            <div>
+                                <strong>Mobile Tickets</strong>
+                                <small>Instant delivery via SMS & Email</small>
+                            </div>
+                        </div>
+                        <div class="info-point">
+                            <i class="fas fa-undo"></i>
+                            <div>
+                                <strong>Flexible Cancellation</strong>
+                                <small>Free cancellation up to 24 hours</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer-new">
+    <!-- Logo and social media -->
+    <div class="footer-logo-social">
+        <div class="footer-logo-wrapper">
+            <img src="images/vector.png" alt="Tanderrum Logo" class="footer-logo-img">
+            <div class="footer-logo-text">TANDERRUM<span>.LIVE</span></div>
+        </div>
+        <div class="footer-social">
+            <a href="#" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact information -->
+    <div class="footer-contact">
+        <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>(03) 9123 4567</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Level 3, 45 William Street, Melbourne VIC 3000, Australia</span>
+        </div>
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>hello@tanderrum.ai</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="footer-nav">
+        <a href="#">HOME</a>
+        <a href="#">BROWSE EVENTS</a>
+        <a href="#">VENUES</a>
+        <a href="#">HELP CENTER</a>
+    </nav>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter-section">
+        <h3>NEVER MISS OUT</h3>
+        <p>Get notified about new events</p>
+        <form class="footer-newsletter-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">→</button>
+        </form>
+    </div>
+
+    <!-- Bottom legal -->
+    <div class="footer-bottom">
+        <div class="footer-legal">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Sitemap</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu functionality
+    const menuBtn = document.querySelector('.menu-btn');
+    const topHeader = document.querySelector('.top-header');
+    
+    if (menuBtn) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topHeader.classList.toggle('active');
+            
+            if (topHeader.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (topHeader.classList.contains('active') && 
+            !topHeader.contains(event.target) &&
+            window.innerWidth <= 900) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 900) {
+                topHeader.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+    
+    // Close menu on window resize to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900 && topHeader.classList.contains('active')) {
+            topHeader.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // ===== DUAL SELECTION SYSTEM =====
+    
+    // Ticket prices
+    const ticketPrices = {
+        'vip': 199,
+        'premium': 125,
+        'standard': 85,
+        'economy': 55
+    };
+    
+    // Ticket labels
+    const ticketLabels = {
+        'vip': 'VIP Package',
+        'premium': 'Premium',
+        'standard': 'Standard',
+        'economy': 'Economy'
+    };
+    
+    // Booking data
+    let selectedTickets = {
+        'vip': 0,
+        'premium': 0,
+        'standard': 0,
+        'economy': 0
+    };
+    
+    let selectedSeats = [];
+    let seatCounts = {
+        'vip': 0,
+        'premium': 0,
+        'standard': 0,
+        'economy': 0
+    };
+    
+    // Current active zone for seat selection
+    let activeZone = 'vip';
+    let currentSelectionMethod = 'ticket';
+    
+    // Elements
+    const selectionTabs = document.querySelectorAll('.selection-tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const zoneTabs = document.querySelectorAll('.zone-tab');
+    const zoneContents = document.querySelectorAll('.zone-content');
+    const zoneAreas = document.querySelectorAll('.zone-area');
+    const seats = document.querySelectorAll('.zone-seat:not(.booked)');
+    
+    // Ticket controls
+    const ticketCards = document.querySelectorAll('.ticket-card');
+    const quantityButtons = document.querySelectorAll('.qty-btn');
+    const quantityInputs = {
+        'vip': document.getElementById('vipQty'),
+        'premium': document.getElementById('premiumQty'),
+        'standard': document.getElementById('standardQty'),
+        'economy': document.getElementById('economyQty')
+    };
+    
+    // Order summary elements
+    const orderItemsContainer = document.getElementById('orderItemsContainer');
+    const ticketsTotalElement = document.querySelector('.tickets-total');
+    const finalTotalElement = document.querySelector('.final-total');
+    const itemCountElement = document.getElementById('orderItemCount');
+    const continueBtn = document.getElementById('continueBtn');
+    const applyPromoBtn = document.getElementById('applyPromo');
+    const promoCodeInput = document.getElementById('promoCode');
+    
+    // Counter elements
+    const vipCountElement = document.getElementById('vipCount');
+    const premiumCountElement = document.getElementById('premiumCount');
+    const standardCountElement = document.getElementById('standardCount');
+    const economyCountElement = document.getElementById('economyCount');
+    
+    // Confirmation message elements
+    const confirmationMessage = document.getElementById('confirmationMessage');
+    const confirmationText = document.getElementById('confirmationText');
+    
+    // Service fees
+    const serviceFee = 5.95;
+    const processingFee = 3.50;
+    let discount = 0;
+    let discountPercentage = 0;
+    
+    // Selection method tabs
+    selectionTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabId = this.dataset.tab;
+            
+            // Update active tab
+            selectionTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update active content
+            tabContents.forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update current selection method
+            currentSelectionMethod = tabId === 'ticket-selection' ? 'ticket' : 'seat';
+            
+            // Clear confirmation message
+            confirmationMessage.style.display = 'none';
+        });
+    });
+    
+    // Zone tab switching
+    zoneTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const zone = this.dataset.zone;
+            
+            // Update active tab
+            zoneTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update active content
+            zoneContents.forEach(content => content.classList.remove('active'));
+            document.getElementById(`${zone}-zone`).classList.add('active');
+            
+            // Update active zone
+            activeZone = zone;
+            
+            // Show zone message
+            showConfirmationMessage(`Now viewing seats in ${ticketLabels[zone] || 'this'} zone`);
+        });
+    });
+    
+    // Zone area clicks on venue map
+    zoneAreas.forEach(area => {
+        area.addEventListener('click', function() {
+            const zone = this.dataset.zone;
+            
+            // Switch to seat selection tab
+            selectionTabs.forEach(t => t.classList.remove('active'));
+            document.querySelector('.selection-tab[data-tab="seat-selection"]').classList.add('active');
+            
+            tabContents.forEach(content => content.classList.remove('active'));
+            document.getElementById('seat-selection').classList.add('active');
+            
+            // Update zone tabs
+            zoneTabs.forEach(t => t.classList.remove('active'));
+            document.querySelector(`.zone-tab[data-zone="${zone}"]`).classList.add('active');
+            
+            // Update zone content
+            zoneContents.forEach(content => content.classList.remove('active'));
+            document.getElementById(`${zone}-zone`).classList.add('active');
+            
+            // Update active zone
+            activeZone = zone;
+            currentSelectionMethod = 'seat';
+            
+            // Show zone message
+            showConfirmationMessage(`Now viewing seats in ${ticketLabels[zone] || 'this'} zone`);
+            
+            // Scroll to zone selection
+            document.querySelector('.zone-selection').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+    
+    // Ticket quantity controls
+    quantityButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const type = this.dataset.type;
+            const isPlus = this.classList.contains('plus');
+            
+            let currentValue = parseInt(quantityInputs[type].value);
+            let maxValue = type === 'vip' ? 4 : 8;
+            
+            if (isPlus && currentValue < maxValue) {
+                currentValue++;
+                selectedTickets[type]++;
+                showConfirmationMessage(`Added 1 ${ticketLabels[type]} ticket`);
+            } else if (!isPlus && currentValue > 0) {
+                currentValue--;
+                selectedTickets[type]--;
+                showConfirmationMessage(`Removed 1 ${ticketLabels[type]} ticket`);
+            }
+            
+            quantityInputs[type].value = currentValue;
+            
+            // Update UI
+            updateTicketCounters();
+            updateOrderSummary();
+            updateContinueButton();
+        });
+    });
+    
+    // Seat selection event listeners
+    seats.forEach(seat => {
+        seat.addEventListener('click', function() {
+            if (this.classList.contains('booked')) return;
+            
+            const seatId = this.dataset.seat;
+            const seatType = this.dataset.type;
+            const seatPrice = parseFloat(this.dataset.price);
+            
+            // Toggle seat selection
+            if (this.classList.contains('selected')) {
+                // Deselect seat
+                this.classList.remove('selected');
+                selectedSeats = selectedSeats.filter(seat => seat.id !== seatId);
+                seatCounts[seatType]--;
+                
+                // Show deselection message
+                showConfirmationMessage(`Seat ${seatId} removed from selection`);
+            } else {
+                // Select seat
+                this.classList.add('selected');
+                selectedSeats.push({
+                    id: seatId,
+                    type: seatType,
+                    price: seatPrice,
+                    label: ticketLabels[seatType],
+                    zone: activeZone
+                });
+                seatCounts[seatType]++;
+                
+                // Show selection message
+                showConfirmationMessage(`Seat ${seatId} (${ticketLabels[seatType]}) added to your order`);
+            }
+            
+            // Update UI
+            updateTicketCounters();
+            updateOrderSummary();
+            updateContinueButton();
+        });
+        
+        // Add price display on hover
+        seat.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('booked') && !this.classList.contains('selected')) {
+                const seatType = this.dataset.type;
+                const seatLabel = ticketLabels[seatType];
+                const seatPrice = this.dataset.price;
+                
+                // Add tooltip
+                this.setAttribute('title', `${this.dataset.seat} - ${seatLabel}: $${seatPrice}`);
+            }
+        });
+    });
+    
+    // Update ticket counters
+    function updateTicketCounters() {
+        if (currentSelectionMethod === 'ticket') {
+            vipCountElement.textContent = selectedTickets.vip;
+            premiumCountElement.textContent = selectedTickets.premium;
+            standardCountElement.textContent = selectedTickets.standard;
+            economyCountElement.textContent = selectedTickets.economy;
+        } else {
+            vipCountElement.textContent = seatCounts.vip;
+            premiumCountElement.textContent = seatCounts.premium;
+            standardCountElement.textContent = seatCounts.standard;
+            economyCountElement.textContent = seatCounts.economy;
+        }
+    }
+    
+    // Show confirmation message
+    function showConfirmationMessage(message) {
+        confirmationText.textContent = message;
+        confirmationMessage.style.display = 'block';
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+            confirmationMessage.style.display = 'none';
+        }, 5000);
+    }
+    
+    // Update order summary
+    function updateOrderSummary() {
+        let subtotal = 0;
+        
+        if (currentSelectionMethod === 'ticket') {
+            // Calculate from ticket quantities
+            Object.keys(selectedTickets).forEach(type => {
+                subtotal += selectedTickets[type] * ticketPrices[type];
+            });
+        } else {
+            // Calculate from selected seats
+            selectedSeats.forEach(seat => {
+                subtotal += seat.price;
+            });
+        }
+        
+        // Apply discount if any
+        const discountedSubtotal = subtotal - discount;
+        
+        // Calculate total with fees
+        const total = discountedSubtotal + serviceFee + processingFee;
+        
+        // Update order items display
+        updateOrderItemsDisplay();
+        
+        // Update price breakdown
+        ticketsTotalElement.textContent = `$${discountedSubtotal.toFixed(2)}`;
+        finalTotalElement.textContent = `$${total.toFixed(2)}`;
+        
+        // Update item count
+        const totalItems = getTotalItems();
+        itemCountElement.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
+    }
+    
+    // Get total items based on selection method
+    function getTotalItems() {
+        if (currentSelectionMethod === 'ticket') {
+            return Object.values(selectedTickets).reduce((a, b) => a + b, 0);
+        } else {
+            return selectedSeats.length;
+        }
+    }
+    
+    // Update order items display
+    function updateOrderItemsDisplay() {
+        const totalItems = getTotalItems();
+        
+        if (totalItems === 0) {
+            orderItemsContainer.innerHTML = `
+                <div class="empty-order">
+                    <i class="fas fa-ticket-alt"></i>
+                    <p>Select tickets or seats to add to your order</p>
+                </div>
+            `;
+            return;
+        }
+        
+        let itemsHTML = '';
+        
+        if (currentSelectionMethod === 'ticket') {
+            // Display ticket quantities
+            Object.keys(selectedTickets).forEach(type => {
+                const count = selectedTickets[type];
+                if (count > 0) {
+                    itemsHTML += `
+                        <div class="order-item">
+                            <div class="item-info">
+                                <span class="item-name">${ticketLabels[type]} × ${count}</span>
+                                <div class="item-details">
+                                    <span>$${ticketPrices[type].toFixed(2)} each</span>
+                                    <span>${count === 1 ? '1 ticket' : `${count} tickets`}</span>
+                                </div>
+                            </div>
+                            <div class="item-price">$${(count * ticketPrices[type]).toFixed(2)}</div>
+                        </div>
+                    `;
+                }
+            });
+        } else {
+            // Display selected seats
+            const seatSummary = {};
+            selectedSeats.forEach(seat => {
+                if (!seatSummary[seat.type]) {
+                    seatSummary[seat.type] = {
+                        seats: [],
+                        total: 0
+                    };
+                }
+                seatSummary[seat.type].seats.push(seat.id);
+                seatSummary[seat.type].total += seat.price;
+            });
+            
+            Object.keys(seatSummary).forEach(type => {
+                const summary = seatSummary[type];
+                itemsHTML += `
+                    <div class="order-item">
+                        <div class="item-info">
+                            <span class="item-name">${ticketLabels[type]} Seats</span>
+                            <div class="item-details">
+                                <span>$${ticketPrices[type].toFixed(2)} each</span>
+                                <span>${summary.seats.join(', ')}</span>
+                            </div>
+                        </div>
+                        <div class="item-price">$${summary.total.toFixed(2)}</div>
+                    </div>
+                `;
+            });
+        }
+        
+        // Add discount if applied
+        if (discount > 0) {
+            itemsHTML += `
+                <div class="order-item" style="background: #f0fff4; border-left: 3px solid #50c878; margin: 8px -12px; padding: 8px 12px;">
+                    <div class="item-info">
+                        <span class="item-name" style="color: #50c878;">
+                            <i class="fas fa-tag"></i> Promo Discount
+                        </span>
+                        <div class="item-details">
+                            <span>${discountPercentage}% off</span>
+                        </div>
+                    </div>
+                    <div class="item-price" style="color: #50c878;">-$${discount.toFixed(2)}</div>
+                </div>
+            `;
+        }
+        
+        orderItemsContainer.innerHTML = itemsHTML;
+    }
+    
+    // Update continue button state
+    function updateContinueButton() {
+        const totalItems = getTotalItems();
+        continueBtn.disabled = totalItems === 0;
+        
+        if (!continueBtn.disabled) {
+            continueBtn.innerHTML = `
+                <span>Continue to Payment (${totalItems} ${totalItems === 1 ? 'item' : 'items'})</span>
+                <i class="fas fa-arrow-right"></i>
+            `;
+        } else {
+            continueBtn.innerHTML = `
+                <span>Continue to Payment</span>
+                <i class="fas fa-arrow-right"></i>
+            `;
+        }
+    }
+    
+    // Promo code functionality
+    applyPromoBtn.addEventListener('click', function() {
+        const promoCode = promoCodeInput.value.trim().toUpperCase();
+        
+        if (promoCode === '') {
+            showPromoMessage('Please enter a promo code', 'error');
+            return;
+        }
+        
+        // Valid promo codes
+        const validPromos = {
+            'SAVE10': 10,
+            'SAVE20': 20,
+            'FIRST5': 5,
+            'COMEDY15': 15,
+            'VIP25': 25
+        };
+        
+        if (validPromos[promoCode]) {
+            discountPercentage = validPromos[promoCode];
+            applyDiscount(discountPercentage);
+            showPromoMessage(`${discountPercentage}% discount applied successfully!`, 'success');
+            promoCodeInput.value = '';
+        } else {
+            showPromoMessage('Invalid promo code. Try SAVE10, SAVE20, or FIRST5', 'error');
+        }
+    });
+    
+    // Apply discount
+    function applyDiscount(percentage) {
+        let subtotal = 0;
+        
+        if (currentSelectionMethod === 'ticket') {
+            Object.keys(selectedTickets).forEach(type => {
+                subtotal += selectedTickets[type] * ticketPrices[type];
+            });
+        } else {
+            selectedSeats.forEach(seat => {
+                subtotal += seat.price;
+            });
+        }
+        
+        discount = subtotal * (percentage / 100);
+        updateOrderSummary();
+    }
+    
+    // Show promo message
+    function showPromoMessage(message, type) {
+        // Remove existing message
+        const existingMessage = document.querySelector('.promo-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        // Create new message
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `promo-message ${type}`;
+        messageDiv.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+            ${message}
+        `;
+        
+        // Style the message
+        messageDiv.style.cssText = `
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: ${type === 'success' ? 'rgba(80, 200, 120, 0.1)' : 'rgba(255, 106, 0, 0.1)'};
+            color: ${type === 'success' ? '#50c878' : '#ff6a00'};
+            border: 1px solid ${type === 'success' ? 'rgba(80, 200, 120, 0.3)' : 'rgba(255, 106, 0, 0.3)'};
+        `;
+        
+        // Insert after promo box
+        const promoBox = document.querySelector('.promo-box');
+        promoBox.parentNode.insertBefore(messageDiv, promoBox.nextSibling);
+        
+        // Auto remove after 5 seconds for success, 7 for error
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.remove();
+            }
+        }, type === 'success' ? 5000 : 7000);
+    }
+    
+    // Continue button functionality
+    continueBtn.addEventListener('click', function() {
+        if (!this.disabled) {
+            // Show loading
+            const originalContent = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            this.disabled = true;
+            
+            // Store booking data
+            const bookingData = {
+                selectionMethod: currentSelectionMethod,
+                selectedTickets: selectedTickets,
+                selectedSeats: selectedSeats,
+                subtotal: parseFloat(ticketsTotalElement.textContent.replace('$', '')),
+                total: parseFloat(finalTotalElement.textContent.replace('$', '')),
+                discount: discount,
+                discountPercentage: discountPercentage,
+                serviceFee: serviceFee,
+                processingFee: processingFee
+            };
+            
+            // Store in session storage for next page
+            sessionStorage.setItem('bookingData', JSON.stringify(bookingData));
+            
+            // Simulate processing delay
+            setTimeout(() => {
+                // In a real app, redirect to payment page
+                // window.location.href = 'payment.html';
+                
+                // For demo purposes, show alert
+                if (currentSelectionMethod === 'ticket') {
+                    const ticketSummary = [];
+                    Object.keys(selectedTickets).forEach(type => {
+                        if (selectedTickets[type] > 0) {
+                            ticketSummary.push(`${selectedTickets[type]} × ${ticketLabels[type]}`);
+                        }
+                    });
+                    alert(`Booking Summary:\n\n${ticketSummary.join('\n')}\n\nTotal: ${finalTotalElement.textContent}\n\nRedirecting to payment...`);
+                } else {
+                    alert(`Booking Summary:\n\nSeats: ${selectedSeats.map(s => `${s.id} (${s.label})`).join(', ')}\n\nTotal: ${finalTotalElement.textContent}\n\nRedirecting to payment...`);
+                }
+                
+                // Reset button (in real app, this wouldn't happen)
+                this.innerHTML = originalContent;
+                this.disabled = false;
+            }, 2000);
+        }
+    });
+    
+    // Allow Enter key for promo code
+    promoCodeInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applyPromoBtn.click();
+        }
+    });
+    
+    // Initialize
+    updateTicketCounters();
+    updateOrderSummary();
+    updateContinueButton();
+});
+</script>
+</body>
+</html>
